@@ -1,75 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e4b4335-7699-46e7-b58e-c3152baedca2" name="Changes" comment="first commit">
-      <change afterPath="$PROJECT_DIR$/.browserslistrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eturn-vue.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/httpClient.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/users.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/abstracts/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/base/_base.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/components/_blockAvailable.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/components/_blockOnMainPage.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/components/_buttons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/components/_memberinqueue.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/components/_qInformation.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/components/_queueinfo.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/components/_turnList.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/components/_upperbuttons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/components/_userInformation.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/layout/_header.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/layout/_myAndAviable.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/main.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/pages/_firstPages.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/vendors/_bootstrap-grid.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/vendors/_bootstrap.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/createPage/CreateDescription.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/createPage/CreateFrequency.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/createPage/CreateGroup.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/createPage/CreateHeader.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/createPage/CreateInfo.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/createPage/CreateParameters.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/createPage/MyTextbox.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/header.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mainButton.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mainPage/blockAvailable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mainPage/blockOnMainPage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mainPage/listAvailable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mainPage/listMy.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mainPage/myAndAvailable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mainPage/userInformation.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/turnPage/extraInfo.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/turnPage/turnBtns.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/turnPage/turnInfo.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/turnPage/turnList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/turnPage/turnPosition.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/turnPage/yourTurn.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/create.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/editTurn.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/firstPage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/main.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/members.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/turn.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue.config.js" afterDir="false" />
+    <list default="true" id="2e4b4335-7699-46e7-b58e-c3152baedca2" name="Changes" comment="update welcome page">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/abstracts/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/abstracts/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/base/_base.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/base/_base.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/components/_buttons.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/components/_buttons.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/pages/_firstPages.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/pages/_firstPages.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/firstPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/firstPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +41,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/new/Desktop/eturn-vue",
+    "last_opened_file_path": "/Users/new/Desktop/eturn-vue/src/assets",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -109,6 +53,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -120,8 +65,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707421917353</updated>
-      <workItem from="1707421920185" duration="372000" />
+      <workItem from="1707421920185" duration="4715000" />
     </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <option name="closed" value="true" />
+      <created>1707422496237</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1707422496237</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,6 +83,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+    <MESSAGE value="update welcome page" />
+    <option name="LAST_COMMIT_MESSAGE" value="update welcome page" />
   </component>
 </project>

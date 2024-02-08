@@ -3,18 +3,18 @@ import firstPage from '../views/firstPage.vue'
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
+    path: '/welcome',
+    name: 'welcome',
     component: firstPage,
   },
   {
-    path: '/main',
+    path: '/',
     name: 'main',
     component: () => import('../views/main.vue'),
   },
   {
-    path: '/editturn',
-    name: 'editturn',
+    path: '/edit',
+    name: 'edit',
     component: () => import('../views/editTurn.vue')
   },
   {

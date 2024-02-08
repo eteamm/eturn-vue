@@ -2,11 +2,11 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-12">
-        <div class="image">
-          <img src="img/mainImg.svg">
+        <div class="logoImg">
+          <img src="../assets/logo.png">
         </div>
         <div class="mainInfoTxt">
-          <h1 class="koyomochka">
+          <h1 class="startTitle">
             Всего три простых шага!
           </h1>
         </div>

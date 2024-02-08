@@ -6,7 +6,7 @@
         <div class="etuIdInformation">
           <button class="exitBtn">выйти</button>
         </div>
-        <UserInformation user-group="2391" user-name="Андрей Васильев" user-status="студент"/>
+        <UserInformation user-group="..." user-name="..." user-status="..."/>
         <my-and-available />
         <router-link to="/create" :to="{query: {nameQueue: 'ТОЭ'}}">
           <main-button button-text="СОЗДАТЬ ОЧЕРЕДЬ" />
