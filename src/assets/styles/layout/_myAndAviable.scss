@@ -1,15 +1,25 @@
 .typeQueue {
   text-align: center;
   padding: 10px;
+  display: grid;
+  font-size: $middle-text;
+  grid-template-columns: 1fr 1fr;
 }
 
 .myQueue {
-  color: #9ADBFF;
-  padding: 0px 110px 15px 0px;
-  display: inline-block;
+  color: $main-color;
+  padding: 10px 0;
+  //display: inline-block;
 }
 
 .available {
-  color: #9ADBFF;
-  display: inline-block;
+  color: $main-color;
+  padding: 10px 0;
+  //display: inline-block;
+}
+.available:hover{
+  cursor: pointer;
+}
+.myQueue:hover{
+  cursor: pointer;
 }

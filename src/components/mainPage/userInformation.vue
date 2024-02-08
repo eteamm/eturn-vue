@@ -2,7 +2,7 @@
   <div class="informationAboutStudent">
     <div class="name">
       <p class="sectionNameUser">имя пользователя</p>
-      <p class="andreiVasilev"><b>{{ users.name }}</b></p>
+      <p class="nameTitle"><b>{{ users.name }}</b></p>
     </div>
     <div class="additionalInformation">
       <div class="status">

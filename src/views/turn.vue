@@ -14,7 +14,7 @@
   <YourTurn/>
   <Wholeturn/>
   <div>
-    <main-button button-text="ВСТАТЬ В ОЧЕРЕДЬ" />
+    <main-button button-text="встать в очередь" />
   </div>
 </template>
 

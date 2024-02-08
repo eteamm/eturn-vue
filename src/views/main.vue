@@ -4,12 +4,12 @@
       <div class="col-md-12 col-lg-12">
         <Header title-name="Главная" title-description="список очередей"/>
         <div class="etuIdInformation">
-          <button class="exitBtn">выйти</button>
+          <img src="../assets/img/exitbtn.svg"  alt="exit">
         </div>
         <UserInformation user-group="..." user-name="..." user-status="..."/>
         <my-and-available />
         <router-link to="/create" :to="{query: {nameQueue: 'ТОЭ'}}">
-          <main-button button-text="СОЗДАТЬ ОЧЕРЕДЬ" />
+          <main-button button-text="создать очередь" />
         </router-link>
       </div>
     </div>

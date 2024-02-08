@@ -18,7 +18,7 @@
           </ol>
         </div>
         <div class="mainButton">
-          <router-link to="/main">
+          <router-link to="/">
             <main-button button-text="вперёд" />
           </router-link>
         </div>

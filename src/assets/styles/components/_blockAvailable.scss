@@ -1,26 +1,27 @@
 .queueBlockAvailable {
   width: 100%;
-  height: 90px;
   border: 0px solid;
   background-color: $block-color;
   color: $white;
-  border-radius: 10px;
+  border-radius: 25px;
   box-shadow: 5px 5px 10px -10px black;
-  margin: 5px 0px 0px 0px;
+  margin: 20px 0px 0px 0px;
+  padding: 15px 25px;
 }
 .nameQueueAndTeacher {
   display: inline-block;
 }
 .nameQueue {
-  padding: 5px 0px 0px 15px;
+  font-size: $middle-text;
+  padding: 0;
 }
 .nameTeacher {
   display: inline-block;
   vertical-align: top;
-  font-size: 10px;
+  font-size: $small-text;
   margin: 0px 0px;
   color: $text-second-color;
-  padding: 0px 0px 0px 15px;
+  padding: 0;
 }
 .divRightButton {
   position: relative;
@@ -29,22 +30,21 @@
 .joinBtn {
   position: absolute;
   background: $main-color;
-  margin: -40px 0px 15px -90px;
-  top: 0%;
-  left: 90%;
-  right: 0%;
-  bottom: 100%;
+  //margin: -40px 0px 15px -90px;
+  top: 0;
+  right: 0;
+  //bottom: 100%;
   border-style: solid;
   border-width: 0px;
-  border-radius: 10px;
-  padding: 0px 30px 3px 30px;
+  border-radius: 20px;
+  padding: 10px 15px;
   color: $text-color;
-  font-size: 13px;
+  font-size: $small-text;
 }
 .moreDetailed {
   vertical-align: top;
-  font-size: 10px;
+  font-size: $small-text;
   margin: 0px 0px;
   color: $text-second-color;
-  padding: 0px 15px;
+  padding: 0;
 }
