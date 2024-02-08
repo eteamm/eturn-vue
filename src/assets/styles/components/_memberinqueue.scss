@@ -1,0 +1,26 @@
+.memberinqueue{
+  width:100%;
+  border-radius:8px;
+  text-align:left;
+  background:$block-color;
+  color:$white;
+  font-size: 14px;
+  border:0;
+  padding:10px;
+  margin-top:10px;
+  font-weight:600;
+  display: flex;
+  justify-content: flex-start;
+}
+.memberqroup{
+  color:$text-second-color;
+  font-size:12px;
+  font-weight:400;
+  text-align:left;
+}
+.membernumber{
+  padding:10px;
+  color:$text-second-color;
+  font-size:12px;
+  font-weight:400;
+}

@@ -1,0 +1,71 @@
+.NameBox {
+
+  width: 856px;
+  border: 0px solid;
+  height: 75px;
+  flex-shrink: 0;
+  border-radius: 100px;
+  background: #393939;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
+  margin: 0px 0px 35px -5px;
+
+  color: $white;
+
+  font-family: Exo 2;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.ParameterBox {
+  width: 30%;
+  height: 40px;
+  border: 0px solid;
+  background-color: $block-color;
+  color: $white;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px -10px black;
+  margin: 5px 0px 35px 0px;
+}
+
+.SubHeader {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 16px;
+
+  top: 17px;
+  left: 20px;
+  font-weight: 300;
+  color: $text-second-color;
+
+}
+
+.ParameterText {
+  color: #909090;
+
+  font-family: Exo 2;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.GroupBox {
+
+  width: 556px;
+  border: 0px solid;
+  height: 75px;
+  flex-shrink: 0;
+  border-radius: 100px;
+  background: #393939;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
+  margin: 0px 0px 35px -5px;
+
+  color: $white;
+
+  font-family: Exo 2;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

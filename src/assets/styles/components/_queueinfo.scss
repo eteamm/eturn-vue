@@ -1,0 +1,51 @@
+.queueInfo{
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  width:100%;
+  margin-bottom: 15px;
+}
+.Title {
+  border-radius: 12px;
+  background-color: $main-color;
+  margin-right: 25px;
+  text-align: left;
+  padding: 10px;
+}
+.QueueTitle{
+  font-weight:700 ;
+  font-size: 22px ;
+  color:$text-color;
+}
+.QueueCreator{
+  font-size:13px;
+  color:$text-color;
+  font-weight: 400;
+}
+.Quantity{
+  border-radius: 12px;
+  background-color: $main-color;
+  position: relative;
+  margin-left: 15px;
+  text-align: left;
+  right:10px;
+  color:$text-color;
+  padding: 10px;
+  padding-left:15px;
+}
+.memebersQuantity{
+  font-weight:700 ;
+  font-size: 28px ;
+  margin-bottom: 7px;
+}
+.qpeople{
+  font-size:13px;
+  font-weight: 400;
+}
+.ExtraInfo{
+  font-size: 13px;
+  border-radius: 12px;
+  background-color:$block-color;
+  color:$white;
+  padding: 10px;
+  margin-bottom:15px;
+}

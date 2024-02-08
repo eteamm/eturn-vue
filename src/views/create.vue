@@ -1,0 +1,55 @@
+<template>
+  <div>
+    <Header title-name="Создать" title-description="новая очередь" />
+    <div>
+        <QInfo header = "Название Очереди" intext = "Название Очереди" text />
+    </div>
+
+    <div>
+      <QInfo header = "Описание" intext="Описание Очереди"/>
+    </div>
+
+    <div>
+      <QInfo header = "Частота" intext ="Частота вступления в очередь"/>
+    </div>
+
+    <div>
+      <QParameters qparameters= "Параметры доступа"/>
+  </div>
+
+    <div>
+      <p style = "color: white" class="SubHeader">Допустимые Группы</p>
+
+      <AddGroup />
+    </div>
+
+  </div>
+</template>
+
+
+<script>
+import Header from "@/components/header.vue";
+import QInfo from "@/components/createPage/CreateInfo.vue";
+import ExtraInfo from "@/components/turnPage/extraInfo.vue";
+import ElementHeader from"@/components/createPage/CreateHeader.vue";
+import QDescription from "@/components/createPage/CreateDescription.vue";
+import QFrequency from "@/components/createPage/CreateFrequency.vue";
+import QParameters from "@/components/createPage/CreateParameters.vue";
+import AddGroup from "@/components/createPage/CreateGroup.vue";
+
+export default {
+  name: 'Create',
+  components: {
+    AddGroup,
+    Header,
+    QInfo,
+    ExtraInfo,
+    ElementHeader,
+    QDescription,
+    QFrequency,
+    QParameters
+
+
+  }
+}
+</script>
