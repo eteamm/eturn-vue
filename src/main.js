@@ -6,6 +6,7 @@ import app from "@/App.vue";
 import queue from "@/views/turn.vue";
 import {getUser} from "@/api/users";
 import axios from 'axios'
+import { createMetaManager } from 'vue-meta'
 
 const store = createStore({
   state () {
@@ -116,5 +117,8 @@ const store = createStore({
     }
   }
 })
-createApp(App).use(router).use(store).mount('#app')
+const app1 = createApp(App).use(router).use(store).use(createMetaManager())
+
+await router.isReady()
+app1.mount('#app')
 

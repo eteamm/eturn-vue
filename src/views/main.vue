@@ -25,6 +25,7 @@ import BlockOnMainPage from "@/components/mainPage/blockOnMainPage.vue";
 import ListMy from "@/components/mainPage/listMy.vue";
 export default {
   name: 'firstPage',
+
   components: {
     ListMy,
     Header, UserInformation, MyAndAvailable, MainButton, BlockOnMainPage
