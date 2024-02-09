@@ -11,7 +11,7 @@ import { createMetaManager } from 'vue-meta'
 const store = createStore({
   state () {
     return {
-      queue: [
+      myTurn: [
         {
           id: 0,
           name: "Сдача ТОЭ",
@@ -73,19 +73,19 @@ const store = createStore({
           quantity: 1245
         },
       ],
-      queue1: [
-        {
-          id: 0,
-          name: "Сдача ООП",
-          teacher: "Хрен её знает",
-          more: "Не приходить"
-        },
-        {
-          id: 1,
-          name: "Жопа",
-          teacher: "Самоваров Иван",
-          more: "Что за хрень я пишу?"
-        }
+      availableTurn: [
+        // {
+        //   id: 0,
+        //   name: "Сдача ООП",
+        //   teacher: "Хрен её знает",
+        //   more: "Не приходить"
+        // },
+        // {
+        //   id: 1,
+        //   name: "Жопа",
+        //   teacher: "Самоваров Иван",
+        //   more: "Что за хрень я пишу?"
+        // }
       ],
       id: 0,
       users: []
@@ -97,14 +97,17 @@ const store = createStore({
     },
     SAVE_USERS(state, users) {
       state.users = users;
+    },
+    SAVE_TURN(state, turn) {
+      state.availableTurn = turn;
     }
   },
   getters: {
     getterName: (state) => (id) => {
-      return state.queue.find(queue => queue.id === id)
+      return state.myTurn.find(queue => queue.id === id)
     },
     getterAvailableName: (state) => (id)=> {
-      return state.queue1.find(queue1 => queue1.id === id)
+      return state.availableTurn.find(queue1 => queue1.id === id)
     }
   },
   actions: {
@@ -113,6 +116,13 @@ const store = createStore({
         commit('SAVE_USERS', result.data);
       }).catch(error => {
         throw new Error(`API ${error}`);
+      })
+    },
+    loadAvailableTurn({commit}) {
+      axios.get('/turn?userId=1&type=edu&access=available').then(result => {
+        commit('SAVE_TURN', result.data);
+      }).catch(error => {
+        throw new Error(`Fuck ${error}`);
       })
     }
   }

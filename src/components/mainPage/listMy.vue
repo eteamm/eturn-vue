@@ -1,6 +1,6 @@
 <template>
   <block-on-main-page
-    v-for="block in $store.state.queue"
+    v-for="block in $store.state.myTurn"
     :queue_data="block"
 
   />

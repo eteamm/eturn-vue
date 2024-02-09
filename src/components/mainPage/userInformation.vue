@@ -23,7 +23,7 @@ export default {
   name: 'UserInformation',
   props: ['userName', 'userStatus', 'userGroup'],
   mounted () {
-    this.$store.dispatch('loadUsers', 1)
+    this.$store.dispatch('loadUsers', 2)
   },
   computed: mapState(['users'])
 }
