@@ -21,8 +21,7 @@ export default {
   setup () {
     useMeta({
       title: '',
-      htmlAttrs: { lang: 'ru', amp: true },
-      viewport: "width=device-width, initial-scale=1"
+      htmlAttrs: { lang: 'ru', amp: true }
     })
   }
 }
