@@ -99,7 +99,7 @@ const store = createStore({
       state.users = users;
     },
     SAVE_TURN(state, turn) {
-      state.myTurn = turn;
+      state.availableTurn = turn;
     }
   },
   getters: {
@@ -119,7 +119,7 @@ const store = createStore({
       })
     },
     loadAvailableTurn({commit}) {
-      axios.get('/turn?userId=1&type=edu&access=available&numberGroup=2391').then(result => {
+      axios.get('/turn?userId=1&type=edu&access=available').then(result => {
         commit('SAVE_TURN', result.data);
       }).catch(error => {
         throw new Error(`Fuck ${error}`);

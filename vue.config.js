@@ -9,6 +9,6 @@ module.exports = defineConfig({
     }
   },
   devServer: {
-    proxy: 'http://90.156.229.190:8089'
+    proxy: 'http://eturn.ru:8089'
   }
 })
