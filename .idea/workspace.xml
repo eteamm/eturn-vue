@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e4b4335-7699-46e7-b58e-c3152baedca2" name="Changes" comment="change adaptive structure">
+    <list default="true" id="2e4b4335-7699-46e7-b58e-c3152baedca2" name="Changes" comment="package.json">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1707421917353</updated>
       <workItem from="1707421920185" duration="14647000" />
-      <workItem from="1707495594511" duration="5006000" />
+      <workItem from="1707495594511" duration="7069000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -119,7 +117,23 @@
       <option name="project" value="LOCAL" />
       <updated>1707498178335</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="viewport">
+      <option name="closed" value="true" />
+      <created>1707503299137</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1707503299138</updated>
+    </task>
+    <task id="LOCAL-00009" summary="package.json">
+      <option name="closed" value="true" />
+      <created>1707503362155</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1707503362155</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,6 +146,8 @@
     <MESSAGE value="yes" />
     <MESSAGE value="user 1" />
     <MESSAGE value="change adaptive structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="change adaptive structure" />
+    <MESSAGE value="viewport" />
+    <MESSAGE value="package.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="package.json" />
   </component>
 </project>
