@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e4b4335-7699-46e7-b58e-c3152baedca2" name="Changes" comment="update main and welcome page design">
+    <list default="true" id="2e4b4335-7699-46e7-b58e-c3152baedca2" name="Changes" comment="yes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mainPage/userInformation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainPage/userInformation.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +59,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707421917353</updated>
-      <workItem from="1707421920185" duration="11411000" />
+      <workItem from="1707421920185" duration="14167000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -85,7 +85,23 @@
       <option name="project" value="LOCAL" />
       <updated>1707430907244</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="yes">
+      <option name="closed" value="true" />
+      <created>1707476562149</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1707476562151</updated>
+    </task>
+    <task id="LOCAL-00005" summary="yes">
+      <option name="closed" value="true" />
+      <created>1707476593226</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1707476593226</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,6 +111,7 @@
     <MESSAGE value="first commit" />
     <MESSAGE value="update welcome page" />
     <MESSAGE value="update main and welcome page design" />
-    <option name="LAST_COMMIT_MESSAGE" value="update main and welcome page design" />
+    <MESSAGE value="yes" />
+    <option name="LAST_COMMIT_MESSAGE" value="yes" />
   </component>
 </project>
