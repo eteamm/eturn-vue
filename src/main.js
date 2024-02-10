@@ -12,66 +12,66 @@ const store = createStore({
   state () {
     return {
       myTurn: [
-        {
-          id: 0,
-          name: "Сдача ТОЭ",
-          teacher: "Купова Анастасия Викторовна",
-          quantity: 153
-        },
-        {
-          id: 1,
-          name: "Матан",
-          teacher: "Железняк Александр Владимирович",
-          quantity: 534
-        },
-        {
-          id: 2,
-          name: "Помощь по ТОЭ",
-          teacher: "Кадун Никита Андреевич",
-          quantity: 11
-        },
-        {
-          id: 3,
-          name: "Eturn",
-          teacher: "Васильев Андрей Антонович",
-          quantity: 8
-        },
-        {
-          id: 4,
-          name: "Деканат",
-          teacher: "Холод Иван Иванович",
-          quantity: 57
-        },
-        {
-          id: 1,
-          name: "Столовая",
-          teacher: "Сгущёнкина Марфа Викентьевна",
-          quantity: 215
-        },
-        {
-          id: 5,
-          name: "Очередь в очередь",
-          teacher: "Жырдылбеков Пантелей Микулович",
-          quantity: 897
-        },
-        {
-          id: 6,
-          name: "Сомнительно, но ОКЭЙ",
-          teacher: "Тиньков Олег Юрьевич",
-          quantity: 1
-        },
-        {
-          id: 7,
-          name: "Активирование угля",
-          teacher: "Щинигачжоу Хый Идинахый",
-          quantity: 78
-        },
-        {
-          id: 8,
-          name: "Промышленное производство бульона пельменей",
-          teacher: "Евстипатанова Гюльбайнека Жежвистовна",
-          quantity: 1245
-        },
+        // {
+        //   id: 0,
+        //   name: "Сдача ТОЭ",
+        //   teacher: "Купова Анастасия Викторовна",
+        //   quantity: 153
+        // },
+        // {
+        //   id: 1,
+        //   name: "Матан",
+        //   teacher: "Железняк Александр Владимирович",
+        //   quantity: 534
+        // },
+        // {
+        //   id: 2,
+        //   name: "Помощь по ТОЭ",
+        //   teacher: "Кадун Никита Андреевич",
+        //   quantity: 11
+        // },
+        // {
+        //   id: 3,
+        //   name: "Eturn",
+        //   teacher: "Васильев Андрей Антонович",
+        //   quantity: 8
+        // },
+        // {
+        //   id: 4,
+        //   name: "Деканат",
+        //   teacher: "Холод Иван Иванович",
+        //   quantity: 57
+        // },
+        // {
+        //   id: 1,
+        //   name: "Столовая",
+        //   teacher: "Сгущёнкина Марфа Викентьевна",
+        //   quantity: 215
+        // },
+        // {
+        //   id: 5,
+        //   name: "Очередь в очередь",
+        //   teacher: "Жырдылбеков Пантелей Микулович",
+        //   quantity: 897
+        // },
+        // {
+        //   id: 6,
+        //   name: "Сомнительно, но ОКЭЙ",
+        //   teacher: "Тиньков Олег Юрьевич",
+        //   quantity: 1
+        // },
+        // {
+        //   id: 7,
+        //   name: "Активирование угля",
+        //   teacher: "Щинигачжоу Хый Идинахый",
+        //   quantity: 78
+        // },
+        // {
+        //   id: 8,
+        //   name: "Промышленное производство бульона пельменей",
+        //   teacher: "Евстипатанова Гюльбайнека Жежвистовна",
+        //   quantity: 1245
+        // },
       ],
       availableTurn: [
         // {
@@ -98,17 +98,23 @@ const store = createStore({
     SAVE_USERS(state, users) {
       state.users = users;
     },
-    SAVE_TURN(state, turn) {
+    SAVE_AVAILABLE_TURN(state, turn) {
       state.availableTurn = turn;
+    },
+    SAVE_MY_TURN(state, turn) {
+      state.myTurn = turn;
     }
   },
   getters: {
+    getterUserId: (state) => {
+      return state.users.id;
+    },
     getterName: (state) => (id) => {
       return state.myTurn.find(queue => queue.id === id)
     },
     getterAvailableName: (state) => (id)=> {
       return state.availableTurn.find(queue1 => queue1.id === id)
-    }
+    },
   },
   actions: {
     loadUsers({commit}, id) {
@@ -118,13 +124,20 @@ const store = createStore({
         throw new Error(`API ${error}`);
       })
     },
-    loadAvailableTurn({commit}) {
-      axios.get('/turn?userId=1&type=edu&access=available').then(result => {
-        commit('SAVE_TURN', result.data);
+    loadMyTurn({commit}, {id, type, access}) {
+      axios.get('/turn?userId=' + id + '&type=' + type + '&access=' + access).then(result => {
+        commit('SAVE_MY_TURN', result.data);
       }).catch(error => {
-        throw new Error(`Fuck ${error}`);
+        throw new Error(`API ${error}`);
       })
-    }
+    },
+    loadAvailableTurn({commit}, {id, type, access}) {
+      axios.get('/turn?userId=' + id + '&type=' + type + '&access=' + access).then(result => {
+        commit('SAVE_AVAILABLE_TURN', result.data);
+      }).catch(error => {
+        throw new Error(`API ${error}`);
+      })
+    },
   }
 })
 const app1 = createApp(App).use(router).use(store).use(createMetaManager())

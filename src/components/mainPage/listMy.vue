@@ -8,6 +8,8 @@
 
 <script>
 import BlockOnMainPage from "@/components/mainPage/blockOnMainPage.vue";
+import {mapState} from "vuex";
+import {mapGetters} from "vuex";
 export default {
   name: "listMy",
   components: {
@@ -17,6 +19,13 @@ export default {
   data() {
     return {
     }
-  }
+  },
+  computed: {
+    ...mapState(['myTurn']),
+    ...mapGetters(['getterUserId']),
+  },
+  mounted() {
+    this.$store.dispatch('loadMyTurn', {id: 1, type: 'edu', access: 'participates'})
+  },
 }
 </script>

@@ -7,6 +7,8 @@
 <script>
 import BlockAvailable from "@/components/mainPage/blockAvailable.vue";
 import {mapState} from "vuex";
+import {mapGetters} from "vuex"
+import Vuex from "vuex";
 
 export default {
   name: "listAvailable",
@@ -17,9 +19,12 @@ export default {
   data() {
     return {}
   },
-  mounted() {
-    this.$store.dispatch('loadAvailableTurn')
+  computed: {
+    ...mapState(['availableTurn']),
+    ...mapGetters(['getterUserId']),
   },
-  computed: mapState(['availableTurn'])
+  mounted() {
+    this.$store.dispatch('loadAvailableTurn',{id: this.$store.getters.getterUserId, type: 'edu', access: 'available'})
+  },
 }
 </script>
