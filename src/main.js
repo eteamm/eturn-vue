@@ -87,13 +87,14 @@ const store = createStore({
         //   more: "Что за хрень я пишу?"
         // }
       ],
-      id: 0,
+      turnId: 0,
+      userId: 1,
       users: []
     }
   },
   mutations: {
-    changeId(state, n) {
-      state.id = n
+    changeCurrentTurnId(state, n) {
+      state.turnId = n
     },
     SAVE_USERS(state, users) {
       state.users = users;
@@ -107,7 +108,7 @@ const store = createStore({
   },
   getters: {
     getterUserId: (state) => {
-      return state.users.id;
+      return state.userId;
     },
     getterName: (state) => (id) => {
       return state.myTurn.find(Turn => Turn.id === id)

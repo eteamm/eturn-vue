@@ -25,7 +25,7 @@ export default {
     ...mapGetters(['getterUserId']),
   },
   mounted() {
-    this.$store.dispatch('loadMyTurn', {id: 1, type: 'edu', access: 'participates'})
+    this.$store.dispatch('loadMyTurn', {id: this.$store.getters.getterUserId, type: 'edu', access: 'participates'})
   },
 }
 </script>

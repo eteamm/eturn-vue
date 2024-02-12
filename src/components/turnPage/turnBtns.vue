@@ -6,7 +6,7 @@
     <div class="shareBtn">
       <button>поделиться</button>
     </div>
-    <router-link to="/main">
+    <router-link to="/">
     <div class="goOutBtn">
       <button>выйти</button>
     </div>
