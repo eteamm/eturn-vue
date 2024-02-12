@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import { createStore } from "vuex";
 import app from "@/App.vue";
-import queue from "@/views/turn.vue";
+import Turn from "@/views/turn.vue";
 import {getUser} from "@/api/users";
 import axios from 'axios'
 import { createMetaManager } from 'vue-meta'
@@ -104,10 +104,10 @@ const store = createStore({
   },
   getters: {
     getterName: (state) => (id) => {
-      return state.myTurn.find(queue => queue.id === id)
+      return state.myTurn.find(Turn => Turn.id === id)
     },
     getterAvailableName: (state) => (id)=> {
-      return state.availableTurn.find(queue1 => queue1.id === id)
+      return state.availableTurn.find(Turn1 => Turn1.id === id)
     }
   },
   actions: {

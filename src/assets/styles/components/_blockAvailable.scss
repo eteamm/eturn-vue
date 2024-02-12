@@ -1,4 +1,4 @@
-.queueBlockAvailable {
+.TurnBlockAvailable {
   width: 100%;
   border: 0px solid;
   background-color: $block-color;
@@ -8,10 +8,10 @@
   margin: 20px 0px 0px 0px;
   padding: 15px 25px;
 }
-.nameQueueAndTeacher {
+.nameTurnAndTeacher {
   display: inline-block;
 }
-.nameQueue {
+.nameTurn {
   font-size: $middle-text;
   padding: 0;
 }

@@ -1,7 +1,7 @@
 <template>
   <block-on-main-page
     v-for="block in $store.state.myTurn"
-    :queue_data="block"
+    :Turn_data="block"
 
   />
 </template>

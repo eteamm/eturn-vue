@@ -1,7 +1,7 @@
 <template>
   <block-available
     v-for="block in $store.state.availableTurn"
-    :queue_data="block"
+    :Turn_data="block"
   />
 </template>
 <script>

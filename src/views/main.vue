@@ -8,7 +8,7 @@
         </div>
         <UserInformation user-group="..." user-name="..." user-status="..."/>
         <my-and-available />
-        <router-link to="/create" :to="{query: {nameQueue: 'ТОЭ'}}">
+        <router-link to="/create" :to="{query: {nameTurn: 'ТОЭ'}}">
           <main-button button-text="создать очередь" />
         </router-link>
       </div>

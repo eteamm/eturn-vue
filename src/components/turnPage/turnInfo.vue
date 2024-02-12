@@ -1,10 +1,10 @@
 <template>
-  <div class="queueInfo">
+  <div class="TurnInfo">
     <div class="Title">
-    <span class="QueueTitle" v-if="$route.query.type === '0'">{{getterName($store.state.id).name}}</span>
-      <span class="QueueTitle" v-else>{{ getterAvailableName($store.state.id).name}}</span>
-    <p class="QueueCreator" v-if="$route.query.type === '0'">{{ getterName($store.state.id).teacher}}</p>
-      <p class="QueueCreator" v-else>{{ getterAvailableName($store.state.id).teacher}}</p>
+    <span class="TurnTitle" v-if="$route.query.type === '0'">{{getterName($store.state.id).name}}</span>
+      <span class="TurnTitle" v-else>{{ getterAvailableName($store.state.id).name}}</span>
+    <p class="TurnCreator" v-if="$route.query.type === '0'">{{ getterName($store.state.id).teacher}}</p>
+      <p class="TurnCreator" v-else>{{ getterAvailableName($store.state.id).teacher}}</p>
     </div>
     <div class="Quantity">
       <span class="memebersQuantity" v-if="$route.query.type === '0'">{{getterName($store.state.id).quantity}}</span>
@@ -19,7 +19,7 @@ import { mapGetters } from "vuex"
 import {id} from "postcss-selector-parser";
 
 export default {
-  name: 'QueueInfo',
+  name: 'TurnInfo',
   methods: {id},
   props: ['turnTitle', 'turnCreator', 'q', 'id'],
   computed: mapGetters(['getterName', 'getterAvailableName'])

@@ -1,14 +1,14 @@
 <template>
-  <router-link style="text-decoration: none" :to="{name: 'turn', params: {id: queue_data.id}, query: {type: 0}}" @click="$store.commit('changeId', queue_data.id)">
-    <div class="queueBlock1">
-      <div class="nameQueue">
-        {{queue_data.name}}
+  <router-link style="text-decoration: none" :to="{name: 'turn', params: {id: Turn_data.id}, query: {type: 0}}" @click="$store.commit('changeId', Turn_data.id)">
+    <div class="TurnBlock1">
+      <div class="nameTurn">
+        {{Turn_data.name}}
       </div>
       <div class="nameTeacher">
-        {{ queue_data.teacher }}
+        {{ Turn_data.teacher }}
       </div>
       <div class="quantityPeople">
-        {{queue_data.quantity}} человек
+        {{Turn_data.quantity}} человек
       </div>
     </div>
   </router-link>
@@ -19,7 +19,7 @@
 export default {
   name: 'BlockOnMainPage',
   props: {
-    queue_data: {
+    Turn_data: {
       type: Object,
       default() {
         return {}

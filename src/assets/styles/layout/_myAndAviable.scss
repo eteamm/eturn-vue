@@ -1,4 +1,4 @@
-.typeQueue {
+.typeTurn {
   text-align: center;
   padding: 10px;
   display: grid;
@@ -6,7 +6,7 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.myQueue {
+.myTurn {
   color: $main-color;
   padding: 10px 0;
   //display: inline-block;
@@ -20,6 +20,6 @@
 .available:hover{
   cursor: pointer;
 }
-.myQueue:hover{
+.myTurn:hover{
   cursor: pointer;
 }

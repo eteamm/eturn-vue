@@ -8,7 +8,7 @@
 <script>
 import Header from "@/components/header.vue";
 export default {
-  name: 'EditQueue',
+  name: 'EditTurn',
   components: {
     Header
   }

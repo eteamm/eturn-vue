@@ -1,6 +1,6 @@
 <template>
   <div class="mainButton">
-    <button class="makeQueueBtn">
+    <button class="makeTurnBtn">
       {{ buttonText }}
     </button>
   </div>

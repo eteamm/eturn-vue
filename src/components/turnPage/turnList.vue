@@ -1,20 +1,20 @@
 <template>
-<div class="wholequeue">
+<div class="wholeTurn">
   <span class="wholeturn">ВСЯ ОЧЕРЕДЬ</span>
 </div>
-  <member-in-queue
+  <member-in-Turn
     v-for="block in members"
     :key="block.memberfio"
-    :queue_list="block"
+    :Turn_list="block"
   />
 </template>
 
 <script>
-import MemberInQueue from "@/components/turnPage/turnPosition.vue";
+import MemberInTurn from "@/components/turnPage/turnPosition.vue";
 export default{
   name: 'WholeTurn',
   components:{
-    MemberInQueue
+    MemberInTurn
   },
   props:{},
   data() {

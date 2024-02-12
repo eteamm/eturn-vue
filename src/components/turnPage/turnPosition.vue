@@ -1,18 +1,18 @@
 <template>
-  <div class="memberinqueue">
-    <span class ="membernumber">#{{queue_list.k}} </span>
+  <div class="memberinTurn">
+    <span class ="membernumber">#{{Turn_list.k}} </span>
     <div class="aboutmember">
-    <span class="fio">{{queue_list.memberfio}}</span><br>
-    <span class="memberqroup">{{queue_list.membergroup}}</span>
+    <span class="fio">{{Turn_list.memberfio}}</span><br>
+    <span class="memberqroup">{{Turn_list.membergroup}}</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MemberInQueue',
+  name: 'MemberInTurn',
   props: {
-    queue_list: {
+    Turn_list: {
       type: Object,
       default() {
         return {}

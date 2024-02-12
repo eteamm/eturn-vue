@@ -1,4 +1,4 @@
-.queueInfo{
+.TurnInfo{
   display: grid;
   grid-template-columns: 3fr 1fr;
   width:100%;
@@ -11,12 +11,12 @@
   text-align: left;
   padding: 10px;
 }
-.QueueTitle{
+.TurnTitle{
   font-weight:700 ;
   font-size: 22px ;
   color:$text-color;
 }
-.QueueCreator{
+.TurnCreator{
   font-size:13px;
   color:$text-color;
   font-weight: 400;

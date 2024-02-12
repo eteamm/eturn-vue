@@ -1,6 +1,6 @@
 <template>
-  <div class="typeQueue">
-    <div class="myQueue" @click="visitable = true">
+  <div class="typeTurn">
+    <div class="myTurn" @click="visitable = true">
       <b>МОИ</b>
     </div>
     <div class="available" @click="visitable = false">
