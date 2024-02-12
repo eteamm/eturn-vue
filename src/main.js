@@ -17,61 +17,7 @@ const store = createStore({
         //   name: "Сдача ТОЭ",
         //   teacher: "Купова Анастасия Викторовна",
         //   quantity: 153
-        // },
-        // {
-        //   id: 1,
-        //   name: "Матан",
-        //   teacher: "Железняк Александр Владимирович",
-        //   quantity: 534
-        // },
-        // {
-        //   id: 2,
-        //   name: "Помощь по ТОЭ",
-        //   teacher: "Кадун Никита Андреевич",
-        //   quantity: 11
-        // },
-        // {
-        //   id: 3,
-        //   name: "Eturn",
-        //   teacher: "Васильев Андрей Антонович",
-        //   quantity: 8
-        // },
-        // {
-        //   id: 4,
-        //   name: "Деканат",
-        //   teacher: "Холод Иван Иванович",
-        //   quantity: 57
-        // },
-        // {
-        //   id: 1,
-        //   name: "Столовая",
-        //   teacher: "Сгущёнкина Марфа Викентьевна",
-        //   quantity: 215
-        // },
-        // {
-        //   id: 5,
-        //   name: "Очередь в очередь",
-        //   teacher: "Жырдылбеков Пантелей Микулович",
-        //   quantity: 897
-        // },
-        // {
-        //   id: 6,
-        //   name: "Сомнительно, но ОКЭЙ",
-        //   teacher: "Тиньков Олег Юрьевич",
-        //   quantity: 1
-        // },
-        // {
-        //   id: 7,
-        //   name: "Активирование угля",
-        //   teacher: "Щинигачжоу Хый Идинахый",
-        //   quantity: 78
-        // },
-        // {
-        //   id: 8,
-        //   name: "Промышленное производство бульона пельменей",
-        //   teacher: "Евстипатанова Гюльбайнека Жежвистовна",
-        //   quantity: 1245
-        // },
+        // }
       ],
       availableTurn: [
         // {
@@ -79,17 +25,21 @@ const store = createStore({
         //   name: "Сдача ООП",
         //   teacher: "Хрен её знает",
         //   more: "Не приходить"
-        // },
-        // {
-        //   id: 1,
-        //   name: "Жопа",
-        //   teacher: "Самоваров Иван",
-        //   more: "Что за хрень я пишу?"
         // }
       ],
       turnId: 0,
       userId: 1,
-      users: []
+      users: [],
+      positionsCurrentTurn: [
+        {
+          "id": 1,
+          "name": "Васильев Андрей Антонович",
+          "group": "2391",
+          "start": false,
+          "number": 1,
+          "userId": 1
+        }
+      ]
     }
   },
   mutations: {
@@ -139,6 +89,12 @@ const store = createStore({
         throw new Error(`API ${error}`);
       })
     },
+    //loadPositions({commit}, {idTurn}){
+    // TODO Для Риты: запрос авторизации
+    // TODO сделать запрос для вывода позиций
+    // TODO сделать запрос для удаления позиций
+    // TODO сделать запрос для вывода текущей первой позиции
+    //}
   }
 })
 const app1 = createApp(App).use(router).use(store).use(createMetaManager())
