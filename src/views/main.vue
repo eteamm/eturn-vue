@@ -7,6 +7,7 @@
           <img src="../assets/img/exitbtn.svg"  alt="exit">
         </div>
         <UserInformation user-group="..." user-name="..." user-status="..."/>
+        <edu-and-org-btn />
         <my-and-available />
         <router-link to="/create" :to="{query: {nameTurn: 'ТОЭ'}}">
           <main-button button-text="создать очередь" />
@@ -23,10 +24,12 @@ import MyAndAvailable from "@/components/mainPage/myAndAvailable.vue";
 import MainButton from "@/components/mainButton.vue";
 import BlockOnMainPage from "@/components/mainPage/blockOnMainPage.vue";
 import ListMy from "@/components/mainPage/listMy.vue";
+import EduAndOrgBtn from "@/components/mainPage/eduAndOrgBtn.vue";
 export default {
   name: 'firstPage',
 
   components: {
+    EduAndOrgBtn,
     ListMy,
     Header, UserInformation, MyAndAvailable, MainButton, BlockOnMainPage
   }
