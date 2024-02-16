@@ -1,0 +1,46 @@
+.typeTurn {
+  text-align: center;
+  padding: 0px 0px 10px 0px;
+  display: grid;
+  font-size: $middle-text;
+  grid-template-columns: 1fr 1fr;
+}
+
+.myTurnActive {
+  color: $text-color;
+  background-color: $main-color;
+  border-radius: 15px 0 0 15px;
+  padding: 10px 0;
+  //display: inline-block;
+}
+
+.availableNotActive {
+  color: $main-color;
+  background-color: $transparent-text;
+  border-radius: 0px 15px 15px 0px;
+  padding: 10px 0;
+  //display: inline-block;
+}
+
+.myTurnNotActive {
+  color: $main-color;
+  background-color: $transparent-text;
+  border-radius: 15px 0 0 15px;
+  padding: 10px 0;
+  //display: inline-block;
+}
+
+.availableActive {
+  color: $text-color;
+  background-color: $main-color;
+  border-radius: 0px 15px 15px 0px;
+  padding: 10px 0;
+  //display: inline-block;
+}
+
+.available:hover{
+  cursor: pointer;
+}
+.myTurn:hover{
+  cursor: pointer;
+}

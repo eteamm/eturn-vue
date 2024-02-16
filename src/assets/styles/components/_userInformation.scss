@@ -11,7 +11,7 @@
   box-shadow: 5px 5px 10px -10px black;
   color: $text-color;
   padding: 10px 20px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 .sectionNameUser {
   font-size: $small-text;
@@ -29,6 +29,7 @@
 }
 
 .additionalInformation{
+  padding: 10px 0px 10px 0px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
@@ -45,7 +46,7 @@
   color: $white;
   border-radius: 15px;
   box-shadow: 5px 5px 10px -10px black;
-  margin: 5px 5px 0px 0px;
+  margin: 0px 0px 0px 0px;
   display: inline-block;
   padding: 10px 20px;
 }
@@ -57,7 +58,7 @@
   color: $white;
   border-radius: 15px;
   box-shadow: 5px 5px 10px -10px black;
-  margin: 5px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   display: inline-block;
   padding: 10px 20px;
 }
