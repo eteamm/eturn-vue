@@ -2,7 +2,7 @@
   <div class="yourTurn">
     <span class="yourturn">ТВОЙ ЧЕРЕД</span>
   </div>
-  <member-in-Turn
+  <TurnPosition
     v-for="block in members"
     :key="block.memberfio"
     :Turn_list="block"
@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import MemberInTurn from "@/components/turnPage/turnPosition.vue";
+import TurnPosition from "@/components/turnPage/turnPosition.vue";
 export default {
   name: 'YourTurn',
   components: {
-    MemberInTurn
+    TurnPosition
   },
   props: {},
   data() {

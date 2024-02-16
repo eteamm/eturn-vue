@@ -9,7 +9,7 @@
     <ExtraInfo extrainfo="Приходим в ауд. 2317 в 13:00"/>
   </div>
   <div>
-    <TurnButtons/>
+    <TurnBtns/>
   </div>
   <YourTurn/>
   <Wholeturn/>
@@ -22,8 +22,8 @@
 <script>
 import Header from "@/components/header.vue";
 import TurnInfo from "@/components/turnPage/turnInfo.vue";
-import TurnButtons from "@/components/turnPage/turnBtns.vue";
-import MemberInTurn from "@/components/turnPage/turnPosition.vue";
+import TurnBtns from "@/components/turnPage/turnBtns.vue";
+import TurnPosition from "@/components/turnPage/turnPosition.vue";
 import MainButton from "@/components/mainButton.vue";
 import ExtraInfo from "../components/turnPage/extraInfo.vue";
 import Wholeturn from "@/components/turnPage/turnList.vue";
@@ -33,8 +33,8 @@ export default {
   components: {
     YourTurn,
     MainButton,
-    MemberInTurn,
-    TurnButtons,
+    TurnPosition,
+    TurnBtns,
     Header,
     TurnInfo,
     ExtraInfo,

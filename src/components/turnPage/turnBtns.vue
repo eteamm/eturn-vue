@@ -16,6 +16,6 @@
 
 <script>
 export default {
-  name: 'turnBtns'
+  name: 'TurnBtns'
 }
 </script>
