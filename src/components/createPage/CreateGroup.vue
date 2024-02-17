@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="input-group mb-3">
-      <input type="text" class="form-control" v-model="newGroup" placeholder="Enter 4-digit group number">
+      <input type="text" class="form-control" v-model="newGroup" placeholder="Введите номер группы">
       <div class="input-group-append">
         <button class="btn btn-primary" type="button" @click="addGroup">Add</button>
       </div>

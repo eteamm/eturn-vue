@@ -1,8 +1,9 @@
 .NameBox {
 
-  width: 856px;
+  width: 100%;
   border: 0px solid;
-  height: 75px;
+  padding: 30px;
+
   flex-shrink: 0;
   border-radius: 100px;
   background: #393939;
@@ -11,6 +12,23 @@
 
   color: $white;
 
+  font-family: Exo 2;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.input-group input.form-control {
+  width: 70%;
+  border: 0px solid;
+  padding: 30px;
+  flex-shrink: 0;
+  border-radius: 100px;
+  background: #393939;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
+  margin: 0px 0px 35px -5px;
+  color: $white;
   font-family: Exo 2;
   font-size: 19px;
   font-style: normal;

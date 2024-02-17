@@ -2,15 +2,15 @@
   <div>
     <Header title-name="Создать" title-description="новая очередь" />
     <div>
-        <QInfo header = "Название Очереди" intext = "Название Очереди" text />
+        <QInfo header = "название очереди" intext = "название очереди" text />
     </div>
 
     <div>
-      <QInfo header = "Описание" intext="Описание Очереди"/>
+      <QInfo header = "описание" intext="Описание Очереди"/>
     </div>
 
     <div>
-      <QInfo header = "Частота" intext ="Частота вступления в очередь"/>
+      <QInfo header = "частота" intext ="Частота вступления в очередь"/>
     </div>
 
     <div>
@@ -18,7 +18,7 @@
   </div>
 
     <div>
-      <p style = "color: white" class="SubHeader">Допустимые Группы</p>
+      <p style = "color: white" class="SubHeader">допустимые группы</p>
 
       <AddGroup />
     </div>
