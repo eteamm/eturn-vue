@@ -8,8 +8,10 @@
     "compile:sass": "sass sass/main.scss src/styles.css -w"
   },
   "dependencies": {
+    "@node-ipc/js-queue": "^2.0.3",
     "axios": "^1.6.3",
     "core-js": "^3.8.3",
+    "queue-microtask": "^1.2.3",
     "sass": "^1.69.5",
     "sass-loader": "^10.4.1",
     "vue": "^3.2.13",

@@ -1,6 +1,6 @@
 <template>
   <div class="QParameters">
-    <div style = "color: white" class="SubHeader">Параметры Доступа: {{ choice }} </div>
+    <div style = "color: white" class="SubHeader">параметры доступа: {{ choice }} </div>
 
     <select v-model="choice" class = "ParameterBox">
       <option class = "ParameterText" disabled value="">Выберите параметр: </option>

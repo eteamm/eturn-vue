@@ -1,7 +1,7 @@
 <template>
   <div class="QInfo">
     <p style="color: white" class="SubHeader"> {{header}}</p>
-    <input text v-model = "model" class= "NameBox" placeholder = "   Введите Значение">
+    <input text v-model = "model" class= "NameBox" placeholder = "Введите Значение">
 
   </div>
 </template>
