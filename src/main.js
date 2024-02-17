@@ -11,22 +11,7 @@ import { createMetaManager } from 'vue-meta'
 const store = createStore({
   state () {
     return {
-      myTurn: [
-        // {
-        //   id: 0,
-        //   name: "Сдача ТОЭ",
-        //   teacher: "Купова Анастасия Викторовна",
-        //   quantity: 153
-        // }
-      ],
-      availableTurn: [
-        // {
-        //   id: 0,
-        //   name: "Сдача ООП",
-        //   teacher: "Хрен её знает",
-        //   more: "Не приходить"
-        // }
-      ],
+      listTurn: [],
       turnId: 0,
       userId: 1,
       users: [],
@@ -49,22 +34,16 @@ const store = createStore({
     SAVE_USERS(state, users) {
       state.users = users;
     },
-    SAVE_AVAILABLE_TURN(state, turn) {
-      state.availableTurn = turn;
+    SAVE_TURN(state, turn) {
+      state.listTurn = turn;
     },
-    SAVE_MY_TURN(state, turn) {
-      state.myTurn = turn;
-    }
   },
   getters: {
     getterUserId: (state) => {
       return state.userId;
     },
     getterName: (state) => (id) => {
-      return state.myTurn.find(Turn => Turn.id === id)
-    },
-    getterAvailableName: (state) => (id)=> {
-      return state.availableTurn.find(queue1 => queue1.id === id)
+      return state.listTurn.find(listTurn => listTurn.id === id)
     },
   },
   actions: {
@@ -75,16 +54,9 @@ const store = createStore({
         throw new Error(`API ${error}`);
       })
     },
-    loadMyTurn({commit}, {id, type, access}) {
+    loadListTurn({commit}, {id, type, access}) {
       axios.get('/turn?userId=' + id + '&type=' + type + '&access=' + access).then(result => {
-        commit('SAVE_MY_TURN', result.data);
-      }).catch(error => {
-        throw new Error(`API ${error}`);
-      })
-    },
-    loadAvailableTurn({commit}, {id, type, access}) {
-      axios.get('/turn?userId=' + id + '&type=' + type + '&access=' + access).then(result => {
-        commit('SAVE_AVAILABLE_TURN', result.data);
+        commit('SAVE_TURN', result.data);
       }).catch(error => {
         throw new Error(`API ${error}`);
       })

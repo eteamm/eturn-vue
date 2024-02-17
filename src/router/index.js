@@ -18,7 +18,7 @@ const routes = [
     component: () => import('../views/editTurn.vue')
   },
   {
-    path: '/turn/:id',
+    path: '/turn',
     name: 'turn',
     component: () => import('../views/turn.vue'),
     props: true

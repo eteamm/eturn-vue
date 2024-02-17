@@ -1,7 +1,7 @@
 <template>
   <div class="TurnBlockAvailable">
     <div class="divRightButton">
-      <router-link :to="{name: 'turn', params: {id: Turn_data.id}, query: {type: 1}}" @click="$store.commit('changeCurrentTurnId', Turn_data.id)">
+      <router-link :to="{name: 'turn', params: {id: Turn_data.id}}" @click="$store.commit('changeCurrentTurnId', Turn_data.id)">
         <button class="joinBtn" >вступить</button>
       </router-link>
     </div>

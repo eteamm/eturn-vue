@@ -1,6 +1,6 @@
 <template>
   <block-on-main-page
-    v-for="block in $store.state.myTurn"
+    v-for="block in $store.state.listTurn"
     :Turn_data="block"
 
   />
@@ -21,11 +21,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(['myTurn']),
+    ...mapState(['listTurn']),
     ...mapGetters(['getterUserId']),
   },
   mounted() {
-    this.$store.dispatch('loadMyTurn', {id: this.$store.getters.getterUserId, type: 'edu', access: 'participates'})
+    this.$store.dispatch('loadListTurn', {id: this.$store.getters.getterUserId, type: 'edu', access: 'participates'})
   },
 }
 </script>

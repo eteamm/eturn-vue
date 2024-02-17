@@ -3,7 +3,7 @@
     <Header title-name="Очередь" title-description="основная информация" />
   </div>
   <div>
-    <TurnInfo turn-title="Зачетная неделя" turn-creator="Железняк Александр Владимирович" :id="id"/>
+    <TurnInfo turn-title="Зачетная неделя" turn-creator="Железняк Александр Владимирович"/>
   </div>
   <div>
     <ExtraInfo extrainfo="Приходим в ауд. 2317 в 13:00"/>
