@@ -10,7 +10,7 @@
       <div class="group-list">
         <div v-for="(group, index) in groups" :key="index" class="group-bubble">
           {{ group }}
-          <button class="delete-btn" @click="deleteGroup(index)">&times;</button>
+          <span class="delete-btn" @click="deleteGroup(index)">&#10006;</span> <!-- Заменяем кнопку крестиком -->
         </div>
       </div>
     </div>
@@ -46,37 +46,27 @@ export default {
 <style>
 .group-list {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  flex-direction: column; /* Устанавливаем вертикальное расположение для групп */
+  align-items: flex-start; /* Выравниваем группы слева */
 }
 
 .group-bubble {
   display: inline-flex;
   align-items: center;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  padding: 5px 10px;
-  border-radius: 15px;
+  margin-right: 20px; /* Увеличиваем правый отступ для увеличения размера пузырька */
+  margin-bottom: 20px; /* Увеличиваем нижний отступ для увеличения размера пузырька */
+  padding: 15px 20px; /* Увеличиваем внутренние отступы для увеличения размера пузырька */
+  border-radius: 35px; /* Увеличиваем радиус границы для создания более круглой формы пузырька */
   background-color: #007bff;
   color: #fff;
-  font-size: 16px;
-  position: relative; /* Add position relative for button positioning */
+  font-size: 20px; /* Увеличиваем размер шрифта для увеличения размера текста в пузырьке */
+  position: relative;
 }
 
 .delete-btn {
-  position: absolute; /* Position the button absolutely */
-  top: 50%; /* Position the button in the middle vertically */
-  right: -50px; /* Position the button 50px from the right edge */
-  transform: translateY(-50%); /* Center the button vertically */
-  font-weight: bold; /* Add bold font weight */
-  color: #fff; /* Set the button color to white */
-  background-color: #007bff; /* Set the button background color */
-  border: none; /* Remove the button border */
-  border-radius: 50%; /* Make the button circular */
-  width: 30px; /* Set the button width */
-  height: 30px; /* Set the button height */
-  text-align: center; /* Center the X symbol horizontally */
-  line-height: 1; /* Center the X symbol vertically */
-  cursor: pointer; /* Add cursor pointer on hover */
+  color: #fff; /* Устанавливаем цвет креста */
+  font-size: 20px; /* Устанавливаем размер креста */
+  cursor: pointer; /* Устанавливаем курсор в виде указателя */
+  margin-left: 10px; /* Добавляем отступ слева от текста для креста */
 }
 </style>

@@ -19,21 +19,29 @@
   line-height: normal;
 }
 
+.input-group {
+  display: flex;
+  align-items: center; /* Выравниваем элементы по вертикали */
+}
+
 .input-group input.form-control {
-  width: 70%;
+  flex-grow: 1; /* Растягиваем строку ввода на всё доступное пространство */
   border: 0px solid;
   padding: 30px;
-  flex-shrink: 0;
   border-radius: 100px;
   background: #393939;
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
-  margin: 0px 0px 35px -5px;
-  color: $white;
+  margin-right: 10px; /* Добавляем небольшой отступ справа */
+  color: white;
   font-family: Exo 2;
   font-size: 19px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.input-group-append {
+  margin-left: 10px; /* Добавляем отступ между строкой ввода и кнопкой "Add" */
 }
 
 .ParameterBox {
