@@ -1,28 +1,32 @@
 <template>
   <div class="typeTurn">
-    <div class="myTurnActive" v-bind:class="{myTurnNotActive: !visitable}" v-on:click="visitable = true">
+    <div class="myTurnActive" v-bind:class="{myTurnNotActive: !visitable}" v-on:click="myTurnFunction">
       МОИ
     </div>
-    <div class="availableNotActive" v-bind:class="{availableActive: !visitable}" v-on:click="visitable = false">
+    <div class="availableNotActive" v-bind:class="{availableActive: !visitable}" v-on:click="AvailableTurnFunction">
       ДОСТУПНЫЕ
     </div>
   </div>
-
-  // TODO убрать вообще из компонента кнопок целый список
-  <list-my v-if="visitable" />
-  <turn-list v-else />
 </template>
 
 <script>
-import ListMy from "@/components/mainPage/listMy.vue";
-import TurnList from "@/components/mainPage/turnList.vue";
 
 export default {
   name: 'AccessFilterBtn',
-  components: {TurnList, ListMy},
+  components: {},
   data() {
     return {
       visitable: true
+    }
+  },
+  methods:{
+    myTurnFunction(){
+      this.visitable = true
+      this.$emit("accessType", "participates")
+    },
+    AvailableTurnFunction(){
+      this.visitable = false
+      this.$emit("accessType", "available")
     }
   }
 }

@@ -7,8 +7,6 @@
       ОРГАНИЗАЦИОННЫЕ
     </div>
   </div>
-<!--  <list-my v-if="visitable" />-->
-<!--  <list-available v-else />-->
 </template>
 
 <script>

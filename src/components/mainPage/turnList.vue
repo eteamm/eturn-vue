@@ -1,13 +1,11 @@
-// TODO переделать компонент так, чтобы он был единственным списком
-
 <template>
-  <block-available
+  <turn-list-element
     v-for="block in $store.state.listTurn"
     :Turn_data="block"
   />
 </template>
 <script>
-import BlockAvailable from "@/components/mainPage/blockAvailable.vue";
+import TurnListElement from "@/components/mainPage/turnListElement";
 import {mapState} from "vuex";
 import {mapGetters} from "vuex"
 import Vuex from "vuex";
@@ -15,9 +13,12 @@ import Vuex from "vuex";
 export default {
   name: "TurnList",
   components: {
-    BlockAvailable
+    TurnListElement
   },
-  props: {},
+  props: {
+    typeTurn: "edu",
+    accessTurn: "participates"
+  },
   data() {
     return {}
   },
@@ -26,7 +27,7 @@ export default {
     ...mapGetters(['getterUserId']),
   },
   mounted() {
-    this.$store.dispatch('loadListTurn',{id: this.$store.getters.getterUserId, type: 'edu', access: 'available'})
+    this.$store.dispatch('loadListTurn',{id: this.$store.getters.getterUserId, type: this.typeTurn, access: this.accessTurn})
   },
 }
 </script>
