@@ -17,7 +17,7 @@
 <script>
 
 export default {
-  name: 'BlockOnMainPage',
+  name: 'turnListElement',
   props: {
     Turn_data: {
       type: Object,

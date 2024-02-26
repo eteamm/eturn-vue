@@ -12,7 +12,7 @@
     <TurnBtns/>
   </div>
   <YourTurn/>
-  <Wholeturn/>
+  <positions-list/>
   <div>
     <main-button button-text="встать в очередь" />
   </div>
@@ -26,7 +26,7 @@ import TurnBtns from "@/components/turnPage/turnBtns.vue";
 import TurnPosition from "@/components/turnPage/turnPosition.vue";
 import MainButton from "@/components/mainButton.vue";
 import ExtraInfo from "../components/turnPage/extraInfo.vue";
-import Wholeturn from "@/components/turnPage/turnList.vue";
+import PositionsList from "@/components/turnPage/positionsList.vue";
 import YourTurn from "@/components/turnPage/yourTurn.vue";
 export default {
   name: 'Turn',
@@ -38,7 +38,7 @@ export default {
     Header,
     TurnInfo,
     ExtraInfo,
-    Wholeturn
+    PositionsList
   },
   data () {
     return {id: 0}

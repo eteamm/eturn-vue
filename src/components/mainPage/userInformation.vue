@@ -20,7 +20,7 @@
 <script>
 import {mapState} from "vuex";
 export default {
-  name: 'UserInformation',
+  name: 'userInformation',
   props: ['userName', 'userStatus', 'userGroup'],
   mounted () {
     this.$store.dispatch('loadUsers', 1)

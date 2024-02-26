@@ -1,5 +1,7 @@
+// TODO УДАЛИТЬ ЭТОТ КОМПОНЕНТ
+
 <template>
-  <block-on-main-page
+  <turn-list-element
     v-for="block in $store.state.listTurn"
     :Turn_data="block"
 
@@ -7,13 +9,13 @@
 </template>
 
 <script>
-import BlockOnMainPage from "@/components/mainPage/blockOnMainPage.vue";
+import TurnListElement from "@/components/mainPage/turnListElement.vue";
 import {mapState} from "vuex";
 import {mapGetters} from "vuex";
 export default {
   name: "listMy",
   components: {
-    BlockOnMainPage
+    TurnListElement
   },
   props: {},
   data() {

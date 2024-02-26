@@ -1,3 +1,5 @@
+// TODO УДАЛИТЬ ЭТОТ КОМПОНЕНТ
+
 <template>
   <div class="TurnBlockAvailable">
     <div class="divRightButton">

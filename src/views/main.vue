@@ -6,9 +6,9 @@
         <div class="etuIdInformation">
           <img src="../assets/img/exitbtn.svg"  alt="exit">
         </div>
-        <UserInformation user-group="..." user-name="..." user-status="..."/>
-        <edu-and-org-btn />
-        <my-and-available />
+        <user-information user-group="..." user-name="..." user-status="..."/>
+        <type-turn-filter-btn />
+        <access-filter-btn />
         <router-link to="/create" :to="{query: {nameTurn: 'ТОЭ'}}">
           <main-button button-text="создать очередь" />
         </router-link>
@@ -20,18 +20,19 @@
 <script>
 import Header from "@/components/header.vue";
 import UserInformation from "@/components/mainPage/userInformation.vue";
-import MyAndAvailable from "@/components/mainPage/myAndAvailable.vue";
+import AccessFilterBtn from "@/components/mainPage/accessFilterBtn.vue";
 import MainButton from "@/components/mainButton.vue";
-import BlockOnMainPage from "@/components/mainPage/blockOnMainPage.vue";
+import BlockOnMainPage from "@/components/mainPage/turnListElement.vue";
 import ListMy from "@/components/mainPage/listMy.vue";
-import EduAndOrgBtn from "@/components/mainPage/eduAndOrgBtn.vue";
+import TypeTurnFilterBtn from "@/components/mainPage/TypeTurnFilterBtn.vue";
 export default {
   name: 'firstPage',
 
   components: {
-    EduAndOrgBtn,
+    TypeTurnFilterBtn,
+    AccessFilterBtn,
     ListMy,
-    Header, UserInformation, MyAndAvailable, MainButton, BlockOnMainPage
+    Header, UserInformation, MainButton, BlockOnMainPage
   }
 }
 </script>

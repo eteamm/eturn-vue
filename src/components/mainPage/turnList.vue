@@ -1,3 +1,5 @@
+// TODO переделать компонент так, чтобы он был единственным списком
+
 <template>
   <block-available
     v-for="block in $store.state.listTurn"
@@ -11,7 +13,7 @@ import {mapGetters} from "vuex"
 import Vuex from "vuex";
 
 export default {
-  name: "listAvailable",
+  name: "TurnList",
   components: {
     BlockAvailable
   },
