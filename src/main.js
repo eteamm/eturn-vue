@@ -36,13 +36,14 @@ const store = createStore({
     },
     setTurnType(state, type, turnList){
       state.typeTurn = type;
-      state.listTurn = null;
+      //state.listTurn = null;
       state.listTurn = turnList;
     },
-    setTurnAccess(state, access, turnList){
-      state.accessTurn = access;
-      state.listTurn = null
-      state.listTurn = turnList;
+    setTurnAccess(state, info){
+      state.accessTurn = info.access;
+      //state.listTurn = null
+      console.log("Жопа в сет",info.turns)
+      state.listTurn = info.turns;
     },
     SAVE_USERS(state, users) {
       state.users = users;
@@ -90,8 +91,10 @@ const store = createStore({
 
       if (access==="available" || access==="participates"){
         axios.get('/turn?userId=' + id + '&type=' + type + '&access=' + access).then(result => {
-          console.log("all turns",result.data)
-          commit("setTurnType", type, result.data)
+          console.log("Жопа при запросе",result.data)
+          // let turns = result.data
+          let info = {"access": access, "turns": result.data}
+          commit("setTurnAccess", info)
         }).catch(error => {
           throw new Error(`API ${error}`);
         })
