@@ -6,7 +6,6 @@
         <div class="etuIdInformation">
           <img src="../assets/img/exitbtn.svg"  alt="exit">
         </div>
-        <h1>{{$store.state.accessTurn}}</h1>
         <user-information user-group="..." user-name="..." user-status="..."/>
         <type-turn-filter-btn />
         <access-filter-btn />
