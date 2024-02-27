@@ -1,6 +1,6 @@
 <template>
   <turn-list-element
-    v-for="block in $store.state.listTurn"
+    v-for="block in getterTurnList"
     :Turn_data="block"
   />
 </template>
@@ -16,18 +16,31 @@ export default {
     TurnListElement
   },
   props: {
-    typeTurn: "edu",
-    accessTurn: "participates"
+
   },
   data() {
     return {}
   },
   computed: {
-    ...mapState(['listTurn']),
-    ...mapGetters(['getterUserId']),
+    // ...mapState(['listTurn']),
+    ...mapGetters(['getterUserId', "getterTurnAccess", "getterTurnType", 'getterTurnList']),
   },
+  // watch:{
+  //   turnList:{
+  //     handler(oldValue, newValue){
+  //       return newValue
+  //     }
+  //   }
+  // },
   mounted() {
-    this.$store.dispatch('loadListTurn',{id: this.$store.getters.getterUserId, type: this.typeTurn, access: this.accessTurn})
+    let typeTurn = this.$store.getters.getterTurnType
+    let accessTurn = this.$store.getters.getterTurnAccess
+    this.$store.dispatch('loadListTurn',{id: this.$store.getters.getterUserId, type: typeTurn, access: accessTurn})
   },
+  update() {
+    let typeTurn = this.$store.getters.getterTurnType
+    let accessTurn = this.$store.getters.getterTurnAccess
+    this.$store.dispatch('loadListTurn',{id: this.$store.getters.getterUserId, type: typeTurn, access: accessTurn})
+  }
 }
 </script>

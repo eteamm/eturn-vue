@@ -11,6 +11,8 @@
 
 <script>
 
+import {mapGetters, mapState} from "vuex";
+
 export default {
   name: 'AccessFilterBtn',
   components: {},
@@ -19,14 +21,23 @@ export default {
       visitable: true
     }
   },
+  computed: {
+    ...mapState(['listTurn']),
+    ...mapGetters(['getterUserId', "getterTurnAccess", "getterTurnType"]),
+  },
   methods:{
     myTurnFunction(){
       this.visitable = true
-      this.$emit("accessType", "participates")
+      let typeTurn = this.$store.getters.getterTurnType
+      let idU = this.$store.getters.getterUserId
+      this.$store.dispatch("changeAccessTurn", {access: "participates", type:typeTurn, id: idU})
     },
     AvailableTurnFunction(){
       this.visitable = false
-      this.$emit("accessType", "available")
+      let typeTurn = this.$store.getters.getterTurnType
+      let idU = this.$store.getters.getterUserId
+      // console.log("id",typeTurn)
+      this.$store.dispatch("changeAccessTurn", {access: "available", type:typeTurn, id: idU})
     }
   }
 }

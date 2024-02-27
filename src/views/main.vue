@@ -6,10 +6,11 @@
         <div class="etuIdInformation">
           <img src="../assets/img/exitbtn.svg"  alt="exit">
         </div>
+        <h1>{{$store.state.accessTurn}}</h1>
         <user-information user-group="..." user-name="..." user-status="..."/>
         <type-turn-filter-btn />
         <access-filter-btn />
-        <turn-list typeTurn="edu" accessTurn="participates" v-on:accessType="accessType"/>
+        <turn-list />
         <router-link to="/create">
           <main-button button-text="создать очередь" />
         </router-link>
@@ -26,6 +27,7 @@ import MainButton from "@/components/mainButton.vue";
 import BlockOnMainPage from "@/components/mainPage/turnListElement.vue";
 import TurnList from "@/components/mainPage/turnList";
 import TypeTurnFilterBtn from "@/components/mainPage/typeTurnFilterBtn.vue";
+import {mapGetters, mapState} from "vuex";
 export default {
   name: 'firstPage',
   components: {
@@ -35,15 +37,15 @@ export default {
     Header, UserInformation, MainButton, BlockOnMainPage
   },
   props:{
-    typeTurn: "edu",
-    accessTurn: "participates"
+
   },
   methods:{
-    accessType(type){
-      console.log(type);
-      this.accessTurn = type;
-    }
-  }
+
+  },
+  computed: {
+    ...mapState(['listTurn']),
+    ...mapGetters(["getterTurnAccess", "getterTurnType"]),
+  },
 
 }
 </script>

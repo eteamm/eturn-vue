@@ -7,6 +7,7 @@ import Turn from "@/views/turn.vue";
 import {getUser} from "@/api/users";
 import axios from 'axios'
 import { createMetaManager } from 'vue-meta'
+import turnList from "@/components/mainPage/turnList";
 
 const store = createStore({
   state () {
@@ -14,6 +15,8 @@ const store = createStore({
       listTurn: [],
       turnId: 0,
       userId: 1,
+      typeTurn: "edu",
+      accessTurn: "participates",
       users: [],
       positionsCurrentTurn: [
         {
@@ -31,6 +34,16 @@ const store = createStore({
     changeCurrentTurnId(state, n) {
       state.turnId = n
     },
+    setTurnType(state, type, turnList){
+      state.typeTurn = type;
+      state.listTurn = null;
+      state.listTurn = turnList;
+    },
+    setTurnAccess(state, access, turnList){
+      state.accessTurn = access;
+      state.listTurn = null
+      state.listTurn = turnList;
+    },
     SAVE_USERS(state, users) {
       state.users = users;
     },
@@ -45,6 +58,17 @@ const store = createStore({
     getterName: (state) => (id) => {
       return state.listTurn.find(listTurn => listTurn.id === id)
     },
+    getterTurnAccess: (state)=>{
+      return state.accessTurn;
+      // return "participates"
+    },
+    getterTurnType: (state)=>{
+      return state.typeTurn;
+      // return "edu";
+    },
+    getterTurnList:(state)=>{
+      return state.listTurn;
+    }
   },
   actions: {
     loadUsers({commit}, id) {
@@ -60,6 +84,25 @@ const store = createStore({
       }).catch(error => {
         throw new Error(`API ${error}`);
       })
+    },
+    changeAccessTurn({commit}, {access, type, id}){
+      // alert("hes");
+
+      if (access==="available" || access==="participates"){
+        axios.get('/turn?userId=' + id + '&type=' + type + '&access=' + access).then(result => {
+          console.log("all turns",result.data)
+          commit("setTurnType", type, result.data)
+        }).catch(error => {
+          throw new Error(`API ${error}`);
+        })
+      }
+      else{
+        throw new Error("type error")
+      }
+
+    },
+    changeTypeTurn({commit}, {type}){
+      // commit("setTurnType", type)
     },
     //loadPositions({commit}, {idTurn}){
     // TODO Для Риты: запрос авторизации
