@@ -34,15 +34,14 @@ const store = createStore({
     changeCurrentTurnId(state, n) {
       state.turnId = n
     },
-    setTurnType(state, type, turnList){
-      state.typeTurn = type;
-      //state.listTurn = null;
-      state.listTurn = turnList;
+    setTurnType(state, info){
+      state.typeTurn = info.type;
+      state.listTurn = null;
+      state.listTurn = info.turns;
     },
     setTurnAccess(state, info){
       state.accessTurn = info.access;
-      //state.listTurn = null
-      console.log("Жопа в сет",info.turns)
+      state.listTurn = null
       state.listTurn = info.turns;
     },
     SAVE_USERS(state, users) {
@@ -91,8 +90,6 @@ const store = createStore({
 
       if (access==="available" || access==="participates"){
         axios.get('/turn?userId=' + id + '&type=' + type + '&access=' + access).then(result => {
-          console.log("Жопа при запросе",result.data)
-          // let turns = result.data
           let info = {"access": access, "turns": result.data}
           commit("setTurnAccess", info)
         }).catch(error => {
@@ -104,8 +101,18 @@ const store = createStore({
       }
 
     },
-    changeTypeTurn({commit}, {type}){
-      // commit("setTurnType", type)
+    changeTypeTurn({commit}, {access, type, id}){
+        if (type==="org" || type==="edu"){
+            axios.get('/turn?userId=' + id + '&type=' + type + '&access=' + access).then(result => {
+                let info = {"type": type, "turns": result.data}
+                commit("setTurnType", info)
+            }).catch(error => {
+                throw new Error(`API ${error}`);
+            })
+        }
+        else{
+            throw new Error("type error")
+        }
     },
     //loadPositions({commit}, {idTurn}){
     // TODO Для Риты: запрос авторизации
