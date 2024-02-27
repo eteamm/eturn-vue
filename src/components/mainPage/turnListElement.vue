@@ -24,6 +24,12 @@ export default {
       default() {
         return {}
       }
+    },
+    type: "participates"
+  },
+  computed:{
+    joinBtnVisible: ()=>{
+      return this.type !== "participates";
     }
   }
 }
