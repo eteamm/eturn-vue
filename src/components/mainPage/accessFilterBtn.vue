@@ -30,14 +30,14 @@ export default {
       this.visitable = true
       let typeTurn = this.$store.getters.getterTurnType
       let idU = this.$store.getters.getterUserId
-      this.$store.dispatch("changeAccessTurn", {access: "participates", type:typeTurn, id: idU})
+      this.$store.dispatch("changeAccessTurn", {access: "memberIn", type:typeTurn, id: idU})
     },
     AvailableTurnFunction(){
       this.visitable = false
       let typeTurn = this.$store.getters.getterTurnType
       let idU = this.$store.getters.getterUserId
       // console.log("id",typeTurn)
-      this.$store.dispatch("changeAccessTurn", {access: "available", type:typeTurn, id: idU})
+      this.$store.dispatch("changeAccessTurn", {access: "memberOut", type:typeTurn, id: idU})
     }
   }
 }

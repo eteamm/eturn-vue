@@ -25,11 +25,11 @@ export default {
         return {}
       }
     },
-    type: "participates"
+    type: "memberIn"
   },
   computed:{
     joinBtnVisible: ()=>{
-      return this.type !== "participates";
+      return this.type !== "memberIn";
     }
   }
 }
