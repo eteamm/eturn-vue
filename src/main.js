@@ -111,9 +111,13 @@ const store = createStore({
     },
     changeAccessTurn({commit}, {access, type, id}){
       // alert("hes");
-
-      if (access==="available" || access==="participates"){
-        axios.get('/turn?userId=' + id + '&type=' + type + '&access=' + access).then(result => {
+      let token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1RVREVOVCIsImlkIjoyLCJzdWIiOiJpdmFuIiwiaWF0IjoxNzA5MjM0NTYxLCJleHAiOjE3MDkzNzg1NjF9.Ss74WLPAZyPah0y4CQdXUh1Z-mXOqEvRVMhMM76og20";
+      if (access==="memberOut" || access==="memberIn"){
+        axios.get('/turn?type=' + type + '&access=' + access, {
+          headers: {
+            'Authorization': `${token}`
+          }
+        }).then(result => {
           let info = {"access": access, "turns": result.data}
           commit("setTurnAccess", info)
         }).catch(error => {
@@ -126,8 +130,13 @@ const store = createStore({
 
     },
     changeTypeTurn({commit}, {access, type, id}){
+      let token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1RVREVOVCIsImlkIjoyLCJzdWIiOiJpdmFuIiwiaWF0IjoxNzA5MjM0NTYxLCJleHAiOjE3MDkzNzg1NjF9.Ss74WLPAZyPah0y4CQdXUh1Z-mXOqEvRVMhMM76og20";
         if (type==="org" || type==="edu"){
-            axios.get('/turn?userId=' + id + '&type=' + type + '&access=' + access).then(result => {
+            axios.get('/turn?type=' + type + '&access=' + access, {
+              headers: {
+                'Authorization': `${token}`
+              }
+            }).then(result => {
                 let info = {"type": type, "turns": result.data}
                 commit("setTurnType", info)
             }).catch(error => {
