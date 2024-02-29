@@ -29,9 +29,6 @@ export default {
   },
   mounted () {
     let token = this.$store.getters.getterToken
-    if (token==null){
-      router.push("/")
-    }
     this.$store.dispatch('loadUsers', token)
   },
 }

@@ -28,6 +28,8 @@ import MainButton from "@/components/mainButton.vue";
 import ExtraInfo from "../components/turnPage/extraInfo.vue";
 import PositionsList from "@/components/turnPage/positionsList.vue";
 import YourTurn from "@/components/turnPage/yourTurn.vue";
+import router from "@/router";
+import {mapGetters, mapState} from "vuex";
 export default {
   name: 'Turn',
   components: {
@@ -43,6 +45,15 @@ export default {
   data () {
     return {id: 0}
   },
+  computed:{
+    ...mapGetters(['getterToken'])
+  },
   props: ['id', 'type'],
+  created(){
+    let token = this.$store.getters.getterToken
+    if (token==null){
+      router.push("/")
+    }
+  }
 }
 </script>
