@@ -1,18 +1,23 @@
 <template>
-  <turn-list-element
-    v-for="block in getterTurnList"
-    :Turn_data="block"
-  />
+    <div style="position: relative;">
+        <loader />
+      <turn-list-element
+        v-for="block in getterTurnList"
+        :Turn_data="block"
+      />
+    </div>
 </template>
 <script>
 import TurnListElement from "@/components/mainPage/turnListElement";
 import {mapState} from "vuex";
 import {mapGetters} from "vuex"
 import Vuex from "vuex";
+import Loader from "@/components/loader.vue";
 
 export default {
   name: "TurnList",
   components: {
+      Loader,
     TurnListElement
   },
   props: {

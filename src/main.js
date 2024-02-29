@@ -16,7 +16,7 @@ const store = createStore({
       turnId: 0,
       userId: 1,
       typeTurn: "edu",
-      accessTurn: "participates",
+      accessTurn: "memberIn",
       users: [],
       positionsCurrentTurn: [
         {
@@ -72,14 +72,24 @@ const store = createStore({
   },
   actions: {
     loadUsers({commit}, id) {
-      axios.get('/user/'+ id).then(result => {
+      let token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1RVREVOVCIsImlkIjoyLCJzdWIiOiJpdmFuIiwiaWF0IjoxNzA5MjM0NTYxLCJleHAiOjE3MDkzNzg1NjF9.Ss74WLPAZyPah0y4CQdXUh1Z-mXOqEvRVMhMM76og20";
+      axios.get('/user', {
+        headers: {
+          'Authorization': `${token}`
+        }
+      }).then(result => {
         commit('SAVE_USERS', result.data);
       }).catch(error => {
         throw new Error(`API ${error}`);
       })
     },
     loadListTurn({commit}, {id, type, access}) {
-      axios.get('/turn?userId=' + id + '&type=' + type + '&access=' + access).then(result => {
+      let token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1RVREVOVCIsImlkIjoyLCJzdWIiOiJpdmFuIiwiaWF0IjoxNzA5MjM0NTYxLCJleHAiOjE3MDkzNzg1NjF9.Ss74WLPAZyPah0y4CQdXUh1Z-mXOqEvRVMhMM76og20";
+      axios.get('/turn?type=' + type + '&access=' + access, {
+        headers: {
+          'Authorization': `${token}`
+        }
+      }).then(result => {
         commit('SAVE_TURN', result.data);
       }).catch(error => {
         throw new Error(`API ${error}`);
