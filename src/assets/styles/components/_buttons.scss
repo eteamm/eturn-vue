@@ -33,8 +33,19 @@
   border-style: solid;
   border-width: 0px;
   border-color: $main-color;
-  border-radius: 14px;
+  border-radius: $radius;
   padding: 5px 0px 10px 0px;
   color: $text-color;
   font-size: $middle-text;
+}
+
+.classic_button{
+  margin-top: 25px;
+  width:100%;
+  background: $main-color;
+  padding: 15px;
+  color:$text-color;
+  font-size: $small-text;
+  border:0;
+  border-radius: $radius;
 }

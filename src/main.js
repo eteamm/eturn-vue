@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
+// import router from './router'
+import router from "@/router";
 import { createStore } from "vuex";
 import app from "@/App.vue";
 import Turn from "@/views/turn.vue";
@@ -15,6 +16,7 @@ const store = createStore({
       listTurn: [],
       turnId: 0,
       userId: 1,
+      authToken: null,
       typeTurn: "edu",
       accessTurn: "memberIn",
       users: [],
@@ -50,10 +52,16 @@ const store = createStore({
     SAVE_TURN(state, turn) {
       state.listTurn = turn;
     },
+    SAVE_TOKEN(state,token){
+      state.authToken = token;
+    }
   },
   getters: {
     getterUserId: (state) => {
       return state.userId;
+    },
+    getterToken: (state)=>{
+      return state.authToken;
     },
     getterName: (state) => (id) => {
       return state.listTurn.find(listTurn => listTurn.id === id)
@@ -71,8 +79,7 @@ const store = createStore({
     }
   },
   actions: {
-    loadUsers({commit}, id) {
-      let token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1RVREVOVCIsImlkIjoyLCJzdWIiOiJpdmFuIiwiaWF0IjoxNzA5MjM0NTYxLCJleHAiOjE3MDkzNzg1NjF9.Ss74WLPAZyPah0y4CQdXUh1Z-mXOqEvRVMhMM76og20";
+    loadUsers({commit}, token) {
       axios.get('/user', {
         headers: {
           'Authorization': `${token}`
@@ -83,8 +90,15 @@ const store = createStore({
         throw new Error(`API ${error}`);
       })
     },
-    loadListTurn({commit}, {id, type, access}) {
-      let token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1RVREVOVCIsImlkIjoyLCJzdWIiOiJpdmFuIiwiaWF0IjoxNzA5MjM0NTYxLCJleHAiOjE3MDkzNzg1NjF9.Ss74WLPAZyPah0y4CQdXUh1Z-mXOqEvRVMhMM76og20";
+    authUser({commit}, {login, password}){
+      axios.post('/auth/sign-in?login='+login+"&password="+password).then(result=>{
+        commit('SAVE_TOKEN', result.data.token);
+        router.push('turn').then(r => console.log("yes!"));
+      }).catch(error=> {
+        throw new Error("error");
+      })
+    },
+    loadListTurn({commit}, {token, type, access}) {
       axios.get('/turn?type=' + type + '&access=' + access, {
         headers: {
           'Authorization': `${token}`
