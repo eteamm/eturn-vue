@@ -25,20 +25,18 @@ export default {
   },
   computed: {
     ...mapState(['listTurn']),
-    ...mapGetters(['getterUserId', "getterTurnAccess", "getterTurnType"]),
+    ...mapGetters(['getterUserId', "getterTurnAccess", "getterTurnType", "getterToken"]),
   },
   methods:{
     orgTurnFunction(){
       this.visitable = false
       let accessTurn = this.$store.getters.getterTurnAccess
-      let idU = this.$store.getters.getterUserId
-      this.$store.dispatch("changeTypeTurn", {access: accessTurn, type:"org", id: idU})
+      this.$store.dispatch("changeTypeTurn", {token: this.$store.getters.getterToken, access: accessTurn, type:"org"})
     },
     eduTurnFunction(){
       this.visitable = true
       let accessTurn = this.$store.getters.getterTurnAccess
-      let idU = this.$store.getters.getterUserId
-      this.$store.dispatch("changeTypeTurn", {access: accessTurn, type:"edu", id: idU})
+      this.$store.dispatch("changeTypeTurn", {token: this.$store.getters.getterToken, access: accessTurn, type:"edu"})
     }
   }
 }
