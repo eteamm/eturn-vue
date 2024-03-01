@@ -1,13 +1,17 @@
 <template>
     <div style="position: relative;">
-      <div v-show="getterLoaderShow">
+      <div v-show="getLoading('turn_loading')">
         <loader />
+      </div>
+      <div>
+        <turn-list-element
+          v-for="block in getterTurnList"
+          :Turn_data="block"
+        />
+      </div>
+      <div v-show="getCurrentError('turn_error')" class="turnNotFound">
         <p>Очередей нет :(</p>
       </div>
-      <turn-list-element
-        v-for="block in getterTurnList"
-        :Turn_data="block"
-      />
     </div>
 </template>
 <script>
@@ -28,7 +32,7 @@ export default {
   },
   computed: {
     // ...mapState(['listTurn']),
-    ...mapGetters(['getterToken', "getterTurnAccess", "getterTurnType", 'getterTurnList']),
+    ...mapGetters(['getterToken', "getterTurnAccess", "getterTurnType", 'getterTurnList', 'getLoading', 'getCurrentError']),
   },
   // watch:{
   //   turnList:{

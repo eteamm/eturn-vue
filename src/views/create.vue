@@ -15,7 +15,7 @@
 
     <div>
       <QParameters qparameters= "Параметры доступа"/>
-  </div>
+    </div>
 
     <div>
       <p style = "color: white" class="SubHeader">допустимые группы</p>

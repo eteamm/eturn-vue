@@ -135,18 +135,24 @@ const store = createStore({
       })
     },
     loadListTurn({commit}, {token, type, access}) {
+      commit('SAVE_TURN', null);
+      commit('SET_ERROR', {name:'turn_error', value: false});
       axios.get('/turn?type=' + type + '&access=' + access, {
         headers: {
           'Authorization': `${token}`
         }
       }).then(result => {
         commit('SAVE_TURN', result.data);
-        commit('SET_LOADING', {name:"turn_loading", value: true});
+        commit('SET_LOADING', {name:"turn_loading", value: false});
       }).catch(error => {
-        // commit
+        commit('SET_ERROR', {name:'turn_error', value: true})
+        commit('SET_LOADING', {name:"turn_loading", value: false});
       })
     },
     changeAccessTurn({commit}, {token, access, type}){
+      commit('SAVE_TURN', null);
+      commit('SET_LOADING', {name:"turn_loading", value: true});
+      commit('SET_ERROR', {name:'turn_error', value: false});
       // alert("hes");
       if (access==="memberOut" || access==="memberIn"){
         axios.get('/turn?type=' + type + '&access=' + access, {
@@ -154,11 +160,13 @@ const store = createStore({
             'Authorization': `${token}`
           }
         }).then(result => {
-          let info = {"access": access, "turns": result.data}
-          commit("setTurnAccess", info)
+          let info = {"access": access, "turns": result.data};
+          commit("setTurnAccess", info);
+          commit('SET_LOADING', {name:"turn_loading", value: false});
         }).catch(error => {
-          console.log(error);
-          throw new Error(`API ${error}`);
+          commit('SAVE_TURN', null);
+          commit('SET_ERROR', {name:'turn_error', value: true})
+          commit('SET_LOADING', {name:"turn_loading", value: false});
         })
       }
       else{
@@ -167,16 +175,22 @@ const store = createStore({
 
     },
     changeTypeTurn({commit}, {token, access, type}){
+      commit('SAVE_TURN', null);
+      commit('SET_LOADING', {name:"turn_loading", value: true});
+      commit('SET_ERROR', {name:'turn_error', value: false});
       if (type==="org" || type==="edu"){
             axios.get('/turn?type=' + type + '&access=' + access, {
               headers: {
                 'Authorization': `${token}`
               }
             }).then(result => {
-                let info = {"type": type, "turns": result.data}
-                commit("setTurnType", info)
+              let info = {"type": type, "turns": result.data};
+              commit("setTurnType", info);
+              commit('SET_LOADING', {name:"turn_loading", value: false});
             }).catch(error => {
-                throw new Error(`API ${error}`);
+              commit('SAVE_TURN', null);
+              commit('SET_ERROR', {name:'turn_error', value: true})
+              commit('SET_LOADING', {name:"turn_loading", value: false});
             })
         }
         else{

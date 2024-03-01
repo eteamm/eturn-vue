@@ -29,7 +29,10 @@ export default {
   },
   mounted () {
     let token = this.$store.getters.getterToken
-    this.$store.dispatch('loadUsers', token)
+    if (token != null)
+      this.$store.dispatch('loadUsers', token)
+    else
+      router.push("/")
   },
 }
 </script>
