@@ -2,6 +2,7 @@
     <div style="position: relative;">
       <div v-show="getterLoaderShow">
         <loader />
+        <p>Очередей нет :(</p>
       </div>
       <turn-list-element
         v-for="block in getterTurnList"

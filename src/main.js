@@ -19,15 +19,16 @@ const store = createStore({
       userId: 1,
       currentErrorInfo: "error",
       errors: {
-        'auth_error': false
+        'auth_error': false,
+        'turn_error': false
       },
       loadings:{
-        'auth_loading': false
+        'auth_loading': false,
+        'turn_loading': true
       },
       authToken: null,
       typeTurn: "edu",
       accessTurn: "memberIn",
-      loaderShow: true,
       users: [],
       positionsCurrentTurn: [
         {
@@ -69,14 +70,13 @@ const store = createStore({
     },
     SET_LOADING(state, loading){
       state.loadings[loading.name]=loading.value;
-      state.currentErrorInfo = error;
     },
-    changeLoaderShow(state) {
-      if (state.loaderShow === true)
-        state.loaderShow = false;
-      else
-        state.loaderShow = true;
-    }
+    // changeLoaderShow(state) {
+    //   if (state.loaderShow === true)
+    //     state.loaderShow = false;
+    //   else
+    //     state.loaderShow = true;
+    // }
   },
   getters: {
     getterUserId: (state) => {
@@ -105,9 +105,9 @@ const store = createStore({
     getterTurnList:(state)=>{
       return state.listTurn;
     },
-    getterLoaderShow:(state)=> {
-      return state.loaderShow;
-    }
+    // getterLoaderShow:(state)=> {
+    //   return state.loaderShow;
+    // }
   },
   actions: {
     changeError({commit}, error){
@@ -141,7 +141,7 @@ const store = createStore({
         }
       }).then(result => {
         commit('SAVE_TURN', result.data);
-        commit('changeLoaderShow');
+        commit('SET_LOADING', {name:"turn_loading", value: true});
       }).catch(error => {
         // commit
       })
