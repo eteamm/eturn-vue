@@ -42,7 +42,7 @@ export default {
   methods:{
 
   },
-  beforeMount() {
+  beforeCreate() {
     let token = this.$store.getters.getterToken
     if (token==null){
       router.push("/")
