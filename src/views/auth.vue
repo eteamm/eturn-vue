@@ -4,7 +4,7 @@
     <input v-model="login" name="login" placeholder="Введите логин" class="NameBox">
     <input v-model="password" name="password" placeholder="Введите пароль" class="NameBox" type="password">
     <button class="classic_button" v-on:click="authUser">войти</button>
-    <p v-if="error" style="color: red">{{getCurrentError}}</p>
+    <p v-if="getCurrentError('auth_error')" class="errorInfoAuth">Логин или пароль введены неверно.</p>
   </div>
 </template>
 
@@ -16,12 +16,6 @@ export default {
   name: 'Auth',
   components: {
     Header
-  },
-  data(){
-    return{
-      error: true,
-      errorInfo:null
-    }
   },
   computed:{
     ...mapGetters(['getterToken', 'getCurrentError'])

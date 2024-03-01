@@ -1,6 +1,9 @@
 <template>
     <div style="position: relative;">
+      <div v-show="getterLoaderShow">
         <loader />
+        <p>Очередей нет :(</p>
+      </div>
       <turn-list-element
         v-for="block in getterTurnList"
         :Turn_data="block"
@@ -22,9 +25,6 @@ export default {
   },
   props: {
 
-  },
-  data() {
-    return {}
   },
   computed: {
     // ...mapState(['listTurn']),

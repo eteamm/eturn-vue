@@ -26,6 +26,14 @@
   //left:10px;
   //right:10px;
 }
+
+.errorInfoAuth{
+  color: red;
+  padding-left: $radius;
+  padding-top: 15px;
+  font-size: $small-text;
+}
+
 .mainButton button{
   background: $main-color;
   margin: 0;
@@ -48,4 +56,19 @@
   font-size: $small-text;
   border:0;
   border-radius: $radius;
+}
+.animation_auth{
+  transition: all 0.5s ease;
+  animation: changeColor 2s linear infinite;
+}
+@keyframes changeColor {
+  from{
+    background: $main-color;
+  }
+  50%{
+    background: $transparent-text;
+  }
+  to{
+    background: $main-color;
+  }
 }

@@ -18,6 +18,14 @@ const store = createStore({
       turnId: 0,
       userId: 1,
       currentErrorInfo: "error",
+      errors: {
+        'auth_error': false,
+        'turn_error': false
+      },
+      loadings:{
+        'auth_loading': false,
+        'turn_loading': true
+      },
       authToken: null,
       typeTurn: "edu",
       accessTurn: "memberIn",
@@ -58,15 +66,27 @@ const store = createStore({
       state.authToken = token;
     },
     SET_ERROR(state, error){
-      state.currentErrorInfo = error;
-    }
+      state.errors[error.name] = error.value;
+    },
+    SET_LOADING(state, loading){
+      state.loadings[loading.name]=loading.value;
+    },
+    // changeLoaderShow(state) {
+    //   if (state.loaderShow === true)
+    //     state.loaderShow = false;
+    //   else
+    //     state.loaderShow = true;
+    // }
   },
   getters: {
     getterUserId: (state) => {
       return state.userId;
     },
-    getCurrentError:(state)=>{
-      return state.currentErrorInfo;
+    getCurrentError:(state)=>(type) => {
+      return state.errors[type];
+    },
+    getLoading:(state)=>(loading)=>{
+      return state.loadings[loading];
     },
     getterToken: (state)=>{
       return state.authToken;
@@ -84,7 +104,10 @@ const store = createStore({
     },
     getterTurnList:(state)=>{
       return state.listTurn;
-    }
+    },
+    // getterLoaderShow:(state)=> {
+    //   return state.loaderShow;
+    // }
   },
   actions: {
     changeError({commit}, error){
@@ -108,7 +131,7 @@ const store = createStore({
       }).catch(error=> {
 
         console.log(error.response.data);
-        commit('SET_ERROR', error.response.data);
+        commit('SET_ERROR', {name:'auth_error', value: true});
       })
     },
     loadListTurn({commit}, {token, type, access}) {
@@ -118,13 +141,13 @@ const store = createStore({
         }
       }).then(result => {
         commit('SAVE_TURN', result.data);
+        commit('SET_LOADING', {name:"turn_loading", value: true});
       }).catch(error => {
         // commit
       })
     },
-    changeAccessTurn({commit}, {access, type, id}){
+    changeAccessTurn({commit}, {token, access, type}){
       // alert("hes");
-      let token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1RVREVOVCIsImlkIjoyLCJzdWIiOiJpdmFuIiwiaWF0IjoxNzA5MjM0NTYxLCJleHAiOjE3MDkzNzg1NjF9.Ss74WLPAZyPah0y4CQdXUh1Z-mXOqEvRVMhMM76og20";
       if (access==="memberOut" || access==="memberIn"){
         axios.get('/turn?type=' + type + '&access=' + access, {
           headers: {
@@ -134,6 +157,7 @@ const store = createStore({
           let info = {"access": access, "turns": result.data}
           commit("setTurnAccess", info)
         }).catch(error => {
+          console.log(error);
           throw new Error(`API ${error}`);
         })
       }
@@ -142,9 +166,8 @@ const store = createStore({
       }
 
     },
-    changeTypeTurn({commit}, {access, type, id}){
-      let token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1RVREVOVCIsImlkIjoyLCJzdWIiOiJpdmFuIiwiaWF0IjoxNzA5MjM0NTYxLCJleHAiOjE3MDkzNzg1NjF9.Ss74WLPAZyPah0y4CQdXUh1Z-mXOqEvRVMhMM76og20";
-        if (type==="org" || type==="edu"){
+    changeTypeTurn({commit}, {token, access, type}){
+      if (type==="org" || type==="edu"){
             axios.get('/turn?type=' + type + '&access=' + access, {
               headers: {
                 'Authorization': `${token}`
