@@ -18,6 +18,12 @@ const store = createStore({
       turnId: 0,
       userId: 1,
       currentErrorInfo: "error",
+      errors: {
+        'auth_error': false
+      },
+      loadings:{
+        'auth_loading': false
+      },
       authToken: null,
       typeTurn: "edu",
       accessTurn: "memberIn",
@@ -58,15 +64,21 @@ const store = createStore({
       state.authToken = token;
     },
     SET_ERROR(state, error){
-      state.currentErrorInfo = error;
+      state.errors[error.name] = error.value;
+    },
+    SET_LOADING(state, loading){
+      state.loadings[loading.name]=loading.value;
     }
   },
   getters: {
     getterUserId: (state) => {
       return state.userId;
     },
-    getCurrentError:(state)=>{
-      return state.currentErrorInfo;
+    getCurrentError:(state)=>(type) => {
+      return state.errors[type];
+    },
+    getLoading:(state)=>(loading)=>{
+      return state.loadings[loading];
     },
     getterToken: (state)=>{
       return state.authToken;
@@ -108,7 +120,7 @@ const store = createStore({
       }).catch(error=> {
 
         console.log(error.response.data);
-        commit('SET_ERROR', error.response.data);
+        commit('SET_ERROR', {name:'auth_error', value: true});
       })
     },
     loadListTurn({commit}, {token, type, access}) {
