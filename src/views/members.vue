@@ -1,10 +1,21 @@
 <template>
   <div>
     <Header title-name="Участники" title-description="изменение прав" />
-    <MemberListBlock header="Администраторы" type="admins"/>
-    <MemberListBlock header="Администраторы" type="admins"/>
-    <MemberListBlock header="Администраторы" type="admins"/>
+
+    <div>
+      <MemberListBlock header="Администраторы" type="admins"/>
+    </div>
+
+    <div>
+      <MemberListBlock header="Участники" type="members"/>
+    </div>
+
+    <div>
+      <MemberListBlock header="Заблокированные" type="blocked"/>
+    </div>
+
   </div>
+
 </template>
 <script>
 
@@ -26,10 +37,20 @@
 // делаем div для трех точек
 
 import Header from "@/components/header.vue";
+import QInfo from "@/components/createPage/CreateInfo.vue";
+import MemberListBlock from "@/components/membersPage/memberListBlock.vue";
+import MemberListElement from "@/components/membersPage/memberListElement.vue";
+import AddGroup from "@/components/createPage/CreateGroup.vue";
+import ToolBar from "@/components/membersPage/toolBar.vue";
 export default {
   name: 'Members',
   components: {
-    Header
+    AddGroup,
+    QInfo,
+    Header,
+    MemberListBlock,
+    MemberListElement,
+    ToolBar
   }
 }
 </script>
