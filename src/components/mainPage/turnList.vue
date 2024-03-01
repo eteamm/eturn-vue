@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     // ...mapState(['listTurn']),
-    ...mapGetters(['getterUserId', "getterTurnAccess", "getterTurnType", 'getterTurnList']),
+    ...mapGetters(['getterToken', "getterTurnAccess", "getterTurnType", 'getterTurnList']),
   },
   // watch:{
   //   turnList:{
@@ -40,12 +40,12 @@ export default {
   mounted() {
     let typeTurn = this.$store.getters.getterTurnType
     let accessTurn = this.$store.getters.getterTurnAccess
-    this.$store.dispatch('loadListTurn',{id: this.$store.getters.getterUserId, type: typeTurn, access: accessTurn})
+    this.$store.dispatch('loadListTurn',{token: this.$store.getters.getterToken, type: typeTurn, access: accessTurn})
   },
-  update() {
-    let typeTurn = this.$store.getters.getterTurnType
-    let accessTurn = this.$store.getters.getterTurnAccess
-    this.$store.dispatch('loadListTurn',{id: this.$store.getters.getterUserId, type: typeTurn, access: accessTurn})
-  }
+  // update() {
+  //   let typeTurn = this.$store.getters.getterTurnType
+  //   let accessTurn = this.$store.getters.getterTurnAccess
+  //   this.$store.dispatch('loadListTurn',{id: this.$store.getters.getterUserId, type: typeTurn, access: accessTurn})
+  // }
 }
 </script>

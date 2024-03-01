@@ -4,6 +4,7 @@
     <input v-model="login" name="login" placeholder="Введите логин" class="NameBox">
     <input v-model="password" name="password" placeholder="Введите пароль" class="NameBox" type="password">
     <button class="classic_button" v-on:click="authUser">войти</button>
+    <p v-if="error" style="color: red">{{getCurrentError}}</p>
   </div>
 </template>
 
@@ -16,8 +17,14 @@ export default {
   components: {
     Header
   },
+  data(){
+    return{
+      error: true,
+      errorInfo:null
+    }
+  },
   computed:{
-    ...mapGetters(['getterToken'])
+    ...mapGetters(['getterToken', 'getCurrentError'])
   },
   mounted() {
     let token = this.$store.getters.getterToken
@@ -29,9 +36,11 @@ export default {
     authUser(){
       if (this.login != null && this.password != null){
         this.$store.dispatch("authUser", {login: this.login, password: this.password});
-        // let token = this.$store.getters.getterToken;
-        // if (token!=null){
-        //
+
+        // console.log(er)
+        // if (er!=null){
+        //   this.error=true
+        //   this.errorInfo = er
         // }
       }
     }

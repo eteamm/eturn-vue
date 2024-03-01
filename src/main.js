@@ -17,6 +17,7 @@ const store = createStore({
       listTurn: [],
       turnId: 0,
       userId: 1,
+      currentErrorInfo: "error",
       authToken: null,
       typeTurn: "edu",
       accessTurn: "memberIn",
@@ -55,11 +56,17 @@ const store = createStore({
     },
     SAVE_TOKEN(state,token){
       state.authToken = token;
+    },
+    SET_ERROR(state, error){
+      state.currentErrorInfo = error;
     }
   },
   getters: {
     getterUserId: (state) => {
       return state.userId;
+    },
+    getCurrentError:(state)=>{
+      return state.currentErrorInfo;
     },
     getterToken: (state)=>{
       return state.authToken;
@@ -80,6 +87,9 @@ const store = createStore({
     }
   },
   actions: {
+    changeError({commit}, error){
+      commit("SET_ERROR", error);
+    },
     loadUsers({commit}, token) {
       axios.get('/user', {
         headers: {
@@ -96,7 +106,9 @@ const store = createStore({
         commit('SAVE_TOKEN', result.data.token);
         router.push('turn').then(r => console.log("yes!"));
       }).catch(error=> {
-        throw new Error("error");
+
+        console.log(error.response.data);
+        commit('SET_ERROR', error.response.data);
       })
     },
     loadListTurn({commit}, {token, type, access}) {
@@ -107,7 +119,7 @@ const store = createStore({
       }).then(result => {
         commit('SAVE_TURN', result.data);
       }).catch(error => {
-        throw new Error(`API ${error}`);
+        // commit
       })
     },
     changeAccessTurn({commit}, {access, type, id}){

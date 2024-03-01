@@ -49,7 +49,7 @@ export default {
     ...mapGetters(['getterToken'])
   },
   props: ['id', 'type'],
-  created(){
+  beforeMount(){
     let token = this.$store.getters.getterToken
     if (token==null){
       router.push("/")
