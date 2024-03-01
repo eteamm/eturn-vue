@@ -57,6 +57,11 @@
   border:0;
   border-radius: $radius;
 }
+
+.classic_button_add{
+  transition: all 2s ease;
+  animation: changeColor 2s linear;
+}
 .animation_auth{
   transition: all 0.5s ease;
   animation: changeColor 2s linear infinite;
