@@ -27,6 +27,7 @@ const store = createStore({
       authToken: null,
       typeTurn: "edu",
       accessTurn: "memberIn",
+      loaderShow: true,
       users: [],
       positionsCurrentTurn: [
         {
@@ -68,6 +69,13 @@ const store = createStore({
     },
     SET_LOADING(state, loading){
       state.loadings[loading.name]=loading.value;
+      state.currentErrorInfo = error;
+    },
+    changeLoaderShow(state) {
+      if (state.loaderShow === true)
+        state.loaderShow = false;
+      else
+        state.loaderShow = true;
     }
   },
   getters: {
@@ -96,6 +104,9 @@ const store = createStore({
     },
     getterTurnList:(state)=>{
       return state.listTurn;
+    },
+    getterLoaderShow:(state)=> {
+      return state.loaderShow;
     }
   },
   actions: {
@@ -130,13 +141,13 @@ const store = createStore({
         }
       }).then(result => {
         commit('SAVE_TURN', result.data);
+        commit('changeLoaderShow');
       }).catch(error => {
         // commit
       })
     },
-    changeAccessTurn({commit}, {access, type, id}){
+    changeAccessTurn({commit}, {token, access, type}){
       // alert("hes");
-      let token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1RVREVOVCIsImlkIjoyLCJzdWIiOiJpdmFuIiwiaWF0IjoxNzA5MjM0NTYxLCJleHAiOjE3MDkzNzg1NjF9.Ss74WLPAZyPah0y4CQdXUh1Z-mXOqEvRVMhMM76og20";
       if (access==="memberOut" || access==="memberIn"){
         axios.get('/turn?type=' + type + '&access=' + access, {
           headers: {
@@ -146,6 +157,7 @@ const store = createStore({
           let info = {"access": access, "turns": result.data}
           commit("setTurnAccess", info)
         }).catch(error => {
+          console.log(error);
           throw new Error(`API ${error}`);
         })
       }
@@ -154,9 +166,8 @@ const store = createStore({
       }
 
     },
-    changeTypeTurn({commit}, {access, type, id}){
-      let token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1RVREVOVCIsImlkIjoyLCJzdWIiOiJpdmFuIiwiaWF0IjoxNzA5MjM0NTYxLCJleHAiOjE3MDkzNzg1NjF9.Ss74WLPAZyPah0y4CQdXUh1Z-mXOqEvRVMhMM76og20";
-        if (type==="org" || type==="edu"){
+    changeTypeTurn({commit}, {token, access, type}){
+      if (type==="org" || type==="edu"){
             axios.get('/turn?type=' + type + '&access=' + access, {
               headers: {
                 'Authorization': `${token}`
