@@ -158,6 +158,7 @@ const store = createStore({
 })
 const app1 = createApp(App).use(router).use(store).use(createMetaManager()).use(VueAxios, axios)
 
+axios.defaults.baseURL = 'http://eturn.ru/api'
 await router.isReady()
 app1.mount('#app')
 
