@@ -8,6 +8,7 @@ import Turn from "@/views/turn.vue";
 import {getUser} from "@/api/users";
 import axios from 'axios'
 import { createMetaManager } from 'vue-meta'
+import VueAxios from 'vue-axios'
 import turnList from "@/components/mainPage/turnList";
 
 const store = createStore({
@@ -155,7 +156,7 @@ const store = createStore({
     //}
   }
 })
-const app1 = createApp(App).use(router).use(store).use(createMetaManager())
+const app1 = createApp(App).use(router).use(store).use(createMetaManager()).use(VueAxios, axios)
 
 await router.isReady()
 app1.mount('#app')
