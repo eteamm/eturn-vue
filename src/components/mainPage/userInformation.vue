@@ -18,13 +18,21 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapGetters, mapState} from "vuex";
+import router from "@/router";
 export default {
-  name: 'UserInformation',
+  name: 'userInformation',
   props: ['userName', 'userStatus', 'userGroup'],
-  mounted () {
-    this.$store.dispatch('loadUsers', 1)
+  computed:{
+    ...mapGetters(['getterToken']),
+    ...mapState(['users'])
   },
-  computed: mapState(['users'])
+  mounted () {
+    let token = this.$store.getters.getterToken
+    if (token != null)
+      this.$store.dispatch('loadUsers', token)
+    else
+      router.push("/")
+  },
 }
 </script>

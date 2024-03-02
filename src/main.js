@@ -1,34 +1,34 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
+// import router from './router'
+import router from "@/router";
 import { createStore } from "vuex";
 import app from "@/App.vue";
 import Turn from "@/views/turn.vue";
 import {getUser} from "@/api/users";
 import axios from 'axios'
 import { createMetaManager } from 'vue-meta'
+import VueAxios from 'vue-axios'
+import turnList from "@/components/mainPage/turnList";
 
 const store = createStore({
   state () {
     return {
-      myTurn: [
-        // {
-        //   id: 0,
-        //   name: "Сдача ТОЭ",
-        //   teacher: "Купова Анастасия Викторовна",
-        //   quantity: 153
-        // }
-      ],
-      availableTurn: [
-        // {
-        //   id: 0,
-        //   name: "Сдача ООП",
-        //   teacher: "Хрен её знает",
-        //   more: "Не приходить"
-        // }
-      ],
+      listTurn: [],
       turnId: 0,
       userId: 1,
+      currentErrorInfo: "error",
+      errors: {
+        'auth_error': false,
+        'turn_error': false
+      },
+      loadings:{
+        'auth_loading': false,
+        'turn_loading': true
+      },
+      authToken: null,
+      typeTurn: "edu",
+      accessTurn: "memberIn",
       users: [],
       positionsCurrentTurn: [
         {
@@ -46,48 +46,156 @@ const store = createStore({
     changeCurrentTurnId(state, n) {
       state.turnId = n
     },
+    setTurnType(state, info){
+      state.typeTurn = info.type;
+      state.listTurn = null;
+      state.listTurn = info.turns;
+    },
+    setTurnAccess(state, info){
+      state.accessTurn = info.access;
+      state.listTurn = null
+      state.listTurn = info.turns;
+    },
     SAVE_USERS(state, users) {
       state.users = users;
     },
-    SAVE_AVAILABLE_TURN(state, turn) {
-      state.availableTurn = turn;
+    SAVE_TURN(state, turn) {
+      state.listTurn = turn;
     },
-    SAVE_MY_TURN(state, turn) {
-      state.myTurn = turn;
-    }
+    SAVE_TOKEN(state,token){
+      state.authToken = token;
+    },
+    SET_ERROR(state, error){
+      state.errors[error.name] = error.value;
+    },
+    SET_LOADING(state, loading){
+      state.loadings[loading.name]=loading.value;
+    },
+    // changeLoaderShow(state) {
+    //   if (state.loaderShow === true)
+    //     state.loaderShow = false;
+    //   else
+    //     state.loaderShow = true;
+    // }
   },
   getters: {
     getterUserId: (state) => {
       return state.userId;
     },
+    getCurrentError:(state)=>(type) => {
+      return state.errors[type];
+    },
+    getLoading:(state)=>(loading)=>{
+      return state.loadings[loading];
+    },
+    getterToken: (state)=>{
+      return state.authToken;
+    },
     getterName: (state) => (id) => {
-      return state.myTurn.find(Turn => Turn.id === id)
+      return state.listTurn.find(listTurn => listTurn.id === id)
     },
-    getterAvailableName: (state) => (id)=> {
-      return state.availableTurn.find(queue1 => queue1.id === id)
+    getterTurnAccess: (state)=>{
+      return state.accessTurn;
+      // return "participates"
     },
+    getterTurnType: (state)=>{
+      return state.typeTurn;
+      // return "edu";
+    },
+    getterTurnList:(state)=>{
+      return state.listTurn;
+    },
+    // getterLoaderShow:(state)=> {
+    //   return state.loaderShow;
+    // }
   },
   actions: {
-    loadUsers({commit}, id) {
-      axios.get('/user/'+ id).then(result => {
+    changeError({commit}, error){
+      commit("SET_ERROR", error);
+    },
+    loadUsers({commit}, token) {
+      axios.get('/user', {
+        headers: {
+          'Authorization': `${token}`
+        }
+      }).then(result => {
         commit('SAVE_USERS', result.data);
       }).catch(error => {
         throw new Error(`API ${error}`);
       })
     },
-    loadMyTurn({commit}, {id, type, access}) {
-      axios.get('/turn?userId=' + id + '&type=' + type + '&access=' + access).then(result => {
-        commit('SAVE_MY_TURN', result.data);
-      }).catch(error => {
-        throw new Error(`API ${error}`);
+    authUser({commit}, {login, password}){
+      commit('SET_LOADING', {name:'auth_loading', value: true});
+      axios.post('/auth/sign-in?login='+login+"&password="+password).then(result=>{
+        commit('SAVE_TOKEN', result.data.token);
+        router.push('turn').then(r => console.log("yes!"));
+      }).catch(error=> {
+        commit('SET_LOADING', {name:'auth_loading', value: false});
+        commit('SET_ERROR', {name:'auth_error', value: true});
       })
     },
-    loadAvailableTurn({commit}, {id, type, access}) {
-      axios.get('/turn?userId=' + id + '&type=' + type + '&access=' + access).then(result => {
-        commit('SAVE_AVAILABLE_TURN', result.data);
+    loadListTurn({commit}, {token, type, access}) {
+      commit('SAVE_TURN', null);
+      commit('SET_ERROR', {name:'turn_error', value: false});
+      axios.get('/turn?type=' + type + '&access=' + access, {
+        headers: {
+          'Authorization': `${token}`
+        }
+      }).then(result => {
+        commit('SAVE_TURN', result.data);
+        commit('SET_LOADING', {name:"turn_loading", value: false});
       }).catch(error => {
-        throw new Error(`API ${error}`);
+        commit('SET_ERROR', {name:'turn_error', value: true})
+        commit('SET_LOADING', {name:"turn_loading", value: false});
       })
+    },
+    changeAccessTurn({commit}, {token, access, type}){
+      commit('SAVE_TURN', null);
+      commit('SET_LOADING', {name:"turn_loading", value: true});
+      commit('SET_ERROR', {name:'turn_error', value: false});
+      // alert("hes");
+      if (access==="memberOut" || access==="memberIn"){
+        axios.get('/turn?type=' + type + '&access=' + access, {
+          headers: {
+            'Authorization': `${token}`
+          }
+        }).then(result => {
+          let info = {"access": access, "turns": result.data};
+          commit("setTurnAccess", info);
+          commit('SET_LOADING', {name:"turn_loading", value: false});
+        }).catch(error => {
+          commit('SAVE_TURN', null);
+          commit('SET_ERROR', {name:'turn_error', value: true})
+          commit('SET_LOADING', {name:"turn_loading", value: false});
+        })
+      }
+      else{
+        throw new Error("type error")
+      }
+
+    },
+    changeTypeTurn({commit}, {token, access, type}){
+      commit('SAVE_TURN', null);
+      commit('SET_LOADING', {name:"turn_loading", value: true});
+      commit('SET_ERROR', {name:'turn_error', value: false});
+      if (type==="org" || type==="edu"){
+            axios.get('/turn?type=' + type + '&access=' + access, {
+              headers: {
+                'Authorization': `${token}`
+              }
+            }).then(result => {
+              let info = {"type": type, "turns": result.data};
+              commit("setTurnType", info);
+              commit('SET_LOADING', {name:"turn_loading", value: false});
+            }).catch(error => {
+              commit('SAVE_TURN', null);
+              commit('SET_ERROR', {name:'turn_error', value: true})
+              commit('SET_LOADING', {name:"turn_loading", value: false});
+            })
+        }
+        else{
+            throw new Error("type error")
+        }
     },
     //loadPositions({commit}, {idTurn}){
     // TODO Для Риты: запрос авторизации
@@ -97,8 +205,9 @@ const store = createStore({
     //}
   }
 })
-const app1 = createApp(App).use(router).use(store).use(createMetaManager())
+const app1 = createApp(App).use(router).use(store).use(createMetaManager()).use(VueAxios, axios)
 
+axios.defaults.baseURL = 'http://eturn.ru/api'
 await router.isReady()
 app1.mount('#app')
 

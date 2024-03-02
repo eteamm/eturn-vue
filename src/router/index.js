@@ -9,8 +9,8 @@ const routes = [
   },
   {
     path: '/',
-    name: 'main',
-    component: () => import('../views/main.vue'),
+    name: 'auth',
+    component: () => import('../views/auth.vue'),
   },
   {
     path: '/edit',
@@ -18,9 +18,9 @@ const routes = [
     component: () => import('../views/editTurn.vue')
   },
   {
-    path: '/turn/:id',
+    path: '/turn',
     name: 'turn',
-    component: () => import('../views/turn.vue'),
+    component: () => import('../views/main.vue'),
     props: true
   },
   {
@@ -28,12 +28,16 @@ const routes = [
     name: 'members',
     component: () => import('../views/members.vue')
   },
-
   {
        path: '/create',
        name: 'create',
        component: () => import('../views/create.vue')
   }
+  // {
+  //   path: '/auth',
+  //   name: 'auth',
+  //   component: () => import('../views/auth.vue')
+  // }
 ]
 
 const router = createRouter({

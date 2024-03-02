@@ -15,6 +15,7 @@
     "sass": "^1.69.5",
     "sass-loader": "^10.4.1",
     "vue": "^3.2.13",
+    "vue-axios": "^3.5.2",
     "vue-meta": "^3.0.0-alpha.7",
     "vue-router": "^4.2.5",
     "vuex": "^4.0.2"

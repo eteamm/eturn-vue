@@ -6,10 +6,11 @@
         <div class="etuIdInformation">
           <img src="../assets/img/exitbtn.svg"  alt="exit">
         </div>
-        <UserInformation user-group="..." user-name="..." user-status="..."/>
-        <edu-and-org-btn />
-        <my-and-available />
-        <router-link to="/create" :to="{query: {nameTurn: 'ТОЭ'}}">
+        <user-information user-group="..." user-name="..." user-status="..."/>
+        <type-turn-filter-btn />
+        <access-filter-btn />
+        <turn-list />
+        <router-link to="/create">
           <main-button button-text="создать очередь" />
         </router-link>
       </div>
@@ -20,19 +21,38 @@
 <script>
 import Header from "@/components/header.vue";
 import UserInformation from "@/components/mainPage/userInformation.vue";
-import MyAndAvailable from "@/components/mainPage/myAndAvailable.vue";
+import AccessFilterBtn from "@/components/mainPage/accessFilterBtn.vue";
 import MainButton from "@/components/mainButton.vue";
-import BlockOnMainPage from "@/components/mainPage/blockOnMainPage.vue";
-import ListMy from "@/components/mainPage/listMy.vue";
-import EduAndOrgBtn from "@/components/mainPage/eduAndOrgBtn.vue";
+import BlockOnMainPage from "@/components/mainPage/turnListElement.vue";
+import TurnList from "@/components/mainPage/turnList";
+import TypeTurnFilterBtn from "@/components/mainPage/typeTurnFilterBtn.vue";
+import {mapGetters, mapState} from "vuex";
+import router from "@/router";
 export default {
   name: 'firstPage',
-
   components: {
-    EduAndOrgBtn,
-    ListMy,
-    Header, UserInformation, MyAndAvailable, MainButton, BlockOnMainPage
-  }
+    TypeTurnFilterBtn,
+    AccessFilterBtn,
+    TurnList,
+    Header, UserInformation, MainButton, BlockOnMainPage
+  },
+  props:{
+
+  },
+  methods:{
+
+  },
+  beforeCreate() {
+    let token = this.$store.getters.getterToken
+    if (token==null){
+      router.push("/")
+    }
+  },
+  computed: {
+    ...mapState(['listTurn']),
+    ...mapGetters(["getterTurnAccess", "getterTurnType", 'getterToken']),
+  },
+
 }
 </script>
 
