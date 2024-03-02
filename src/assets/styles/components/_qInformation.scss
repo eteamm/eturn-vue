@@ -1,25 +1,22 @@
 .NameBox {
 
   width: 100%;
-  border: 0 solid;
-  padding: 25px 30px;
+  border: 0px solid;
+  padding: 19px 30px;
 
-  //flex-shrink: 0;
-  border-radius: $radius;
-  background: $block-color;
-  margin-top: 25px;
+  flex-shrink: 0;
+  border-radius: 100px;
+  background: #393939;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
+  margin: 0px 0px 20px 0px;
 
   color: $white;
 
-  font-size: $small-text;
+  font-family: Exo 2;
+  font-size: $middle-text;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-}
-
-:active, :hover, :focus {
-  outline: 0;
-  outline-offset: 0;
 }
 
 .input-group {
@@ -36,7 +33,7 @@
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
   margin-right: 10px; /* Добавляем небольшой отступ справа */
   color: white;
-  //font-family: Exo 2;
+  font-family: Exo 2;
   font-size: 19px;
   font-style: normal;
   font-weight: 400;
@@ -48,19 +45,28 @@
 }
 
 .ParameterBox {
-  width: 30%;
-  height: 40px;
+  width: 100%;
   border: 0px solid;
-  background-color: $block-color;
+   padding: 19px 30px;
+
+  flex-shrink: 0;
+  border-radius: 100px;
+  background: #393939;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
+  margin:15px 0px 20px 0px;
+
   color: $white;
-  border-radius: $radius;
-  box-shadow: 5px 5px 10px -10px black;
-  margin: 5px 0px 35px 0px;
+
+  font-family: Exo 2;
+  font-size: $middle-text;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .SubHeader {
   font-family: 'Exo 2', sans-serif;
-  font-size: 16px;
+  font-size: $small-text;
 
   top: 17px;
   left: 20px;
@@ -72,29 +78,29 @@
 .ParameterText {
   color: #909090;
 
-  //font-family: Exo 2;
-  font-size: 19px;
+  font-family: Exo 2;
+  font-size: $middle-text;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
 
-.GroupBox {
-
-  width: 556px;
-  border: 0px solid;
-  height: 75px;
-  flex-shrink: 0;
-  border-radius: 100px;
-  background: #393939;
-  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
-  margin: 0px 0px 35px -5px;
-
-  color: $white;
-
-  //font-family: Exo 2;
-  font-size: 19px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
+// .GroupBox {
+//
+//   width: 556px;
+//   border: 0px solid;
+//   height: 75px;
+//   flex-shrink: 0;
+//   border-radius: 0px;
+//   background: #393939;
+//   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
+//   margin: 0px 0px 20px 0px;
+//
+//   color: $white;
+//
+//   font-family: Exo 2;
+//   font-size: $middle-text;
+//   font-style: normal;
+//   font-weight: 400;
+//   line-height: normal;
+// }

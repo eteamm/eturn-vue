@@ -125,12 +125,12 @@ const store = createStore({
       })
     },
     authUser({commit}, {login, password}){
+      commit('SET_LOADING', {name:'auth_loading', value: true});
       axios.post('/auth/sign-in?login='+login+"&password="+password).then(result=>{
         commit('SAVE_TOKEN', result.data.token);
         router.push('turn').then(r => console.log("yes!"));
       }).catch(error=> {
-
-        console.log(error.response.data);
+        commit('SET_LOADING', {name:'auth_loading', value: false});
         commit('SET_ERROR', {name:'auth_error', value: true});
       })
     },
