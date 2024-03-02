@@ -1,6 +1,7 @@
 <template>
   <div class="loadingCircle">
-    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <span class="loader"></span>
+<!--    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>-->
   </div>
 </template>
 <script>
