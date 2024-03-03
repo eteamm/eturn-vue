@@ -48,12 +48,9 @@ export default {
   computed:{
     ...mapGetters(['getterToken'])
   },
+  beforeCreate() {
+    this.$store.dispatch("checkToken")
+  },
   props: ['id', 'type'],
-  beforeMount(){
-    let token = this.$store.getters.getterToken
-    if (token==null){
-      router.push("/")
-    }
-  }
 }
 </script>

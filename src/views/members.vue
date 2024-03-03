@@ -51,6 +51,9 @@ export default {
     MemberListBlock,
     MemberListElement,
     ToolBar
+  },
+  beforeCreate() {
+    this.$store.dispatch("checkToken")
   }
 }
 </script>

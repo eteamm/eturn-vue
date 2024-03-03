@@ -128,11 +128,45 @@ const store = createStore({
       commit('SET_LOADING', {name:'auth_loading', value: true});
       axios.post('/auth/sign-in?login='+login+"&password="+password).then(result=>{
         commit('SAVE_TOKEN', result.data.token);
-        router.push('turn').then(r => console.log("yes!"));
-      }).catch(error=> {
+        router.push('/main').then(r => console.log("yes!"));
+        let date = new Date();
+        date.setTime(date.getTime() + (60*60*24 * 60 * 60));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = "auth=" + result.data.token + "; " + expires + "; path=/";
+      }).catch(error => {
         commit('SET_LOADING', {name:'auth_loading', value: false});
         commit('SET_ERROR', {name:'auth_error', value: true});
       })
+    },
+    redirectStart({commit}){
+      if (document.cookie.indexOf("auth") === 0) {
+        let name = "auth"
+        let matches = document.cookie.match(new RegExp(
+          "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        let token = matches ? decodeURIComponent(matches[1]) : undefined;
+        if (token !== undefined) {
+          commit('SAVE_TOKEN', token)
+          router.push('/main').then(r => console.log('Authorization was successful'))
+        }
+      }
+    },
+    checkToken({commit}){
+      if (document.cookie.indexOf("auth") === 0) {
+        let name = "auth"
+        let matches = document.cookie.match(new RegExp(
+          "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        let token = matches ? decodeURIComponent(matches[1]) : undefined;
+        if (token !== undefined){
+          commit('SAVE_TOKEN', token)
+        }
+        else{
+          router.push('/').then(r=>console.log('You need to log in'))
+        }
+      }else{
+        router.push('/').then(r=>console.log('You need to log in'))
+      }
     },
     loadListTurn({commit}, {token, type, access}) {
       commit('SAVE_TURN', null);

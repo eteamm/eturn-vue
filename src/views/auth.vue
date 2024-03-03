@@ -26,10 +26,11 @@ export default {
     ...mapGetters(['getterToken', 'getCurrentError', 'getLoading'])
   },
   mounted() {
-    let token = this.$store.getters.getterToken
-    if (token!=null){
-      router.push("turn")
-    }
+    // let token = this.$store.getters.getterToken
+    this.$store.dispatch("redirectStart")
+    // if (token!=null){
+    //   router.push("turn")
+    // }
   },
   methods:{
     authUser(){

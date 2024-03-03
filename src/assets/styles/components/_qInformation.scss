@@ -2,21 +2,19 @@
 
   width: 100%;
   border: 0px solid;
-  padding: 19px 30px;
+  padding: 25px 30px;
 
-  flex-shrink: 0;
-  border-radius: 100px;
-  background: #393939;
-  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
-  margin: 0px 0px 20px 0px;
+  border-radius: $radius;
+  background: $block-color;
 
   color: $white;
 
-  font-family: Exo 2;
-  font-size: $middle-text;
+  font-size: $small-text;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+
+  margin-top:25px;
 }
 
 .input-group {
@@ -33,7 +31,6 @@
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
   margin-right: 10px; /* Добавляем небольшой отступ справа */
   color: white;
-  font-family: Exo 2;
   font-size: 19px;
   font-style: normal;
   font-weight: 400;
@@ -52,12 +49,11 @@
   flex-shrink: 0;
   border-radius: 100px;
   background: #393939;
-  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 3px 0px rgba(0, 0, 0, 0.05);
   margin:15px 0px 20px 0px;
 
   color: $white;
 
-  font-family: Exo 2;
   font-size: $middle-text;
   font-style: normal;
   font-weight: 400;
@@ -78,7 +74,6 @@
 .ParameterText {
   color: #909090;
 
-  font-family: Exo 2;
   font-size: $middle-text;
   font-style: normal;
   font-weight: 400;

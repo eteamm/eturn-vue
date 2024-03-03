@@ -1,8 +1,8 @@
 body {
   font-family: 'Exo 2', sans-serif;
   background-color: $background-color;
-  padding:15px;
+  //padding: 15px 15px 40px;
   @media screen and (orientation: landscape) {
-    padding: 0 $proportion;
+    padding: 10px $proportion 120px $proportion;
   }
 }

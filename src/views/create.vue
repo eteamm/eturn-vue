@@ -50,6 +50,9 @@ export default {
     QParameters
 
 
-  }
+  },
+  beforeCreate() {
+    this.$store.dispatch("checkToken")
+  },
 }
 </script>

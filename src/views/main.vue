@@ -43,10 +43,7 @@ export default {
 
   },
   beforeCreate() {
-    let token = this.$store.getters.getterToken
-    if (token==null){
-      router.push("/")
-    }
+    this.$store.dispatch("checkToken")
   },
   computed: {
     ...mapState(['listTurn']),

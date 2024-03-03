@@ -20,6 +20,12 @@ const routes = [
   {
     path: '/turn',
     name: 'turn',
+    component: () => import('../views/turn.vue'),
+    props: true
+  },
+  {
+    path: '/main',
+    name: 'main',
     component: () => import('../views/main.vue'),
     props: true
   },
