@@ -1,0 +1,39 @@
+.typeHeader{
+  color: $text-second-color;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 25px;
+  font-size: $large-text;
+}
+
+.typeBlock{
+  cursor:pointer;
+  padding: 30px;
+  color: $text-second-color;
+  width: 100%;
+  background-color: $block-color;
+  border-radius: $radius;
+  margin: 45px 0;
+  text-align: center;
+  transition: all 2s ease-in-out;
+  -moz-box-shadow:0 0 15px $background-color;
+  -webkit-box-shadow:0 0 15px $background-color;
+  box-shadow:0 0 15px $background-color;
+}
+.typeBlock:hover{
+  transform: translate(0,-15px);
+  -webkit-transform: translate(0,-15px); /** Chrome & Safari **/
+  -o-transform: translate(0,-15px); /** Opera **/
+  -moz-transform: translate(0,-15px); /** Firefox **/
+  -moz-box-shadow:0 0 25px $transparent-text;
+  -webkit-box-shadow:0 0 25px $transparent-text;
+  box-shadow:0 0 25px $transparent-text;
+}
+.typeName {
+  font-size: $middle-text;
+  margin:0;
+}
+.typeDesc{
+  font-size: $small-text;
+  margin:0;
+}

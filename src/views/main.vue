@@ -10,7 +10,7 @@
         <type-turn-filter-btn />
         <access-filter-btn />
         <turn-list />
-        <router-link to="/create">
+        <router-link to="/type">
           <main-button button-text="создать очередь" />
         </router-link>
       </div>

@@ -85,6 +85,9 @@ const store = createStore({
     SET_LOADING(state, loading){
       state.loadings[loading.name]=loading.value;
     },
+    setCreateTurnProperty(state, property){
+      state.turnToCreate[property.name]=property.value
+    }
     // changeLoaderShow(state) {
     //   if (state.loaderShow === true)
     //     state.loaderShow = false;
@@ -187,6 +190,9 @@ const store = createStore({
       }else{
         router.push('/').then(r=>console.log('You need to log in'))
       }
+    },
+    saveTurnProperty({commit}, {nameP, valueP}){
+      commit('setCreateTurnProperty', {name:nameP, value: valueP})
     },
     loadListTurn({commit}, {token, type, access}) {
       commit('SAVE_TURN', null);
