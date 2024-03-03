@@ -22,8 +22,17 @@
 .etuIdInformation{
   position: absolute;
   top: 34px;
-  right: $proportion;
+  right: 15px;
+  cursor: pointer;
 }
+
+@media screen and (orientation: landscape) {
+  .etuIdInformation{
+    right: $proportion;
+  }
+}
+
+
 .etuIdInformation img{
   height: 30px;
 }

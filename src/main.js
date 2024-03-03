@@ -76,6 +76,9 @@ const store = createStore({
     SAVE_TOKEN(state,token){
       state.authToken = token;
     },
+    DELETE_TOKEN(state){
+      state.authToken = null;
+    },
     SET_ERROR(state, error){
       state.errors[error.name] = error.value;
     },
@@ -161,6 +164,12 @@ const store = createStore({
           router.push('/main').then(r => console.log('Authorization was successful'))
         }
       }
+    },
+    logout({commit}){
+      commit("DELETE_TOKEN")
+      document.cookie = "auth=;" +
+        ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
+      router.push('/').then(r=>console.log('Logout was successful'))
     },
     checkToken({commit}){
       if (document.cookie.indexOf("auth") === 0) {

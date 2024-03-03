@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-md-12 col-lg-12">
         <Header title-name="Главная" title-description="список очередей"/>
-        <div class="etuIdInformation">
+        <div class="etuIdInformation" v-on:click="logout">
           <img src="../assets/img/exitbtn.svg"  alt="exit">
         </div>
         <user-information user-group="..." user-name="..." user-status="..."/>
@@ -40,7 +40,9 @@ export default {
 
   },
   methods:{
-
+    logout(){
+      this.$store.dispatch("logout")
+    }
   },
   beforeCreate() {
     this.$store.dispatch("checkToken")

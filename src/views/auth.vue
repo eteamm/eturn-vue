@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header title-name="Вход" title-description="Введите данные для авторизации" />
-    <input v-model="login" name="login" placeholder="Введите логин" class="NameBox">
+    <input v-model="login" name="login" placeholder="Введите логин" class="NameBox authInput">
     <input v-model="password" name="password" placeholder="Введите пароль" class="NameBox" type="password">
     <button class="classic_button" v-bind:disabled="isClicked" v-bind:class="{animation_auth: getLoading('auth_loading'), classic_button_add: isClicked}" v-on:click="authUser">войти</button>
     <p v-if="getCurrentError('auth_error')" class="errorInfoAuth">Логин или пароль введены неверно.</p>
