@@ -18,6 +18,17 @@ const store = createStore({
       turnId: 0,
       userId: 1,
       currentErrorInfo: "error",
+      turnToCreate:{
+        "name": null,
+        "description": null,
+        "turnType":null,
+        "creator":null,
+        "turnAccess":null,
+        "allowedGroups":null,
+        "allowedFaculties":null,
+        "allowedDepartments":null,
+        "allowedCourses":null
+      },
       errors: {
         'auth_error': false,
         'turn_error': false

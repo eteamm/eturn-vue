@@ -1,30 +1,18 @@
 <template>
   <div>
     <Header title-name="Создать" title-description="новая очередь" />
-    <div>
-        <QInfo header = "название очереди" intext = "название очереди" text />
-    </div>
+    <QInfo header = "название очереди" type="name"/>
+    <QInfo header = "описание" type="description"/>
+    <QInfo header = "частота"/>
+    <QParameters qparameters= "Параметры доступа"/>
+    <p style = "color: white" class="SubHeader">допустимые группы</p>
+    <AddGroup />
 
-    <div>
-      <QInfo header = "описание" intext="Описание Очереди"/>
-    </div>
-
-    <div>
-      <QInfo header = "частота" intext ="Частота вступления в очередь"/>
-    </div>
-
-    <div>
-      <QParameters qparameters= "Параметры доступа"/>
-    </div>
-
-    <div>
-      <p style = "color: white" class="SubHeader">допустимые группы</p>
-
-      <AddGroup />
-    </div>
 
   </div>
 </template>
+
+
 
 
 <script>

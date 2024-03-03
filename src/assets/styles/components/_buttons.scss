@@ -35,6 +35,11 @@
   padding-top: 15px;
   font-size: $small-text;
 }
+.errorInfo{
+  color: red;
+  padding: 15px 0 0 $radius;
+  font-size: $small-text;
+}
 
 .mainButton button{
   background: $main-color;
