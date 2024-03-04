@@ -1,14 +1,16 @@
 <template>
-  <div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-12">
     <Header title-name="Создать" title-description="новая очередь" />
     <QInfo header = "название очереди" type="name"/>
     <QInfo header = "описание" type="description"/>
     <QInfo header = "частота"/>
-    <QParameters qparameters= "Параметры доступа"/>
+    <QParameters/>
     <p style = "color: white" class="SubHeader">допустимые группы</p>
     <AddGroup />
-
-
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,6 +26,7 @@ import QDescription from "@/components/createPage/CreateDescription.vue";
 import QFrequency from "@/components/createPage/CreateFrequency.vue";
 import QParameters from "@/components/createPage/CreateParameters.vue";
 import AddGroup from "@/components/createPage/CreateGroup.vue";
+import {mapGetters} from "vuex";
 
 export default {
   name: 'Create',
@@ -38,6 +41,9 @@ export default {
     QParameters
 
 
+  },
+  computed:{
+    ...mapGetters['getterRoleUser']
   },
   beforeCreate() {
     this.$store.dispatch("checkToken")

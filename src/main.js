@@ -122,9 +122,9 @@ const store = createStore({
     getterTurnList:(state)=>{
       return state.listTurn;
     },
-    // getterLoaderShow:(state)=> {
-    //   return state.loaderShow;
-    // }
+    getterRoleUser:(state)=>{
+      return state.users.role;
+    }
   },
   actions: {
     changeError({commit}, error){
