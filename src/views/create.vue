@@ -2,13 +2,14 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-12 col-lg-12">
-    <Header title-name="Создать" title-description="новая очередь" />
-    <QInfo header = "название очереди" type="name"/>
-    <QInfo header = "описание" type="description"/>
-    <QInfo header = "частота"/>
-    <QParameters/>
-    <p style = "color: white" class="SubHeader">допустимые группы</p>
-    <AddGroup />
+        <Header title-name="Создать" title-description="новая очередь" />
+        <QInfo header = "название очереди" type="name"/>
+        <QInfo header = "описание" type="description"/>
+        <QInfo header = "частота"/>
+        <QParameters/>
+<!--    <p style = "color: white" class="SubHeader">допустимые группы</p>-->
+<!--    <AddGroup />-->
+        <main-button button-text="создать" id="endPage" />
       </div>
     </div>
   </div>
@@ -27,6 +28,7 @@ import QFrequency from "@/components/createPage/CreateFrequency.vue";
 import QParameters from "@/components/createPage/CreateParameters.vue";
 import AddGroup from "@/components/createPage/CreateGroup.vue";
 import {mapGetters} from "vuex";
+import MainButton from "@/components/mainButton";
 
 export default {
   name: 'Create',
@@ -38,7 +40,8 @@ export default {
     ElementHeader,
     QDescription,
     QFrequency,
-    QParameters
+    QParameters,
+    MainButton
 
 
   },

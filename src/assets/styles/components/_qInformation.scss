@@ -46,8 +46,23 @@
   border-radius: 0 0 $radius $radius;
 }
 .paramsActive {
-  color: $main-color;
-  font-weight: bold;
+  background-color: $main-color;
+  transition: all 1s ease;
+  color: $text-color;
+}
+
+.invisible_action{
+  overflow: hidden;
+  height:0;
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.visible_action{
+  overflow: hidden;
+  height: 100px;
+  opacity: 1;
+  transition: all 1s ease;
 }
 
 .settingsParams{
@@ -62,9 +77,10 @@
   width:100%;
   border-radius: $radius;
   margin-top:25px;
+  transition: all 1s ease;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 900px) {
   .paramsBlock{
     display: flex;
   }
@@ -85,8 +101,9 @@
     width: 100%;
   }
   .paramsActive {
-    color: $main-color;
-    font-weight: bold;
+    background-color: $main-color;
+    transition: all 1s ease;
+    color: $text-color;
   }
 }
 :active, :hover, :focus {
@@ -103,25 +120,64 @@
 }
 
 .background_modal{
+  z-index: -1;
   position: fixed;
   top:0;
   left:0;
   height: 100%;
   width:100%;
   background-color: rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: opacity 1s ease;
 }
 .modal_eturn{
+  z-index: -1;
   position: fixed;
   top:0;
   left:0;
   width:100%;
+  opacity: 0;
+  transition: opacity 1s ease;
 }
-.modal_eturn div{
+.modal_eturn .inModal{
   background-color: $block-color;
-  margin: 40px $proportion 50px $proportion;
+  margin: 40px 15px 50px 15px;
   padding: 30px;
   border-radius: $radius;
 }
+@media screen and (orientation: landscape) {
+  .modal_eturn .inModal {
+    background-color: $block-color;
+    margin: 40px $proportion 50px $proportion;
+    padding: 30px;
+    border-radius: $radius;
+  }
+}
+.openModal{
+  opacity: 1;
+  z-index: 3;
+  transition: opacity 1s ease;
+}
+.modal_eturn h1{
+  color: $text-second-color;
+  font-size: $large-text;
+  text-align: center;
+}
+.modal_eturn h2{
+  color: $main-color;
+  font-size: $small-text;
+  font-style: italic;
+  text-align: center;
+}
+.modal_eturn .form-check{
+  color: $text-second-color;
+  font-size: $middle-text;
+}
+
+.optionParam{
+  padding: 10px;
+}
+
 //
 //.input-group {
 //  display: flex;
