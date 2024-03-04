@@ -40,7 +40,7 @@
   watch:{
     isChecked(newChecked, oldChecked){
       if (newChecked){
-        alert(this.value)
+        // alert(this.value)
       }
     }
   }
