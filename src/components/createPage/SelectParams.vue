@@ -3,7 +3,7 @@
     <div class="form-check">
       <input v-model="isChecked" class="form-check-input" type="checkbox">
       <label class="form-check-label" for="flexCheckDefault">
-        {{this.value}}
+        {{valueForParam}}
       </label>
     </div>
   </div>
@@ -12,10 +12,26 @@
 <script>
   export default {
   name: 'SelectParams',
-  props: ['id', 'value'],
+  props: ['data', 'type'],
   data(){
     return{
-      isChecked: false
+      isChecked: false,
+      paramId: this.data.id,
+    }
+  },
+  computed:{
+    valueForParam: function (){
+      if (this.type===1){
+        return this.data.name;
+      }
+      else if(this.type===2){
+        if (this.data.eduEnum==="BACCALAUREATE"){
+          return this.data.number + " курс бакалавриата"
+        }
+      }
+      else if(this.type===0){
+        return this.data.name;
+      }
     }
   },
   methods:{

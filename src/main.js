@@ -17,6 +17,9 @@ const store = createStore({
       listTurn: [],
       turnId: 0,
       userId: 1,
+      faculties: null,
+      courses: null,
+      groups: null,
       currentErrorInfo: "error",
       turnToCreate:{
         "name": null,
@@ -87,13 +90,16 @@ const store = createStore({
     },
     setCreateTurnProperty(state, property){
       state.turnToCreate[property.name]=property.value
+    },
+    setFaculties(state, f){
+      state.faculties = f;
+    },
+    setGroups(state, g){
+      state.groups = g;
+    },
+    setCourses(state, s){
+      state.courses = s;
     }
-    // changeLoaderShow(state) {
-    //   if (state.loaderShow === true)
-    //     state.loaderShow = false;
-    //   else
-    //     state.loaderShow = true;
-    // }
   },
   getters: {
     getterUserId: (state) => {
@@ -124,6 +130,25 @@ const store = createStore({
     },
     getterRoleUser:(state)=>{
       return state.users.role;
+    },
+    // getterCourses:(state)=>{
+    //   return state.courses;
+    // },
+    // getterFaculties:(state)=>{
+    //   return state.faculties;
+    // },
+    // getterGroups:(state)=>{
+    //   return state.groups;
+    // },
+    getterParam:(state)=>(param)=>{
+      switch(param){
+        case 0:
+          return state.groups
+        case 1:
+          return state.faculties
+        case 2:
+          return state.courses
+      }
     }
   },
   actions: {
@@ -257,12 +282,40 @@ const store = createStore({
             throw new Error("type error")
         }
     },
-    //loadPositions({commit}, {idTurn}){
-    // TODO Для Риты: запрос авторизации
-    // TODO сделать запрос для вывода позиций
-    // TODO сделать запрос для удаления позиций
-    // TODO сделать запрос для вывода текущей первой позиции
-    //}
+    loadFaculties({commit}, {token}){
+      axios.get('/faculty',{
+        headers: {
+          'Authorization': `${token}`
+        }
+      }).then(result=>{
+        console.log(result.data)
+        commit('setFaculties', result.data)
+      }).catch(error=>{
+        throw new Error("EMPTY LIST")
+      })
+    },
+    loadGroups({commit}, {token, facultyId}){
+      axios.get('/group?facultyId='+facultyId,{
+        headers: {
+          'Authorization': `${token}`
+        }
+      }).then(result2=>{
+        commit('setGroups', result2.data)
+      }).catch(error2=>{
+        throw new Error("EMPTY LIST")
+      })
+    },
+    loadCourses({commit}, {token}){
+      axios.get('/course',{
+        headers: {
+          'Authorization': `${token}`
+        }
+      }).then(result=>{
+        commit('setCourses', result.data)
+      }).catch(error=>{
+        throw new Error("EMPTY LIST")
+      })
+    }
   }
 })
 const app1 = createApp(App).use(router).use(store).use(createMetaManager()).use(VueAxios, axios)

@@ -25,7 +25,7 @@ import router from "@/router";
 export default {
   name: 'Type',
   computed:{
-    ...mapGetters['getterRoleUser']
+    ...mapGetters(['getterRoleUser'])
   },
   methods:{
     type(t){

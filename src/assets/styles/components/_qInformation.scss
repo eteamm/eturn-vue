@@ -64,6 +64,9 @@
   opacity: 1;
   transition: all 1s ease;
 }
+.selectF{
+  padding: 25px;
+}
 
 .settingsParams{
   font-weight: normal;
@@ -80,7 +83,22 @@
   transition: all 1s ease;
 }
 
-@media (min-width: 900px) {
+.doneParamsBtn{
+  background: $main-color;
+  margin: 0;
+  margin-top:35px;
+  width: 100%;
+  border-style: solid;
+  border-width: 0px;
+  border-color: $main-color;
+  border-radius: $radius;
+  padding: 8px 0px 8px 0px;
+  color: $text-color;
+  font-size: $small-text;
+  font-weight: 600;
+}
+
+@media (min-width: 1200px) {
   .paramsBlock{
     display: flex;
   }
@@ -120,7 +138,6 @@
 }
 
 .background_modal{
-  z-index: -1;
   position: fixed;
   top:0;
   left:0;
@@ -129,9 +146,13 @@
   background-color: rgba(0,0,0,0.5);
   opacity: 0;
   transition: opacity 1s ease;
+  z-index: 10;
+}
+.add_z_index{
+  z-index: -1 !important;
 }
 .modal_eturn{
-  z-index: -1;
+  z-index: 10;
   position: fixed;
   top:0;
   left:0;
@@ -168,6 +189,7 @@
   font-size: $small-text;
   font-style: italic;
   text-align: center;
+  padding-bottom: 25px;
 }
 .modal_eturn .form-check{
   color: $text-second-color;
