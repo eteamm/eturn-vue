@@ -17,9 +17,9 @@ const store = createStore({
       listTurn: [],
       turnId: 0,
       userId: 1,
-      faculties: null,
-      courses: null,
-      groups: null,
+      faculties: [],
+      courses: [],
+      groups: [],
       currentErrorInfo: "error",
       turnToCreate:{
         "name": null,
@@ -27,10 +27,10 @@ const store = createStore({
         "turnType":null,
         "creator":null,
         "turnAccess":null,
-        "allowedGroups":null,
-        "allowedFaculties":null,
-        "allowedDepartments":null,
-        "allowedCourses":null
+        "allowedGroups":[],
+        "allowedFaculties":[],
+        "allowedDepartments":[],
+        "allowedCourses":[]
       },
       errors: {
         'auth_error': false,
@@ -89,16 +89,43 @@ const store = createStore({
       state.loadings[loading.name]=loading.value;
     },
     setCreateTurnProperty(state, property){
-      state.turnToCreate[property.name]=property.value
+      if(state.turnToCreate[property.name]!==[]){
+        if (!state.turnToCreate[property.name].some(e=> e.id===property.value.id)){
+          state.turnToCreate[property.name].push(property.value)
+        }
+      }
+      else{
+        state.turnToCreate[property.name].push(property.value)
+      }
+      // console.log('turn', state.turnToCreate[property.name])
+    },
+    setNullCreateTurnProperty(state){
+      state.turnToCreate["allowedGroups"]=[]
+      state.turnToCreate["allowedFaculties"]=[]
+      state.turnToCreate["allowedCourses"]=[]
+      state.turnToCreate["allowedDepartments"]=[]
     },
     setFaculties(state, f){
+      state.turnToCreate["allowedGroups"]=[]
+      state.turnToCreate["allowedFaculties"]=[]
+      state.turnToCreate["allowedCourses"]=[]
+      state.turnToCreate["allowedDepartments"]=[]
+      state.faculties = [];
       state.faculties = f;
     },
     setGroups(state, g){
       state.groups = g;
     },
     setCourses(state, s){
+      state.turnToCreate["allowedGroups"]=[]
+      state.turnToCreate["allowedFaculties"]=[]
+      state.turnToCreate["allowedCourses"]=[]
+      state.turnToCreate["allowedDepartments"]=[]
+      state.courses = [];
       state.courses = s;
+    },
+    CLEAR_ALL_GROUPS_FOREVER(state){
+      state.groups=[];
     }
   },
   getters: {
@@ -131,15 +158,6 @@ const store = createStore({
     getterRoleUser:(state)=>{
       return state.users.role;
     },
-    // getterCourses:(state)=>{
-    //   return state.courses;
-    // },
-    // getterFaculties:(state)=>{
-    //   return state.faculties;
-    // },
-    // getterGroups:(state)=>{
-    //   return state.groups;
-    // },
     getterParam:(state)=>(param)=>{
       switch(param){
         case 0:
@@ -148,6 +166,37 @@ const store = createStore({
           return state.faculties
         case 2:
           return state.courses
+      }
+    },
+    getterCreateTurnParam:(state)=>(param)=>{
+      switch(param.id){
+        case 0:
+        {
+         if (state.turnToCreate['allowedGroups']!==[]){
+           return state.turnToCreate['allowedGroups'].some(e=> e.id===param.data.id)
+         }
+         else{
+           return false
+         }
+        }
+        case 1:
+        {
+          if (state.turnToCreate['allowedFaculties']!==[]){
+            return state.turnToCreate['allowedFaculties'].some(e=> e.id===param.data.id)
+          }
+          else{
+            return false
+          }
+        }
+        case 2:
+        {
+          if (state.turnToCreate['allowedCourses']!==[]){
+            return state.turnToCreate['allowedCourses'].some(e=> e.id===param.data.id)
+          }
+          else{
+            return false
+          }
+        }
       }
     }
   },
@@ -283,18 +332,19 @@ const store = createStore({
         }
     },
     loadFaculties({commit}, {token}){
+      commit("setNullCreateTurnProperty")
       axios.get('/faculty',{
         headers: {
           'Authorization': `${token}`
         }
       }).then(result=>{
-        console.log(result.data)
         commit('setFaculties', result.data)
       }).catch(error=>{
         throw new Error("EMPTY LIST")
       })
     },
     loadGroups({commit}, {token, facultyId}){
+      commit("CLEAR_ALL_GROUPS_FOREVER")
       axios.get('/group?facultyId='+facultyId,{
         headers: {
           'Authorization': `${token}`
@@ -306,6 +356,7 @@ const store = createStore({
       })
     },
     loadCourses({commit}, {token}){
+      commit("setNullCreateTurnProperty")
       axios.get('/course',{
         headers: {
           'Authorization': `${token}`
@@ -315,6 +366,19 @@ const store = createStore({
       }).catch(error=>{
         throw new Error("EMPTY LIST")
       })
+    },
+    setParam({commit}, {type, data}){
+      let t;
+      if (type===0){
+        t = "allowedGroups"
+      }
+      if (type===1){
+        t = "allowedFaculties"
+      }
+      if (type===2){
+        t = "allowedCourses"
+      }
+      commit("setCreateTurnProperty", {name: t, value: data})
     }
   }
 })
