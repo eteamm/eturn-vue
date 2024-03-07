@@ -232,8 +232,6 @@ const store = createStore({
       })
     },
     authUser({commit}, {login, password}){
-      // commit("setTurnType", "edu");
-      // commit("setTurnAccess", "memberIn");
       commit('SET_LOADING', {name:'auth_loading', value: true});
       axios.post('/auth/sign-in?login='+login+"&password="+password).then(result=>{
         commit('SAVE_TOKEN', result.data.token);
@@ -275,6 +273,7 @@ const store = createStore({
     },
     logout({commit}){
       commit("DELETE_TOKEN")
+      commit("setTurnAccess", "memberIn");
       document.cookie = "auth=;" +
         ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
       router.push('/').then(r=>console.log('Logout was successful'))

@@ -1,7 +1,7 @@
 <template>
     <div class="TurnBlock1" v-on:click="goToTurnPage" v-bind:class="{cursor: this.$store.getters.getterTurnAccess === 'memberIn'}">
       <div class="divRightButton" v-on:click="goToTurnPageBtn">
-          <button class="joinBtn" v-if="this.$store.getters.getterTurnAccess === 'memberOut'">вступить</button>
+          <button class="joinBtn" v-if="getterTurnAccess === 'memberOut'">вступить</button>
       </div>
       <div class="nameTurn">
         {{Turn_data.name}}
