@@ -3,9 +3,9 @@
     <div class="SubHeader">параметры доступа</div>
     <div class="paramsBlock">
       <button v-on:click="changeActive(0)" class="listParams paramsOnStart" v-bind:class="{paramsActive: this.active[0]}">Группы</button>
-      <button v-on:click="changeActive(1)" class="listParams paramsInMiddle" v-bind:class="{paramsActive: this.active[1]}">Факультеты</button>
-      <button v-on:click="changeActive(2)" class="listParams paramsInMiddle" v-bind:class="{paramsActive: this.active[2]}">Курсы</button>
-      <button v-on:click="changeActive(3)" class="listParams paramsInMiddle" v-bind:class="{paramsActive: this.active[3]}">Кафедры</button>
+      <button v-if="getterCreateTurnParamText('turnType')==='ORG'" v-on:click="changeActive(1)" class="listParams paramsInMiddle" v-bind:class="{paramsActive: this.active[1]}">Факультеты</button>
+      <button v-if="getterCreateTurnParamText('turnType')==='ORG'" v-on:click="changeActive(2)" class="listParams paramsInMiddle" v-bind:class="{paramsActive: this.active[2]}">Курсы</button>
+      <button v-if="getterCreateTurnParamText('turnType')==='ORG'" v-on:click="changeActive(3)" class="listParams paramsInMiddle" v-bind:class="{paramsActive: this.active[3]}">Кафедры</button>
       <button v-on:click="changeActive(4)" class="listParams paramsInEnd" v-bind:class="{paramsActive: this.active[4]}">По ссылке</button>
     </div>
     <div class="invisible_action" v-bind:class="{visible_action: this.active[5]===true && this.active[4]===false }" >
@@ -17,7 +17,7 @@
       <div class="background_modal" v-bind:class="{openModal: this.openModal, add_z_index: this.addZ}"></div>
       <div class="modal_eturn"  v-bind:class="{openModal: this.openModal, add_z_index: this.addZ}">
         <div class="inModal">
-          <h1>Выбери параметры</h1>
+          <h1>Настройка параметров доступа</h1>
           <h2>{{this.titleModal}}</h2>
           <div class="selectF" v-if="this.typeParam===0">
             <select v-model="selected" class="form-select">
@@ -82,7 +82,7 @@
     }
   },
   computed:{
-    ...mapGetters(['getterParam', 'getterToken','getterCreateTurnParam'])
+    ...mapGetters(['getterParam', 'getterToken','getterCreateTurnParam', 'getterCreateTurnParamText'])
   },
   methods:{
     changeActive(type){
@@ -93,12 +93,18 @@
       if (!this.active[type]){
         if(type===1){
           this.$store.dispatch('loadFaculties', {token: this.$store.getters.getterToken})
+          this.$store.dispatch("saveTurnProperty", {nameP: "turnAccess", valueP: "FOR_ALLOWED_ELEMENTS"})
         }
         if(type===2){
           this.$store.dispatch('loadCourses', {token: this.$store.getters.getterToken})
+          this.$store.dispatch("saveTurnProperty", {nameP: "turnAccess", valueP: "FOR_ALLOWED_ELEMENTS"})
         }
         if(type===0){
           this.$store.dispatch('loadFaculties', {token: this.$store.getters.getterToken})
+          this.$store.dispatch("saveTurnProperty", {nameP: "turnAccess", valueP: "FOR_ALLOWED_ELEMENTS"})
+        }
+        if (type===4){
+          this.$store.dispatch("saveTurnProperty", {nameP: "turnAccess", valueP: "FOR_LINK"})
         }
       }
 

@@ -24,8 +24,10 @@
     info(newInfo, oldInfo){
       if(newInfo===''){
         this.error = true
+        this.$store.dispatch("saveTurnProperty", {nameP: this.type, valueP:null})
       }
       else{
+        this.$store.dispatch("saveTurnProperty", {nameP: this.type, valueP:this.info})
         this.error = false
       }
     }

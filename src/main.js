@@ -89,7 +89,7 @@ const store = createStore({
       state.loadings[loading.name]=loading.value;
     },
     setCreateTurnProperty(state, property){
-      if(state.turnToCreate[property.name]!==[]){
+      if(state.turnToCreate[property.name]!==[] && state.turnToCreate[property.name]!==null){
         if (!state.turnToCreate[property.name].some(e=> e.id===property.value.id)){
           state.turnToCreate[property.name].push(property.value)
         }
@@ -98,6 +98,9 @@ const store = createStore({
         state.turnToCreate[property.name].push(property.value)
       }
       // console.log('turn', state.turnToCreate[property.name])
+    },
+    setCreateTurnPropertyText(state, property){
+      state.turnToCreate[property.name]=property.value
     },
     setNullCreateTurnProperty(state){
       state.turnToCreate["allowedGroups"]=[]
@@ -126,11 +129,16 @@ const store = createStore({
     },
     CLEAR_ALL_GROUPS_FOREVER(state){
       state.groups=[];
+    },
+    deleteElementTurnCreate(state, element){
+      state.turnToCreate[element.name] = state.turnToCreate[element.name].filter((obj)=>{
+        return obj.id!==element.value.id
+      })
     }
   },
   getters: {
     getterUserId: (state) => {
-      return state.userId;
+      return state.users.id;
     },
     getCurrentError:(state)=>(type) => {
       return state.errors[type];
@@ -167,6 +175,12 @@ const store = createStore({
         case 2:
           return state.courses
       }
+    },
+    getterCreateTurnParamText:(state)=>(param)=>{
+      return state.turnToCreate[param];
+    },
+    getterCreateTurn:(state)=>{
+      return state.turnToCreate;
     },
     getterCreateTurnParam:(state)=>(param)=>{
       switch(param.id){
@@ -264,9 +278,6 @@ const store = createStore({
       }else{
         router.push('/').then(r=>console.log('You need to log in'))
       }
-    },
-    saveTurnProperty({commit}, {nameP, valueP}){
-      commit('setCreateTurnProperty', {name:nameP, value: valueP})
     },
     loadListTurn({commit}, {token, type, access}) {
       commit('SAVE_TURN', null);
@@ -367,6 +378,9 @@ const store = createStore({
         throw new Error("EMPTY LIST")
       })
     },
+    saveTurnProperty({commit}, {nameP, valueP}){
+      commit('setCreateTurnPropertyText', {name:nameP, value: valueP})
+    },
     setParam({commit}, {type, data}){
       let t;
       if (type===0){
@@ -379,6 +393,19 @@ const store = createStore({
         t = "allowedCourses"
       }
       commit("setCreateTurnProperty", {name: t, value: data})
+    },
+    deleteParam({commit}, {type,data}){
+      let t;
+      if (type===0){
+        t = "allowedGroups"
+      }
+      if (type===1){
+        t = "allowedFaculties"
+      }
+      if (type===2){
+        t = "allowedCourses"
+      }
+      commit("deleteElementTurnCreate", {name: t, value: data})
     }
   }
 })

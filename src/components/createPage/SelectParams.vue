@@ -60,6 +60,9 @@
         // console.log("data", this.data)
         this.$store.dispatch("setParam", {type: this.type, data: this.data})
       }
+      else{
+        this.$store.dispatch("deleteParam", {type: this.type, data: this.data})
+      }
     }
   }
 }

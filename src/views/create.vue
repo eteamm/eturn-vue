@@ -5,19 +5,15 @@
         <Header title-name="Создать" title-description="новая очередь" />
         <QInfo header = "название очереди" type="name"/>
         <QInfo header = "описание" type="description"/>
-        <QInfo header = "частота"/>
+<!--        <QInfo header = "частота"/>-->
         <QParameters/>
 <!--    <p style = "color: white" class="SubHeader">допустимые группы</p>-->
 <!--    <AddGroup />-->
-        <main-button button-text="создать" id="endPage" />
+        <main-button v-on:click="getTurn()" button-text="создать" id="endPage" />
       </div>
     </div>
   </div>
 </template>
-
-
-
-
 <script>
 import Header from "@/components/header.vue";
 import QInfo from "@/components/createPage/CreateInfo.vue";
@@ -29,6 +25,7 @@ import QParameters from "@/components/createPage/CreateParameters.vue";
 import AddGroup from "@/components/createPage/CreateGroup.vue";
 import {mapGetters} from "vuex";
 import MainButton from "@/components/mainButton";
+import router from "@/router";
 
 export default {
   name: 'Create',
@@ -42,14 +39,52 @@ export default {
     QFrequency,
     QParameters,
     MainButton
-
-
   },
   computed:{
-    ...mapGetters['getterRoleUser']
+    ...mapGetters(['getterRoleUser','getterCreateTurn','getterUserId'])
   },
+
   beforeCreate() {
     this.$store.dispatch("checkToken")
   },
+  mounted() {
+    this.$store.dispatch("saveTurnProperty", {nameP: "creator", valueP: this.$store.getters.getterUserId})
+  },
+  methods:{
+    getTurn(){
+      let turn = this.$store.getters.getterCreateTurn
+      let accessValid = false
+      let validProps = false
+      let validTypes = false
+      if (turn.turnAccess==="FOR_ALLOWED_ELEMENTS"){
+        if (turn.allowedCourses.length!==0 || turn.allowedFaculties.length!==0 || turn.allowedGroups.length!==0){
+          accessValid = true
+        }
+        else{
+          accessValid = false
+          console.log("status", "bad!");
+        }
+      }
+      else{
+        accessValid = true
+      }
+      if (turn.name!=null && turn.description!=null){
+        validProps = true
+      }
+      else{
+        validProps = false
+      }
+      if (turn.turnAccess!=null && turn.turnType!=null){
+        validTypes = true
+      }
+      else{
+        router.push("/")
+        validTypes = false
+      }
+      if(validProps && accessValid && validTypes){
+        console.log("all turn info",turn)
+      }
+    }
+  }
 }
 </script>
