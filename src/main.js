@@ -218,6 +218,8 @@ const store = createStore({
       })
     },
     authUser({commit}, {login, password}){
+      // commit("setTurnType", "edu");
+      // commit("setTurnAccess", "memberIn");
       commit('SET_LOADING', {name:'auth_loading', value: true});
       axios.post('/auth/sign-in?login='+login+"&password="+password).then(result=>{
         commit('SAVE_TOKEN', result.data.token);

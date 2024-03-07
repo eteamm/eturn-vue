@@ -44,7 +44,7 @@ export default {
   mounted() {
     let typeTurn = this.$store.getters.getterTurnType
     let accessTurn = this.$store.getters.getterTurnAccess
-    this.$store.dispatch('loadListTurn',{token: this.$store.getters.getterToken, type: typeTurn, access: accessTurn})
+    this.$store.dispatch('loadListTurn',{token: this.$store.getters.getterToken, type: 'edu', access: 'memberIn'})
   },
   // update() {
   //   let typeTurn = this.$store.getters.getterTurnType

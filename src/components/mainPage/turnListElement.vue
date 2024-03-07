@@ -1,5 +1,5 @@
 <template>
-    <div class="TurnBlock1" v-on:click="goToTurnPage">
+    <div class="TurnBlock1" v-on:click="goToTurnPage" v-bind:class="{cursor: this.$store.getters.getterTurnAccess === 'memberIn'}">
       <div class="divRightButton" v-on:click="goToTurnPageBtn">
           <button class="joinBtn" v-if="this.$store.getters.getterTurnAccess === 'memberOut'">вступить</button>
       </div>
@@ -21,6 +21,7 @@
 <script>
 
 import router from "@/router";
+import {mapGetters, mapState} from "vuex";
 
 export default {
   name: 'turnListElement',
@@ -32,8 +33,10 @@ export default {
       }
     },
     goToTurnPageBtn() {
-      this.$router.push('/turn');
-      this.$store.dispatch('changeTurnId', this.Turn_data.id);
+      if (this.$store.getters.getterTurnAccess === 'memberOut') {
+        this.$router.push('/turn');
+        this.$store.dispatch('changeTurnId', this.Turn_data.id);
+      }
     }
   },
   props: {
@@ -48,7 +51,8 @@ export default {
   computed:{
     joinBtnVisible: ()=>{
       return this.type !== "memberIn";
-    }
+    },
+    ...mapGetters(["getterTurnAccess"])
   },
 }
 </script>
