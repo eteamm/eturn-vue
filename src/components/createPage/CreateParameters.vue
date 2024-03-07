@@ -13,7 +13,7 @@
 <!--    >-->
       <button v-bind:disabled="this.active[5]===false || this.active[4]===true" v-on:click="openModalW" class="settingsParams">настроить параметры доступа</button>
     </div>
-    <div v-bind:aria-disabled="this.openModal">
+    <div class="modalAll" v-bind:aria-disabled="this.openModal">
       <div class="background_modal" v-bind:class="{openModal: this.openModal, add_z_index: this.addZ}"></div>
       <div class="modal_eturn"  v-bind:class="{openModal: this.openModal, add_z_index: this.addZ}">
         <div class="inModal">
@@ -27,7 +27,9 @@
               </option>
             </select>
           </div>
-          <select-params v-for="param in this.$store.getters.getterParam(this.typeParam)" :data="param" :type="this.typeParam" />
+          <div class="paramsAria">
+            <select-params v-for="param in this.$store.getters.getterParam(this.typeParam)" :data="param" :type="this.typeParam" />
+          </div>
           <button v-on:click="closeModalW" class="doneParamsBtn">Готово</button>
         </div>
       </div>
@@ -80,7 +82,7 @@
     }
   },
   computed:{
-    ...mapGetters(['getterParam', 'getterToken'])
+    ...mapGetters(['getterParam', 'getterToken','getterCreateTurnParam'])
   },
   methods:{
     changeActive(type){
