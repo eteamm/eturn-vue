@@ -181,6 +181,22 @@ const store = createStore({
     getterCreateTurn:(state)=>{
       return state.turnToCreate;
     },
+    getterCreateTurnAllParams:(state)=>(param)=>{
+      switch(param){
+        case 0:
+        {
+          return state.turnToCreate['allowedGroups']
+        }
+        case 1:
+        {
+          return state.turnToCreate['allowedFaculties']
+        }
+        case 2:
+        {
+          return state.turnToCreate['allowedCourses']
+        }
+      }
+    },
     getterCreateTurnParam:(state)=>(param)=>{
       switch(param.id){
         case 0:

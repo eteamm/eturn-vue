@@ -2,7 +2,7 @@
 
   width: 100%;
   border: 0px solid;
-  padding: 25px 30px;
+  padding: 22px 30px;
 
   border-radius: $radius;
   background: $block-color;
@@ -14,7 +14,25 @@
   font-weight: 400;
   line-height: normal;
 
-  margin-top:25px;
+  margin:10px 0;
+}
+
+.selectedParamsBlock{
+  display: flex;
+  //padding: 0 20px 20px 20px;
+  padding-bottom: 20px;
+}
+.selectedParamsElement{
+  background-color: $block-color;
+  color: $text-second-color;
+  border-radius: $radius;
+  padding: 7px 13px;
+  margin-right:10px;
+}
+.selectedParamsElement p{
+  font-size: $small-text;
+  margin:0;
+  padding: 2px 5px;
 }
 
 .authInput{
@@ -74,6 +92,7 @@
   border-width: 1px;
   padding-right:10px;
   padding-left:10px;
+  padding-top:20px;
   border-color:$white;
   overflow: auto;
   border-style: solid;
@@ -143,12 +162,21 @@
 
 .SubHeader{
   color: $text-second-color;
-  font-size: $small-text;
+  font-size: $middle-text;
+  font-weight: 700;
   padding-top:25px;
   padding-bottom: 25px;
-  padding-left:30px;
+  //padding-left:30px;
+  //position: relative;
 }
-
+.SubHeader img{
+  //position: absolute;
+  //left: -30px;
+  height: 30px;
+  width: 40px;
+  margin-top:-3px;
+  margin-right: 15px;
+}
 .background_modal{
   position: fixed;
   top:0;
@@ -172,13 +200,13 @@
   top:0;
   left:0;
   width:100%;
-  height:70%;
+  //height:70%;
   opacity: 0;
   transition: opacity 1s ease;
 }
 .modal_eturn .inModal{
   overflow: auto;
-  height:70vh;
+  max-height:70vh;
   background-color: $block-color;
   margin: 40px 15px 50px 15px;
   padding: 30px;

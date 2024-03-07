@@ -1,6 +1,22 @@
 <template>
   <div class="QParameters">
-    <div class="SubHeader">параметры доступа</div>
+    <div class="SubHeader"> <img src="../../assets/img/access_img.svg" alt="access">Параметры доступа</div>
+    <div v-if="getterCreateTurnAllParams(0).length!==0 && !this.active[4]">
+      <div class="selectedParamsBlock">
+        <selected-param-view v-for="g in getterCreateTurnAllParams(0)" :name="g.name"/>
+      </div>
+    </div>
+    <div v-if="getterCreateTurnAllParams(1).length!==0 && !this.active[4]">
+      <div class="selectedParamsBlock">
+        <selected-param-view v-for="f in getterCreateTurnAllParams(1)" :name="f.name"/>
+      </div>
+    </div>
+    <div v-if="getterCreateTurnAllParams(2).length!==0 && !this.active[4]">
+      <div class="selectedParamsBlock">
+        <selected-param-view v-for="c in getterCreateTurnAllParams(2)" :name="c.number +' курс'"/>
+      </div>
+
+    </div>
     <div class="paramsBlock">
       <button v-on:click="changeActive(0)" class="listParams paramsOnStart" v-bind:class="{paramsActive: this.active[0]}">Группы</button>
       <button v-if="getterCreateTurnParamText('turnType')==='ORG'" v-on:click="changeActive(1)" class="listParams paramsInMiddle" v-bind:class="{paramsActive: this.active[1]}">Факультеты</button>
@@ -41,11 +57,13 @@
 <script>
   import SelectParams from "@/components/createPage/SelectParams";
   import {mapGetters} from "vuex";
+  import SelectedParamView from "@/components/createPage/SelectedParamView";
 
   export default {
   name: 'QParameters',
   components:{
-    SelectParams
+    SelectParams,
+    SelectedParamView
   },
   data(){
     return{
@@ -82,7 +100,7 @@
     }
   },
   computed:{
-    ...mapGetters(['getterParam', 'getterToken','getterCreateTurnParam', 'getterCreateTurnParamText'])
+    ...mapGetters(['getterParam', 'getterToken','getterCreateTurnParam', 'getterCreateTurnParamText', 'getterCreateTurnAllParams'])
   },
   methods:{
     changeActive(type){
@@ -114,22 +132,6 @@
       this.active[3]=false;
       this.active[4]=false;
       this.active[type]=true;
-
-    // setTimeout(()=>{
-    //   const scrollTarget = document.getElementById('endPage');
-    //
-    //   // const topOffset = document.querySelector('.scrollto').offsetHeight;
-    //   const topOffset = 0; // если не нужен отступ сверху
-    //   const elementPosition = scrollTarget.getBoundingClientRect().top;
-    //   const offsetPosition = elementPosition - topOffset;
-    //
-    //   window.scrollBy({
-    //     top: offsetPosition,
-    //     behavior: 'smooth'
-    //   });
-    // },1000)
-    // setTimeout(()=>window.scrollTo(0, document.body.scrollHeight),1000)
-    // window.scrollTo(0, document.body.scrollHeight);
     },
     openModalW(){
       this.openModal=true;
