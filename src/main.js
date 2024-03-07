@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-// import router from './router'
 import router from "@/router";
 import { createStore } from "vuex";
 import app from "@/App.vue";
@@ -152,6 +151,9 @@ const store = createStore({
     }
   },
   actions: {
+    changeTurnId({commit}, id) {
+      commit("changeCurrentTurnId", id);
+    },
     changeError({commit}, error){
       commit("SET_ERROR", error);
     },

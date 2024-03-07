@@ -4,6 +4,7 @@
   display: grid;
   font-size: $small-text;
   grid-template-columns: 1fr 1fr;
+  cursor: pointer;
 }
 
 .myTurnActive {

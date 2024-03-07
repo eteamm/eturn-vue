@@ -10,7 +10,7 @@
         />
       </div>
       <div v-show="getCurrentError('turn_error')" class="turnNotFound">
-        <p>Очередей нет :(</p>
+        <p>Очереди не найдены</p>
       </div>
     </div>
 </template>

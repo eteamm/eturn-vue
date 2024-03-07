@@ -17,7 +17,7 @@ import {id} from "postcss-selector-parser";
 
 export default {
   name: 'TurnInfo',
-  methods: {id},
+  // methods: {id},
   props: ['turnTitle', 'turnCreator', 'q', 'id'],
   computed: mapGetters(['getterName'])
 }
