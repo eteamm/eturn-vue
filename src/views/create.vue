@@ -41,7 +41,7 @@ export default {
     MainButton
   },
   computed:{
-    ...mapGetters(['getterRoleUser','getterCreateTurn','getterUserId'])
+    ...mapGetters(['getterRoleUser','getterCreateTurn','getterUserId', 'getterToken'])
   },
 
   beforeCreate() {
@@ -82,7 +82,7 @@ export default {
         validTypes = false
       }
       if(validProps && accessValid && validTypes){
-        console.log("all turn info",turn)
+        this.$store.dispatch("createTurn", {turn: turn, token: this.$store.getters.getterToken})
       }
     }
   }

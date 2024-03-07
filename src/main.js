@@ -245,6 +245,19 @@ const store = createStore({
         commit('SET_ERROR', {name:'auth_error', value: true});
       })
     },
+    createTurn({commit}, {turn, token}){
+      axios.post("/turn",turn,{
+          headers: {
+            'Authorization': `${token}`
+          }
+        }
+        ).then(result=>{
+        commit("changeCurrentTurnId", result.data);
+        router.push('/turn')
+      }).catch(error=>{
+        console.log(error)
+      })
+    },
     redirectStart({commit}){
       if (document.cookie.indexOf("auth") === 0) {
         let name = "auth"
