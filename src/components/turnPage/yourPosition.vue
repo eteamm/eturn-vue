@@ -12,7 +12,7 @@
 <script>
 import TurnPosition from "@/components/turnPage/turnPosition.vue";
 export default {
-  name: 'YourTurn',
+  name: 'YourPosition',
   components: {
     TurnPosition
   },

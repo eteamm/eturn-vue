@@ -1,31 +1,32 @@
 .TurnInfo{
   display: grid;
   grid-template-columns: 3fr 1fr;
+  grid-gap: 35px;
   width:100%;
   margin-bottom: 15px;
 }
 .Title {
-  border-radius: 12px;
+  border-radius: $radius;
   background-color: $main-color;
-  margin-right: 25px;
+  //margin-right: 25px;
   text-align: left;
   padding: 10px;
 }
 .TurnTitle{
   font-weight:700 ;
-  font-size: 22px ;
+  font-size: $middle-text;
   color:$text-color;
 }
 .TurnCreator{
-  font-size:13px;
+  font-size:$middle-text;
   color:$text-color;
   font-weight: 400;
 }
 .Quantity{
-  border-radius: 12px;
+  border-radius: $radius;
   background-color: $main-color;
   position: relative;
-  margin-left: 15px;
+  //margin-left: 15px;
   text-align: left;
   right:10px;
   color:$text-color;
@@ -34,16 +35,16 @@
 }
 .memebersQuantity{
   font-weight:700 ;
-  font-size: 28px ;
+  font-size: $large-text ;
   margin-bottom: 7px;
 }
 .qpeople{
-  font-size:13px;
+  font-size:$small-text;
   font-weight: 400;
 }
 .ExtraInfo{
   font-size: 13px;
-  border-radius: 12px;
+  border-radius: $radius;
   background-color:$block-color;
   color:$white;
   padding: 10px;

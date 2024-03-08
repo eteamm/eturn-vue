@@ -319,3 +319,13 @@
 //   font-weight: 400;
 //   line-height: normal;
 // }
+
+@media screen and (orientation: landscape) {
+  .NameBox {
+    font-size: $small-text-L;
+  }
+  .selectedParamsElement p{
+    font-size: $small-text-L;
+  }
+  // ...
+}

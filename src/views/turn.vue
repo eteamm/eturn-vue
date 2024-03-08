@@ -3,15 +3,15 @@
     <Header title-name="Очередь" title-description="основная информация" />
   </div>
   <div>
-    <TurnInfo turn-title="Зачетная неделя" turn-creator="Железняк Александр Владимирович"/>
+    <TurnInfo/>
   </div>
   <div>
-    <ExtraInfo extrainfo="Приходим в ауд. 2317 в 13:00"/>
+    <ExtraInfo/>
   </div>
   <div>
     <TurnBtns/>
   </div>
-  <YourTurn/>
+  <YourPosition/>
   <positions-list/>
   <div>
     <main-button button-text="встать в очередь" />
@@ -27,13 +27,13 @@ import TurnPosition from "@/components/turnPage/turnPosition.vue";
 import MainButton from "@/components/mainButton.vue";
 import ExtraInfo from "../components/turnPage/extraInfo.vue";
 import PositionsList from "@/components/turnPage/positionsList.vue";
-import YourTurn from "@/components/turnPage/yourTurn.vue";
+import YourPosition from "@/components/turnPage/yourPosition.vue";
 import router from "@/router";
 import {mapGetters, mapState} from "vuex";
 export default {
   name: 'Turn',
   components: {
-    YourTurn,
+    YourPosition,
     MainButton,
     TurnPosition,
     TurnBtns,
