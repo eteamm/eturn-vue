@@ -27,13 +27,13 @@ export default {
   name: 'turnListElement',
   methods: {
     goToTurnPage(){
-      if (this.$store.getters.getterTurnAccess === 'memberIn') {
+      if (this.$store.getters.getterTurnAccess !== 'memberOut') {
         this.$router.push('/turn');
         this.$store.dispatch('changeTurnId', this.Turn_data.id);
       }
     },
     goToTurnPageBtn() {
-      if (this.$store.getters.getterTurnAccess === 'memberOut') {
+      if (this.$store.getters.getterTurnAccess !== 'memberIn') {
         this.$router.push('/turn');
         this.$store.dispatch('changeTurnId', this.Turn_data.id);
       }

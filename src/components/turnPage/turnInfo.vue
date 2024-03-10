@@ -1,11 +1,11 @@
 <template>
   <div class="TurnInfo">
     <div class="Title">
-    <span class="TurnTitle">{{getterName($store.state.turnId).name}}</span>
-    <p class="TurnCreator">{{ getterName($store.state.turnId).teacher}}</p>
+    <span class="TurnTitle">{{getCurrentTurn!=null ? getCurrentTurn.name : null}}</span>
+    <p class="TurnCreator">{{getCurrentTurn!=null ? getCurrentTurn.description : null}}</p>
     </div>
     <div class="Quantity">
-      <span class="memebersQuantity">{{getterName($store.state.turnId).quantity}}</span>
+      <span class="memebersQuantity">{{getCurrentTurn!=null ? getCurrentTurn.countUsers : null}}</span>
       <p class="qpeople">человек</p>
     </div>
   </div>
@@ -18,7 +18,10 @@ import {id} from "postcss-selector-parser";
 export default {
   name: 'TurnInfo',
   // methods: {id},
-  props: ['turnTitle', 'turnCreator', 'q', 'id'],
-  computed: mapGetters(['getterName'])
+  // props: ['turnTitle', 'turnCreator', 'q', 'id'],
+  computed: mapGetters(['getCurrentTurn', 'getterToken', 'getCurrentTurnId']),
+  mounted() {
+    this.$store.dispatch("loadCurrentTurn",this.$store.getters.getCurrentTurnId, this.$store.getters.getterToken)
+  }
 }
 </script>

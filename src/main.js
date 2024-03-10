@@ -15,6 +15,7 @@ const store = createStore({
     return {
       listTurn: [],
       turnId: 0,
+      currentTurn: null,
       userId: 1,
       faculties: [],
       courses: [],
@@ -58,6 +59,9 @@ const store = createStore({
   mutations: {
     changeCurrentTurnId(state, n) {
       state.turnId = n
+    },
+    setCurrentTurn(state, turn){
+      state.currentTurn = turn
     },
     setTurnType(state, info){
       state.typeTurn = info.type;
@@ -139,6 +143,12 @@ const store = createStore({
     getterUserId: (state) => {
       return state.users.id;
     },
+    getCurrentTurnId:(state)=>{
+      return state.turnId;
+    },
+    getCurrentTurn: (state)=>{
+      return state.currentTurn
+    },
     getCurrentError:(state)=>(type) => {
       return state.errors[type];
     },
@@ -147,9 +157,6 @@ const store = createStore({
     },
     getterToken: (state)=>{
       return state.authToken;
-    },
-    getterName: (state) => (id) => {
-      return state.listTurn.find(listTurn => listTurn.id === id)
     },
     getterTurnAccess: (state)=>{
       return state.accessTurn;
@@ -232,6 +239,19 @@ const store = createStore({
   actions: {
     changeTurnId({commit}, id) {
       commit("changeCurrentTurnId", id);
+    },
+    loadCurrentTurn({commit}, id, token){
+      axios.get('/turn/'+id, {
+        headers: {
+          'Authorization': `${token}`
+        }
+      }).then(result=>{
+        commit('setCurrentTurn', result.data)
+        console.log(result)
+      }).catch(error=>{
+        console.log(error)
+        router.push('/')
+      })
     },
     changeError({commit}, error){
       commit("SET_ERROR", error);
