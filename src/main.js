@@ -240,7 +240,8 @@ const store = createStore({
     changeTurnId({commit}, id) {
       commit("changeCurrentTurnId", id);
     },
-    loadCurrentTurn({commit}, id, token){
+    loadCurrentTurn({commit}, {id, token}){
+      // console.log('token: ',token);
       axios.get('/turn/'+id, {
         headers: {
           'Authorization': `${token}`

@@ -10,7 +10,7 @@
 .myTurnActive {
   color: $text-color;
   background-color: $main-color;
-  border-radius: 15px 0 0 15px;
+  border-radius: $radius 0 0 $radius;
   padding: 10px 0;
   font-size:$small-text;
   //display: inline-block;
@@ -19,7 +19,7 @@
 .availableNotActive {
   color: $main-color;
   background-color: $transparent-text;
-  border-radius: 0px 15px 15px 0px;
+  border-radius: 0px $radius $radius 0px;
   padding: 10px 0;
   font-size:$small-text;
   //display: inline-block;
@@ -28,7 +28,7 @@
 .myTurnNotActive {
   color: $main-color;
   background-color: $transparent-text;
-  border-radius: 15px 0 0 15px;
+  border-radius: $radius 0 0 $radius;
   padding: 10px 0;
   font-size:$small-text;
   //display: inline-block;
@@ -37,7 +37,7 @@
 .availableActive {
   color: $text-color;
   background-color: $main-color;
-  border-radius: 0px 15px 15px 0px;
+  border-radius: 0px $radius $radius 0px;
   padding: 10px 0;
   font-size:$small-text;
   //display: inline-block;

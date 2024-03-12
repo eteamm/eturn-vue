@@ -17,11 +17,8 @@
 </template>
 <script>
 import Header from "@/components/header.vue";
-import QInfo from "@/components/createPage/CreateInfo.vue";
-import ExtraInfo from "@/components/turnPage/extraInfo.vue";
+import QInfo from "@/components/createPage/CreateInfo.vue"
 import ElementHeader from"@/components/createPage/CreateHeader.vue";
-import QDescription from "@/components/createPage/CreateDescription.vue";
-import QFrequency from "@/components/createPage/CreateFrequency.vue";
 import QParameters from "@/components/createPage/CreateParameters.vue";
 import AddGroup from "@/components/createPage/CreateGroup.vue";
 import {mapGetters} from "vuex";
@@ -34,10 +31,7 @@ export default {
     AddGroup,
     Header,
     QInfo,
-    ExtraInfo,
     ElementHeader,
-    QDescription,
-    QFrequency,
     QParameters,
     MainButton,
   },

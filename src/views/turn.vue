@@ -6,9 +6,6 @@
     <TurnInfo/>
   </div>
   <div>
-    <ExtraInfo/>
-  </div>
-  <div>
     <TurnBtns/>
   </div>
   <YourPosition/>
@@ -25,7 +22,6 @@ import TurnInfo from "@/components/turnPage/turnInfo.vue";
 import TurnBtns from "@/components/turnPage/turnBtns.vue";
 import TurnPosition from "@/components/turnPage/turnPosition.vue";
 import MainButton from "@/components/mainButton.vue";
-import ExtraInfo from "../components/turnPage/extraInfo.vue";
 import PositionsList from "@/components/turnPage/positionsList.vue";
 import YourPosition from "@/components/turnPage/yourPosition.vue";
 import router from "@/router";
@@ -39,7 +35,6 @@ export default {
     TurnBtns,
     Header,
     TurnInfo,
-    ExtraInfo,
     PositionsList
   },
   data () {

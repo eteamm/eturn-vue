@@ -7,7 +7,7 @@
   border: 0px solid;
   background-color: $main-color;
   color: $white;
-  border-radius: 15px;
+  border-radius: $radius;
   box-shadow: 5px 5px 10px -10px black;
   color: $text-color;
   padding: 10px 20px;
@@ -53,7 +53,7 @@
   border: 0px solid;
   background-color: $block-color;
   color: $white;
-  border-radius: 15px;
+  border-radius: $radius;
   box-shadow: 5px 5px 10px -10px black;
   margin: 0px 0px 0px 0px;
   display: inline-block;
@@ -65,7 +65,7 @@
   border: 0px solid;
   background-color: $block-color;
   color: $white;
-  border-radius: 15px;
+  border-radius: $radius;
   box-shadow: 5px 5px 10px -10px black;
   margin: 0px 0px 0px 0px;
   display: inline-block;
