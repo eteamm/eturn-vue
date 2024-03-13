@@ -7,8 +7,20 @@
 }
 .upperBtns button{
   width: 100%;
-  font-size: $middle-text;
+  font-size: $small-text;
   font-weight: 700;
+  background-color: $main-color;
+  color: $text-color;
+  border-style: none;
+  border-radius: $radius;
+  padding: 8px 10px;
+}
+
+.btnLeftAction{
+  margin-right:10px;
+}
+.btnRightAction{
+  margin-left:10px;
 }
 .memberBtn button{
   background:#9ADBFF;

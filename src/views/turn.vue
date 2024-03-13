@@ -1,17 +1,27 @@
 <template>
-  <div>
-    <Header title-name="Очередь" title-description="основная информация" />
-  </div>
-  <div>
-    <TurnInfo/>
-  </div>
-  <div>
-    <TurnBtns/>
-  </div>
-  <YourPosition/>
-  <positions-list/>
-  <div>
-    <main-button button-text="встать в очередь" />
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-12">
+        <div>
+          <Header title-name="Очередь" title-description="основная информация" />
+        </div>
+        <div>
+          <TurnInfo/>
+        </div>
+        <div>
+          <TurnBtns/>
+        </div>
+        <div>
+          <YourPosition/>
+        </div>
+        <div>
+          <positions-list/>
+        </div>
+        <div>
+          <main-button button-text="встать в очередь" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

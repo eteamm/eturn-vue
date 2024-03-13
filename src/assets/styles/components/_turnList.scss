@@ -1,9 +1,4 @@
-.wholeturn{
-  color:$main-color;
-  font-weight: 600;
-  text-align: center;
-  padding:15px;
-}
+
 .wholeTurn{
   text-align: center;
 }
@@ -11,9 +6,38 @@
   text-align: center;
   margin-bottom:15px;
 }
-.yourturn{
+.yourTurnTitle{
   color:$main-color;
   font-weight: 600;
   text-align: center;
   padding:15px;
+}
+
+.yourTurnBlock{
+  padding: 10px 20px;
+  border-radius: $radius;
+  background-color: $block-color;
+  margin-top: 10px;
+  color: $text-second-color;
+}
+.yourTurnBlock p{
+  margin:0;
+  text-align: left;
+}
+.yourTurnBlockIn{
+  width: 100%;
+  display: flex;
+}
+.yourTurnBlockIn .mainElementTurn{
+  width: 100%;
+  padding-left:20px;
+}
+.countNeedWait{
+  color: $main-color;
+}
+.BtnYourTurnGoIn{
+
+}
+.BtnYourTurnGoOut{
+
 }

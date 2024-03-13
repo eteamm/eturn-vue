@@ -1,16 +1,16 @@
 .TurnInfo{
   display: grid;
   grid-template-columns: 3fr 1fr;
-  grid-gap: 35px;
+  grid-gap: 10px;
   width:100%;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 .Title {
   border-radius: $radius;
   background-color: $main-color;
   //margin-right: 25px;
   text-align: left;
-  padding: 10px;
+  padding: 10px 20px;
 }
 .TurnTitle{
   font-weight:700 ;
@@ -18,35 +18,36 @@
   color:$text-color;
 }
 .TurnCreator{
-  font-size:$middle-text;
+  font-size:$small-text;
   color:$text-color;
-  font-weight: 400;
+  padding:0;
+  margin:0;
 }
 .Quantity{
   border-radius: $radius;
   background-color: $main-color;
-  position: relative;
+  //position: relative;
   //margin-left: 15px;
-  text-align: left;
-  right:10px;
+  //text-align: left;
+  //right:10px;
   color:$text-color;
-  padding: 10px;
-  padding-left:15px;
+  padding: 10px 20px;
 }
 .memebersQuantity{
   font-weight:700 ;
-  font-size: $large-text ;
-  margin-bottom: 7px;
+  font-size: $middle-text;
+  margin:0;
 }
 .qpeople{
   font-size:$small-text;
-  font-weight: 400;
+  margin:0;
+  //font-weight: 400;
 }
 .ExtraInfo{
-  font-size: 13px;
+  font-size: $small-text;
   border-radius: $radius;
   background-color:$block-color;
-  color:$white;
-  padding: 10px;
-  margin-bottom:15px;
+  color:$text-second-color;
+  padding: 10px 20px;
+  margin-bottom:10px;
 }

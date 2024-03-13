@@ -1,8 +1,8 @@
 <template>
   <div class="upperBtns">
-      <button>участники</button>
+      <button class="btnLeftAction">участники</button>
       <button>поделиться</button>
-      <button>выйти</button>
+      <button class="btnRightAction">выйти</button>
   </div>
 </template>
 

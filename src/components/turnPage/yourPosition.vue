@@ -1,12 +1,23 @@
 <template>
   <div class="yourTurn">
-    <span class="yourturn">ТВОЙ ЧЕРЕД</span>
+    <span class="yourTurnTitle">ТВОЙ ЧЕРЕД</span>
+    <div class="yourTurnBlock">
+      <div class="yourTurnBlockIn">
+        <div>#1</div>
+        <div class="mainElementTurn">
+          <p>Васильев Андрей Антонович</p>
+          <p>2391</p>
+          <div>
+            <p class="countNeedWait">Перед тобой 45 человек</p>
+          </div>
+        </div>
+        <div>X</div>
+      </div>
+      <div>
+        <button class="BtnYourTurnGoIn">войти</button>
+      </div>
+    </div>
   </div>
-  <TurnPosition
-    v-for="block in members"
-    :key="block.memberfio"
-    :Turn_list="block"
-  />
 </template>
 
 <script>

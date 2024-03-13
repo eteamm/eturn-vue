@@ -1,6 +1,6 @@
 <template>
 <div class="wholeTurn">
-  <span class="wholeturn">ВСЯ ОЧЕРЕДЬ</span>
+  <span class="yourTurnTitle">ВСЯ ОЧЕРЕДЬ</span>
 </div>
   <TurnPosition
     v-for="block in positions"
