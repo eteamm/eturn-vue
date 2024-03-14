@@ -262,6 +262,17 @@ const store = createStore({
         },
       }).then(result=>{
         console.log("result", result);
+        axios.get('/turn/'+turn, {
+          headers: {
+            'Authorization': `${token}`
+          }
+        }).then(result=>{
+          commit('setCurrentTurn', result.data)
+          console.log(result)
+        }).catch(error=>{
+          console.log(error)
+          router.push('/')
+        })
       }).catch(error=>{
         console.log('error', error)
       })

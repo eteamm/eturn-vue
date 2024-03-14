@@ -18,6 +18,8 @@
   font-size:$small-text;
   font-weight:400;
   text-align:left;
+  margin:0;
+  padding:0;
 }
 .PositionBlockNumber{
   padding:10px;
@@ -35,7 +37,15 @@
 
 .PositionBlockName {
   color: $text-second-color;
-  font-size: $small-text;
+  font-size: $middle-text;
+  margin:0;
+  padding:0;
+  vertical-align: middle;
+}
+.PositionBlockNameOnly{
+  display: flex;
+  height: 100%;
+  align-items: center;
 }
 
 .mainHeader {
