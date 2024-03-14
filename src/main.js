@@ -44,21 +44,16 @@ const store = createStore({
       typeTurn: "edu",
       accessTurn: "memberIn",
       users: [],
-      positionsCurrentTurn: [
-        {
-          "id": 1,
-          "name": "Васильев Андрей Антонович",
-          "group": "2391",
-          "start": false,
-          "number": 1,
-          "userId": 1
-        }
-      ]
+      positionsCurrentTurn: [],
+      currentPosition: null
     }
   },
   mutations: {
     changeCurrentTurnId(state, n) {
       state.turnId = n
+    },
+    setPositionsList(state, positions){
+      state.positionsCurrentTurn=positions;
     },
     setCurrentTurn(state, turn){
       state.currentTurn = turn
@@ -142,6 +137,12 @@ const store = createStore({
   getters: {
     getterUserId: (state) => {
       return state.users.id;
+    },
+    getterPositionsList:(state)=>{
+      return state.positionsCurrentTurn;
+    },
+    getCurrentPosition: (state)=>{
+      return state.currentPosition;
     },
     getCurrentTurnId:(state)=>{
       return state.turnId;
@@ -252,6 +253,36 @@ const store = createStore({
       }).catch(error=>{
         console.log(error)
         router.push('/')
+      })
+    },
+    createPosition({commit}, {token, turn}){
+      axios.post("/position?idTurn="+turn, null,{
+        headers:{
+          'Authorization': `${token}`
+        },
+      }).then(result=>{
+        console.log("result", result);
+      }).catch(error=>{
+        console.log('error', error)
+      })
+    },
+    addNewMember({commit}, {token, turn}){
+      axios.put("/turn/member?turnId="+turn, null, {
+        headers:{
+          'Authorization': `${token}`
+        }
+      }).then(result=>{
+        commit("changeCurrentTurnId", turn);
+        router.push("/turn")
+      })
+    },
+    loadPositionList({commit}, {token, turn}){
+      axios.get('/position/all/'+turn, {
+        headers:{
+          'Authorization': `${token}`
+        }
+      }).then(result=>{
+        commit("setPositionsList", result.data);
       })
     },
     changeError({commit}, error){

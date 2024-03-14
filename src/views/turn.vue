@@ -12,13 +12,13 @@
           <TurnBtns/>
         </div>
         <div>
-          <YourPosition/>
+          <YourPosition v-if="getCurrentPosition!==null"/>
         </div>
         <div>
           <positions-list/>
         </div>
         <div>
-          <main-button button-text="встать в очередь" />
+          <main-button v-on:click="createPosition" button-text="встать в очередь" />
         </div>
       </div>
     </div>
@@ -51,11 +51,19 @@ export default {
     return {id: 0}
   },
   computed:{
-    ...mapGetters(['getterToken'])
+    ...mapGetters(['getterToken', 'getCurrentPosition', 'getCurrentTurnId'])
   },
   beforeCreate() {
     this.$store.dispatch("checkToken")
   },
+  mounted() {
+    this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: this.$store.getters.getCurrentTurnId})
+  },
   props: ['id', 'type'],
+  methods:{
+    createPosition(){
+      this.$store.dispatch("createPosition", {token: this.$store.getters.getterToken, turn: this.$store.getters.getCurrentTurnId})
+    }
+  }
 }
 </script>

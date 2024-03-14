@@ -1,11 +1,11 @@
-.memberinTurn{
+.PositionBlock{
   width:100%;
   position:relative;
-  border-radius:8px;
+  border-radius:$radius;
   text-align:left;
   background:$block-color;
-  color:$white;
-  font-size: 14px;
+  color:$text-second-color;
+  font-size: $middle-text;
   border:0;
   padding:10px;
   margin-top:10px;
@@ -13,16 +13,16 @@
   display: flex;
   justify-content: flex-start;
 }
-.memberqroup{
+.PositionBlockGroup{
   color:$text-second-color;
-  font-size:12px;
+  font-size:$small-text;
   font-weight:400;
   text-align:left;
 }
-.memberNumb{
+.PositionBlockNumber{
   padding:10px;
   color:$text-second-color;
-  font-size:12px;
+  font-size:$small-text;
   font-weight:400;
 }
 .deletePosition img{
@@ -31,4 +31,15 @@
   height: 40%;
   top:30%;
   bottom:30%;
+}
+
+.PositionBlockName {
+  color: $text-second-color;
+  font-size: $small-text;
+}
+
+.mainHeader {
+  color: $text-second-color;
+  font-size: $large-text;
+  text-align: center;
 }

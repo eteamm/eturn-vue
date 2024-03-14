@@ -34,8 +34,7 @@ export default {
     },
     goToTurnPageBtn() {
       if (this.$store.getters.getterTurnAccess !== 'memberIn') {
-        this.$router.push('/turn');
-        this.$store.dispatch('changeTurnId', this.Turn_data.id);
+        this.$store.dispatch("addNewMember", {token: this.$store.getters.getterToken, turn: this.Turn_data.id})
       }
     }
   },
@@ -52,7 +51,7 @@ export default {
     joinBtnVisible: ()=>{
       return this.type !== "memberIn";
     },
-    ...mapGetters(["getterTurnAccess"])
+    ...mapGetters(["getterTurnAccess", 'getterToken'])
   },
 }
 </script>

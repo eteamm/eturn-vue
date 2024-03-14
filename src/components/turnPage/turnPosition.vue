@@ -1,31 +1,37 @@
 <template>
-  <div class="memberinTurn">
-    <span class ="memberNumb">#{{Turn_list.number}} </span>
+  <div class="PositionBlock">
+    <span class ="PositionBlockNumber">#{{position.number}} </span>
     <div class="aboutmember">
-    <span class="fio">{{Turn_list.memberfio}}</span><br>
-    <span class="memberqroup">{{Turn_list.membergroup}}</span>
+    <span class="PositionBlockName">{{position.name}}</span><br>
+    <span class="PositionBlockGroup">{{position.group}}</span>
     </div>
-    <CrossImg/>
+    <div v-if="getterUserId===position.userId" class="deletePosition">
+      <img src="../../assets/img/cross.svg"  alt="delete">
+    </div>
   </div>
 </template>
 
 <script>
-import CrossImg from "@/components/turnPage/crossImg.vue";
+
+import {mapGetters} from "vuex";
 
 export default {
   // TODO rename turn_List to position
   // TODO Turn_list.userId == this.$store.userId -> v-if -> крестик
   // TODO image -> @click => deletePositionById(turn_list.id)
   name: 'TurnPosition',
-  components: {CrossImg},
+  // components: ,
   props: {
 
-    Turn_list: {
+    position: {
       type: Object,
       default() {
         return {}
       }
     }
+  },
+  computed:{
+    ...mapGetters(['getterUserId'])
   }
 }
 </script>
