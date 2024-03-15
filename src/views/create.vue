@@ -10,6 +10,9 @@
         <QParameters/>
 <!--    <p style = "color: white" class="SubHeader">допустимые группы</p>-->
 <!--    <AddGroup />-->
+        <div v-if="visitable === true">
+          <p style="color: red">Заполнены не все параметры</p>
+        </div>
         <main-button v-on:click="getTurn()" button-text="создать" id="endPage" />
       </div>
     </div>
@@ -34,6 +37,11 @@ export default {
     ElementHeader,
     QParameters,
     MainButton,
+  },
+  data() {
+    return {
+      visitable: false
+    }
   },
   computed:{
     ...mapGetters(['getterRoleUser','getterCreateTurn','getterUserId', 'getterToken'])
@@ -77,7 +85,10 @@ export default {
         validTypes = false
       }
       if(validProps && accessValid && validTypes){
+        this.visitable = false
         this.$store.dispatch("createTurn", {turn: turn, token: this.$store.getters.getterToken})
+      } else {
+        this.visitable = true
       }
     }
   }

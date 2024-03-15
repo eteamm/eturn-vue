@@ -1,9 +1,9 @@
 <template>
   <div class="typeTurn">
-    <div class="myTurnActive" v-bind:class="{myTurnNotActive: !visitable}" v-on:click="myTurnFunction">
+    <div class="myTurnActive" :aria-disabled="this.$store.getters.getLoading('turn_loading') === true" v-bind:class="{myTurnNotActive: !visitable}" v-on:click="myTurnFunction">
       МОИ
     </div>
-    <div class="availableNotActive" v-bind:class="{availableActive: !visitable}" v-on:click="AvailableTurnFunction">
+    <div class="availableNotActive" :aria-disabled="this.$store.getters.getLoading('turn_loading') === true" v-bind:class="{availableActive: !visitable}" v-on:click="AvailableTurnFunction">
       ДОСТУПНЫЕ
     </div>
   </div>
