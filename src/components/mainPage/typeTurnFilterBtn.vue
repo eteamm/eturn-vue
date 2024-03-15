@@ -1,9 +1,9 @@
 <template>
   <div class="typeTurn">
-    <div class="myTurnActive" v-bind:class="{myTurnNotActive: !visitable}" v-on:click="eduTurnFunction">
+    <div class="myTurnActive" :aria-disabled="this.$store.getters.getLoading('turn_loading') === true" v-bind:class="{myTurnNotActive: !visitable}" v-on:click="eduTurnFunction">
       УЧЕБНЫЕ
     </div>
-    <div class="availableNotActive" v-bind:class="{availableActive: !visitable}" v-on:click="orgTurnFunction">
+    <div class="availableNotActive" :aria-disabled="this.$store.getters.getLoading('turn_loading') === true" v-bind:class="{availableActive: !visitable}" v-on:click="orgTurnFunction">
       ОРГАНИЗАЦИОННЫЕ
     </div>
   </div>
@@ -37,7 +37,7 @@ export default {
       this.visitable = true
       let accessTurn = this.$store.getters.getterTurnAccess
       this.$store.dispatch("changeTypeTurn", {token: this.$store.getters.getterToken, access: accessTurn, type:"edu"})
-    }
+    },
   }
 }
 

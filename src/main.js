@@ -338,7 +338,9 @@ const store = createStore({
       })
     },
     redirectStart({commit}){
-      if (document.cookie.indexOf("auth") === 0) {
+      console.log(document.cookie.indexOf("auth"))
+      if (document.cookie.indexOf("auth") >= 0) {
+        // console.log('hello')
         let name = "auth"
         let matches = document.cookie.match(new RegExp(
           "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -358,7 +360,7 @@ const store = createStore({
       router.push('/').then(r=>console.log('Logout was successful'))
     },
     checkToken({commit}){
-      if (document.cookie.indexOf("auth") === 0) {
+      if (document.cookie.indexOf("auth") >= 0) {
         let name = "auth"
         let matches = document.cookie.match(new RegExp(
           "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
