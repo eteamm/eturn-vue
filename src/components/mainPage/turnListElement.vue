@@ -28,12 +28,20 @@ export default {
   methods: {
     goToTurnPage(){
       if (this.$store.getters.getterTurnAccess !== 'memberOut') {
+        let date = new Date();
+        date.setTime(date.getTime() + (60*60*24 * 60 * 60));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = "turnType=" + this.Turn_data.id + "; " + expires + "; path=/";
         this.$router.push('/turn');
         this.$store.dispatch('changeTurnId', this.Turn_data.id);
       }
     },
     goToTurnPageBtn() {
       if (this.$store.getters.getterTurnAccess !== 'memberIn') {
+        let date = new Date();
+        date.setTime(date.getTime() + (60*60*24 * 60 * 60));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = "turnType=" + this.Turn_data.id + "; " + expires + "; path=/";
         this.$store.dispatch("addNewMember", {token: this.$store.getters.getterToken, turn: this.Turn_data.id})
       }
     }

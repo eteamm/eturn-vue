@@ -10,6 +10,7 @@
         </div>
         <div>
           <TurnBtns/>
+          <btnLeftAction v-on:click="goToMemberPage"/>
         </div>
         <div>
           <YourPosition v-if="getCurrentPosition!==null"/>
@@ -57,12 +58,25 @@ export default {
     this.$store.dispatch("checkToken")
   },
   mounted() {
-    this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: this.$store.getters.getCurrentTurnId})
+    let name = "turnType"
+    let matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    let info = matches ? decodeURIComponent(matches[1]) : undefined;
+    if (info !== undefined){
+      console.log(info)
+      this.$store.dispatch('changeTurnId', info);
+      this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: info})
+    }
+
   },
   props: ['id', 'type'],
   methods:{
     createPosition(){
       this.$store.dispatch("createPosition", {token: this.$store.getters.getterToken, turn: this.$store.getters.getCurrentTurnId})
+    },
+    goToMemberPage(){
+      router.push("/members")
     }
   }
 }
