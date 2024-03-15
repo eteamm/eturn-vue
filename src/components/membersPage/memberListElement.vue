@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="headerName"><b>{{ userName }}</b></p>
+    <p class="textName"><b>{{ userName }}</b></p>
   </div>
   <div>
     <ToolBar/>

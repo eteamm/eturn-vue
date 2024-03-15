@@ -1,8 +1,10 @@
 <template>
   <h3 class="mainHeader"><b>{{ header }}</b></h3>
-  <div class="PositionBlockName">
+
+  <div>
     <MemberListElement userName="Железняк Александр Владимирович" type="members"/>
   </div>
+
 
 
 </template>

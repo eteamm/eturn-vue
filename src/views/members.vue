@@ -2,15 +2,16 @@
   <div>
     <Header title-name="Участники" title-description="изменение прав" />
 
-    <div>
+    <div class="sameBlocks"><img src="../../src/assets/img/show.svg" alt="show">
       <MemberListBlock header="Администраторы" type="admins"/>
+
     </div>
 
-    <div>
+    <div class="sameBlocks"><img src="../../src/assets/img/show.svg" alt="show">
       <MemberListBlock header="Участники" type="members"/>
     </div>
 
-    <div>
+    <div class="sameBlocks"><img src="../../src/assets/img/show.svg" alt="show">
       <MemberListBlock header="Заблокированные" type="blocked"/>
     </div>
 
