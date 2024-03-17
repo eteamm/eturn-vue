@@ -49,14 +49,17 @@ const store = createStore({
     }
   },
   mutations: {
-    changeCurrentTurnId(state, n) {
-      state.turnId = n
-    },
+    // changeCurrentTurnId(state, n) {
+    //   state.turnId = n
+    // },
     setPositionsList(state, positions){
       state.positionsCurrentTurn=positions;
     },
     setCurrentTurn(state, turn){
       state.currentTurn = turn
+    },
+    setCurrentPosition(state, position){
+      state.currentPosition = position;
     },
     setTurnType(state, info){
       state.typeTurn = info.type;
@@ -144,9 +147,9 @@ const store = createStore({
     getCurrentPosition: (state)=>{
       return state.currentPosition;
     },
-    getCurrentTurnId:(state)=>{
-      return state.turnId;
-    },
+    // getCurrentTurnId:(state)=>{
+    //   return state.turnId;
+    // },
     getCurrentTurn: (state)=>{
       return state.currentTurn
     },
@@ -238,9 +241,9 @@ const store = createStore({
     }
   },
   actions: {
-    changeTurnId({commit}, id) {
-      commit("changeCurrentTurnId", id);
-    },
+    // changeTurnId({commit}, id) {
+    //   commit("changeCurrentTurnId", id);
+    // },
     loadCurrentTurn({commit}, {id, token}){
       // console.log('token: ',token);
       axios.get('/turn/'+id, {
@@ -252,7 +255,7 @@ const store = createStore({
         console.log(result)
       }).catch(error=>{
         console.log(error)
-        router.push('/')
+        router.push('/error')
       })
     },
     createPosition({commit}, {token, turn}){
@@ -262,17 +265,17 @@ const store = createStore({
         },
       }).then(result=>{
         console.log("result", result);
-        axios.get('/turn/'+turn, {
-          headers: {
-            'Authorization': `${token}`
-          }
-        }).then(result=>{
-          commit('setCurrentTurn', result.data)
-          console.log(result)
-        }).catch(error=>{
-          console.log(error)
-          router.push('/')
-        })
+        // axios.get('/turn/'+turn, {
+        //   headers: {
+        //     'Authorization': `${token}`
+        //   }
+        // }).then(result=>{
+        //   commit('setCurrentTurn', result.data)
+        //   console.log(result)
+        // }).catch(error=>{
+        //   console.log(error)
+        //   router.push('/error')
+        // })
       }).catch(error=>{
         console.log('error', error)
       })
@@ -283,8 +286,7 @@ const store = createStore({
           'Authorization': `${token}`
         }
       }).then(result=>{
-        commit("changeCurrentTurnId", turn);
-        router.push("/turn")
+        router.push("/turn/"+turn)
       })
     },
     loadPositionList({commit}, {token, turn}){
@@ -294,6 +296,22 @@ const store = createStore({
         }
       }).then(result=>{
         commit("setPositionsList", result.data);
+      }).catch(error=>{
+        console.log(error);
+        commit("setPositionsList", null);
+      })
+    },
+    loadFirstPosition({commit}, {token, turn}){
+      axios.get("/position/first?turnId="+turn, {
+        headers:{
+          'Authorization': `${token}`
+        }
+      }).then(result=>{
+        console.log(result.data);
+        commit("setCurrentPosition", result.data)
+      }).catch(error=>{
+        console.log(error);
+        commit("setCurrentPosition", null)
       })
     },
     changeError({commit}, error){
@@ -310,6 +328,7 @@ const store = createStore({
         throw new Error(`API ${error}`);
       })
     },
+
     authUser({commit}, {login, password}){
       commit('SET_LOADING', {name:'auth_loading', value: true});
       axios.post('/auth/sign-in?login='+login+"&password="+password).then(result=>{
@@ -331,8 +350,7 @@ const store = createStore({
           }
         }
         ).then(result=>{
-        commit("changeCurrentTurnId", result.data);
-        router.push('/turn')
+        router.push('/turn/'+result.data)
       }).catch(error=>{
         console.log(error)
       })

@@ -22,16 +22,6 @@ export default {
   name: 'TurnInfo',
   computed: mapGetters(['getCurrentTurn', 'getterToken', 'getCurrentTurnId']),
   mounted() {
-    let name = "turnType"
-    let matches = document.cookie.match(new RegExp(
-      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-    ));
-    let info = matches ? decodeURIComponent(matches[1]) : undefined;
-    if (info !== undefined){
-      console.log(info)
-      this.$store.dispatch('changeTurnId', info);
-      this.$store.dispatch("loadCurrentTurn",{id: info, token: this.$store.getters.getterToken})
-    }
 
 
   }

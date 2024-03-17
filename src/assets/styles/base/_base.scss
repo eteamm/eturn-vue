@@ -6,3 +6,31 @@ body {
     padding: 10px $proportion 150px $proportion;
   }
 }
+.errorInfo h1{
+  text-align: center;
+  font-size: $large-text;
+  color: $main-color;
+  padding-top:50px;
+}
+.errorInfo p{
+  text-align: center;
+  font-size: $small-text;
+  color: $text-second-color;
+  padding-top:10px;
+}
+.errorInfo button{
+  width:100%;
+  cursor: pointer;
+  background: $main-color;
+  border-style: solid;
+  border-width: 0px;
+  border-color: $main-color;
+  border-radius: $radius;
+  padding: 8px 10px 8px 10px;
+  color: $text-color;
+  font-size: $small-text;
+  font-weight: 600;
+}
+.errorInfo .errorBtn{
+  padding: 0 25%;
+}

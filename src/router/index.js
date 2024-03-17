@@ -23,7 +23,7 @@ const routes = [
     component: () => import('../views/editTurn.vue')
   },
   {
-    path: '/turn',
+    path: '/turn/:id',
     name: 'turn',
     component: () => import('../views/turn.vue'),
     props: true
@@ -43,6 +43,11 @@ const routes = [
        path: '/create',
        name: 'create',
        component: () => import('../views/create.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: "404",
+    component: ()=>import("../views/error404")
   }
   // {
   //   path: '/auth',

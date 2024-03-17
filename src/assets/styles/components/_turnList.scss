@@ -36,8 +36,22 @@
   color: $main-color;
 }
 .BtnYourTurnGoIn{
-
+  width:100%;
+  background-color: $background-color;
+  border: none;
+  border-radius: $radius;
+  padding: 10px;
+  color: $text-second-color;
+  margin-top:20px;
+  font-weight: 700;
 }
 .BtnYourTurnGoOut{
-
+  width:100%;
+  background-color: $background-color;
+  border: none;
+  border-radius: $radius;
+  padding: 10px;
+  color: $text-btn-out;
+  margin-top:20px;
+  font-weight: 700;
 }

@@ -51,6 +51,7 @@ export default {
     this.$store.dispatch("checkToken")
   },
   mounted() {
+
     this.$store.dispatch("saveTurnProperty", {nameP: "creator", valueP: this.$store.getters.getterUserId})
   },
   methods:{

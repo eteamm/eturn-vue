@@ -10,7 +10,6 @@
         </div>
         <div>
           <TurnBtns/>
-          <btnLeftAction v-on:click="goToMemberPage"/>
         </div>
         <div>
           <YourPosition v-if="getCurrentPosition!==null"/>
@@ -37,6 +36,7 @@ import PositionsList from "@/components/turnPage/positionsList.vue";
 import YourPosition from "@/components/turnPage/yourPosition.vue";
 import router from "@/router";
 import {mapGetters, mapState} from "vuex";
+import { useRoute } from 'vue-router'
 export default {
   name: 'Turn',
   components: {
@@ -58,16 +58,20 @@ export default {
     this.$store.dispatch("checkToken")
   },
   mounted() {
-    let name = "turnType"
-    let matches = document.cookie.match(new RegExp(
-      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-    ));
-    let info = matches ? decodeURIComponent(matches[1]) : undefined;
-    if (info !== undefined){
-      console.log(info)
-      this.$store.dispatch('changeTurnId', info);
-      this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: info})
-    }
+    // let name = "turnType"
+    // let matches = document.cookie.match(new RegExp(
+    //   "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    // ));
+    // let info = matches ? decodeURIComponent(matches[1]) : undefined;
+    // if (info !== undefined){
+    //   console.log(info)
+    //   this.$store.dispatch('changeTurnId', info);
+    const route = useRoute()
+    const turnId = route.params.id
+    this.$store.dispatch("loadCurrentTurn",{id: turnId, token: this.$store.getters.getterToken})
+    this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: turnId})
+    this.$store.dispatch("loadFirstPosition", {token: this.$store.getters.getterToken, turn: turnId})
+    // }
 
   },
   props: ['id', 'type'],

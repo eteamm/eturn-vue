@@ -3,18 +3,20 @@
     <span class="yourTurnTitle">ТВОЙ ЧЕРЕД</span>
     <div class="yourTurnBlock">
       <div class="yourTurnBlockIn">
-        <div>#1</div>
+        <div>#{{getCurrentPosition.number}}</div>
         <div class="mainElementTurn">
-          <p>Васильев Андрей Антонович</p>
-          <p>2391</p>
+          <p>{{getCurrentPosition.name}}</p>
+          <p>{{getCurrentPosition.group}}</p>
           <div>
-            <p class="countNeedWait">Перед тобой 45 человек</p>
+            <p v-if="getCurrentPosition.difference>0" class="countNeedWait">Перед тобой {{getCurrentPosition.difference}} человек</p>
           </div>
         </div>
-        <div>X</div>
+        <div>
+          <img src="../../assets/img/cross.svg" style="width:20px"  alt="delete">
+        </div>
       </div>
-      <div>
-        <button class="BtnYourTurnGoIn">войти</button>
+      <div v-if="getCurrentPosition.difference===0">
+        <button v-bind:class="{BtnYourTurnGoOut: getCurrentPosition.start, BtnYourTurnGoIn: !getCurrentPosition.start}" class="BtnYourTurnGoIn">{{btn}}</button>
       </div>
     </div>
   </div>
@@ -22,21 +24,21 @@
 
 <script>
 import TurnPosition from "@/components/turnPage/turnPosition.vue";
+import {mapGetters} from "vuex";
 export default {
   name: 'YourPosition',
   components: {
     TurnPosition
   },
-  props: {},
-  data() {
-    return {
-      members: [
-        {
-          k: '1',
-          memberfio: "Кадун Никита Андреевич ",
-          membergroup: "2391"
-        },
-      ]
+  computed:{
+    ...mapGetters(['getCurrentPosition']),
+    btn(){
+      if (this.$store.getters.getCurrentPosition.start){
+        return "выйти";
+      }
+      else{
+        return "войти";
+      }
     }
   }
 }

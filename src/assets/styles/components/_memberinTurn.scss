@@ -5,11 +5,11 @@
   text-align:left;
   background:$block-color;
   color:$text-second-color;
-  font-size: $middle-text;
+  //font-size: $middle-text;
   border:0;
-  padding:10px;
+  padding:5px;
   margin-top:10px;
-  font-weight:600;
+  //font-weight:600;
   display: flex;
   justify-content: flex-start;
 }
@@ -37,7 +37,7 @@
 
 .PositionBlockName {
   color: $text-second-color;
-  font-size: $middle-text;
+  font-size: $small-text;
   margin:0;
   padding:0;
   vertical-align: middle;
