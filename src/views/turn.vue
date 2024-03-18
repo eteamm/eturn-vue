@@ -52,7 +52,7 @@ export default {
     return {id: 0}
   },
   computed:{
-    ...mapGetters(['getterToken', 'getCurrentPosition', 'getCurrentTurnId'])
+    ...mapGetters(['getterToken', 'getCurrentPosition'])
   },
   beforeCreate() {
     this.$store.dispatch("checkToken")
@@ -69,6 +69,7 @@ export default {
     const route = useRoute()
     const turnId = route.params.id
     this.id = turnId
+    this.$store.dispatch("setTurnIdValue", {turnId: turnId})
     this.$store.dispatch("loadCurrentTurn",{id: turnId, token: this.$store.getters.getterToken})
     this.$store.dispatch("checkRootUser", {token: this.$store.getters.getterToken, turn: turnId})
     this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: turnId})

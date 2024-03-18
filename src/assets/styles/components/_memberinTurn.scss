@@ -27,6 +27,9 @@
   font-size:$small-text;
   font-weight:400;
 }
+.deletePosition{
+  cursor: pointer;
+}
 .deletePosition img{
   position: absolute;
   right: 5%;

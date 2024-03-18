@@ -16,9 +16,11 @@ export default{
   components:{
     TurnPosition
   },
-  props:{},
   computed:{
     ...mapGetters(['getterPositionsList'])
+  },
+  mounted(){
+    console.log('turn',this.turn);
   }
 }
 </script>

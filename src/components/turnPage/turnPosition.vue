@@ -6,7 +6,7 @@
         <p class="PositionBlockGroup" v-if="position.group!==null">{{position.group}}</p>
 
     </div>
-    <div v-if="getterUserId===position.userId" class="deletePosition">
+    <div v-if="getCurrentMember.idUser===position.userId" v-on:click="deleteCurrentPosition(position.id)" class="deletePosition">
       <img src="../../assets/img/cross.svg"  alt="delete">
     </div>
   </div>
@@ -17,9 +17,6 @@
 import {mapGetters} from "vuex";
 
 export default {
-  // TODO rename turn_List to position
-  // TODO Turn_list.userId == this.$store.userId -> v-if -> крестик
-  // TODO image -> @click => deletePositionById(turn_list.id)
   name: 'TurnPosition',
   // components: ,
   props: {
@@ -31,7 +28,12 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['getterUserId'])
+    ...mapGetters(['getterUserId', 'getCurrentMember', 'getterTurnId'])
+  },
+  methods:{
+    deleteCurrentPosition(positionId){
+      this.$store.dispatch("deletePosition", {token: this.$store.getters.getterToken, id: positionId, turnId: this.$store.getters.getterTurnId})
+    }
   }
 }
 </script>

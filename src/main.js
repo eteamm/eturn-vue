@@ -56,6 +56,14 @@ const store = createStore({
     setPositionsList(state, positions){
       state.positionsCurrentTurn=positions;
     },
+    setTurnId(state, turnid){
+      state.turnId=turnid;
+    },
+    deletePosition(state, id){
+      state.positionsCurrentTurn = state.positionsCurrentTurn.filter((obj)=>{
+        return obj.id!==id;
+      })
+    },
     setCurrentMember(state, member){
       state.currentMember = member;
     },
@@ -139,11 +147,15 @@ const store = createStore({
       state.turnToCreate[element.name] = state.turnToCreate[element.name].filter((obj)=>{
         return obj.id!==element.value.id
       })
-    }
+    },
+
   },
   getters: {
     getterUserId: (state) => {
       return state.users.id;
+    },
+    getterTurnId: (state)=>{
+      return state.turnId;
     },
     getterPositionsList:(state)=>{
       return state.positionsCurrentTurn;
@@ -264,6 +276,32 @@ const store = createStore({
         console.log(error)
         router.push('/error')
       })
+    },
+    deletePosition({commit}, {token, id, turnId}){
+      axios.delete("/position/"+id, {
+        headers: {
+          'Authorization': `${token}`
+        }
+      }).then(result=>{
+        commit("deletePosition", id);
+
+        // getFirstPosition
+        axios.get("/position/first?turnId="+turnId, {
+          headers:{
+            'Authorization': `${token}`
+          }
+        }).then(result=>{
+          console.log(result.data);
+          commit("setCurrentPosition", result.data)
+        }).catch(error=>{
+          console.log(error);
+          commit("setCurrentPosition", null)
+        })
+
+      })
+    },
+    setTurnIdValue({commit}, {turnId}){
+      commit("setTurnId", turnId)
     },
     createPosition({commit}, {token, turn}){
       console.log("AAA",turn);
