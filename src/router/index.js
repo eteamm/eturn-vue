@@ -18,6 +18,11 @@ const routes = [
     component: () => import('../views/type.vue'),
   },
   {
+    path: '/403',
+    name: '403',
+    component: () => import('../views/error403.vue'),
+  },
+  {
     path: '/edit',
     name: 'edit',
     component: () => import('../views/editTurn.vue')

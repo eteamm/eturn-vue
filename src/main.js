@@ -45,7 +45,8 @@ const store = createStore({
       accessTurn: "memberIn",
       users: [],
       positionsCurrentTurn: [],
-      currentPosition: null
+      currentPosition: null,
+      currentMember:null
     }
   },
   mutations: {
@@ -54,6 +55,9 @@ const store = createStore({
     // },
     setPositionsList(state, positions){
       state.positionsCurrentTurn=positions;
+    },
+    setCurrentMember(state, member){
+      state.currentMember = member;
     },
     setCurrentTurn(state, turn){
       state.currentTurn = turn
@@ -186,6 +190,9 @@ const store = createStore({
           return state.courses
       }
     },
+    getCurrentMember:(state)=>{
+      return state.currentMember;
+    },
     getterCreateTurnParamText:(state)=>(param)=>{
       return state.turnToCreate[param];
     },
@@ -259,25 +266,53 @@ const store = createStore({
       })
     },
     createPosition({commit}, {token, turn}){
+      console.log("AAA",turn);
       axios.post("/position?idTurn="+turn, null,{
         headers:{
           'Authorization': `${token}`
         },
       }).then(result=>{
         console.log("result", result);
-        // axios.get('/turn/'+turn, {
-        //   headers: {
-        //     'Authorization': `${token}`
-        //   }
-        // }).then(result=>{
-        //   commit('setCurrentTurn', result.data)
-        //   console.log(result)
-        // }).catch(error=>{
-        //   console.log(error)
-        //   router.push('/error')
-        // })
+
+        // loadPositionList
+        axios.get('/position/all/'+turn, {
+          headers:{
+            'Authorization': `${token}`
+          }
+        }).then(result=>{
+          commit("setPositionsList", result.data);
+        }).catch(error=>{
+          console.log(error);
+          commit("setPositionsList", null);
+        })
+
+        // getFirstPosition
+        axios.get("/position/first?turnId="+turn, {
+          headers:{
+            'Authorization': `${token}`
+          }
+        }).then(result=>{
+          console.log(result.data);
+          commit("setCurrentPosition", result.data)
+        }).catch(error=>{
+          console.log(error);
+          commit("setCurrentPosition", null)
+        })
+
       }).catch(error=>{
         console.log('error', error)
+      })
+    },
+    checkRootUser({commit}, {token, turn}){
+      axios.get("/member?turnId="+turn, {
+        headers:{
+          'Authorization': `${token}`
+        }
+      }).then(result=>{
+        console.log(result.data);
+        commit("setCurrentMember", result.data);
+      }).catch(error=>{
+        router.push('/403')
       })
     },
     addNewMember({commit}, {token, turn}){
