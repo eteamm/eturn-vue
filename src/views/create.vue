@@ -11,7 +11,7 @@
 <!--    <p style = "color: white" class="SubHeader">допустимые группы</p>-->
 <!--    <AddGroup />-->
         <div v-if="visitable === true">
-          <p style="color: red">Заполнены не все параметры</p>
+          <window-create-error @visitable="visitable = false" />
         </div>
         <main-button v-on:click="getTurn()" button-text="создать" id="endPage" />
       </div>
@@ -27,10 +27,12 @@ import AddGroup from "@/components/createPage/CreateGroup.vue";
 import {mapGetters} from "vuex";
 import MainButton from "@/components/mainButton";
 import router from "@/router";
+import WindowCreateError from "@/components/createPage/windowCreateError.vue";
 
 export default {
   name: 'Create',
   components: {
+    WindowCreateError,
     AddGroup,
     Header,
     QInfo,
@@ -82,13 +84,14 @@ export default {
         validTypes = true
       }
       else{
-        router.push("/")
         validTypes = false
       }
       if(validProps && accessValid && validTypes){
         this.visitable = false
+        this.$store.dispatch("setNullTurnToCreateAction")
         this.$store.dispatch("createTurn", {turn: turn, token: this.$store.getters.getterToken})
       } else {
+
         this.visitable = true
       }
     }
