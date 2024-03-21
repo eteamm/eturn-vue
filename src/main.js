@@ -148,7 +148,17 @@ const store = createStore({
         return obj.id!==element.value.id
       })
     },
-
+    setNullTurnToCreate(state) {
+      state.turnToCreate.name = null;
+      state.turnToCreate.description = null;
+      state.turnToCreate.turnType = null;
+      state.turnToCreate.creator = null;
+      state.turnToCreate.turnAccess = null;
+      state.turnToCreate.allowedCourses = [];
+      state.turnToCreate.allowedDepartments = [];
+      state.turnToCreate.allowedFaculties = [];
+      state.turnToCreate.allowedGroups = [];
+    }
   },
   getters: {
     getterUserId: (state) => {
@@ -594,6 +604,9 @@ const store = createStore({
         t = "allowedCourses"
       }
       commit("deleteElementTurnCreate", {name: t, value: data})
+    },
+    setNullTurnToCreateAction({commit}) {
+      commit("setNullTurnToCreate")
     }
   }
 })

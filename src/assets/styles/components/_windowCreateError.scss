@@ -1,0 +1,49 @@
+.modal-overlay {
+  z-index: 10;
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  //height:70%;
+  transition: opacity 1s ease;
+  display: flex;
+  justify-content: center;
+}
+
+.modal1 {
+  text-align: center;
+  background-color: $block-color;
+  height: 200px;
+  width: 500px;
+  margin-top: 10%;
+  padding: 60px 0;
+  border-radius: $radius;
+}
+.background_modal1{
+  position: fixed;
+  top:0;
+  left:0;
+  height: 100%;
+  width:100%;
+  background-color: rgba(0,0,0,0.5);
+  transition: opacity 1s ease;
+  z-index: 10;
+}
+.modalColorTxt {
+  color: $white;
+
+  font-size: $middle-text;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.modalButton {
+  margin-top: 25px;
+  width:20%;
+  background: $main-color;
+  padding: 15px;
+  color:$text-color;
+  font-size: $small-text;
+  border:0;
+  border-radius: $radius;
+}
