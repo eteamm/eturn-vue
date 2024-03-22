@@ -58,14 +58,6 @@ export default {
     this.$store.dispatch("checkToken")
   },
   mounted() {
-    // let name = "turnType"
-    // let matches = document.cookie.match(new RegExp(
-    //   "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-    // ));
-    // let info = matches ? decodeURIComponent(matches[1]) : undefined;
-    // if (info !== undefined){
-    //   console.log(info)
-    //   this.$store.dispatch('changeTurnId', info);
     const route = useRoute()
     const turnId = route.params.id
     this.id = turnId
@@ -74,7 +66,6 @@ export default {
     this.$store.dispatch("checkRootUser", {token: this.$store.getters.getterToken, turn: turnId})
     this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: turnId})
     this.$store.dispatch("loadFirstPosition", {token: this.$store.getters.getterToken, turn: turnId})
-    // }
 
   },
   props: ['id', 'type'],

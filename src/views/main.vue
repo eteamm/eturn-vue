@@ -2,7 +2,9 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-12 col-lg-12">
+
         <Header title-name="Главная" title-description="список очередей"/>
+
         <div class="etuIdInformation" v-on:click="logout">
           <img src="../assets/img/exitbtn.svg"  alt="exit">
         </div>
@@ -27,7 +29,6 @@ import BlockOnMainPage from "@/components/mainPage/turnListElement.vue";
 import TurnList from "@/components/mainPage/turnList";
 import TypeTurnFilterBtn from "@/components/mainPage/typeTurnFilterBtn.vue";
 import {mapGetters, mapState} from "vuex";
-import router from "@/router";
 export default {
   name: 'firstPage',
   components: {

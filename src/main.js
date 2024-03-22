@@ -50,9 +50,6 @@ const store = createStore({
     }
   },
   mutations: {
-    // changeCurrentTurnId(state, n) {
-    //   state.turnId = n
-    // },
     setPositionsList(state, positions){
       state.positionsCurrentTurn=positions;
     },
@@ -270,9 +267,6 @@ const store = createStore({
     }
   },
   actions: {
-    // changeTurnId({commit}, id) {
-    //   commit("changeCurrentTurnId", id);
-    // },
     loadCurrentTurn({commit}, {id, token}){
       // console.log('token: ',token);
       axios.get('/turn/'+id, {
@@ -577,7 +571,10 @@ const store = createStore({
       })
     },
     saveTurnProperty({commit}, {nameP, valueP}){
-      commit('setCreateTurnPropertyText', {name:nameP, value: valueP})
+      commit(
+        'setCreateTurnPropertyText',
+        {name:nameP, value: valueP}
+      )
     },
     setParam({commit}, {type, data}){
       let t;

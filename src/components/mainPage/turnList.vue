@@ -34,24 +34,18 @@ export default {
     // ...mapState(['listTurn']),
     ...mapGetters(['getterToken', "getterTurnAccess", "getterTurnType", 'getterTurnList', 'getLoading', 'getCurrentError']),
   },
-  // watch:{
-  //   turnList:{
-  //     handler(oldValue, newValue){
-  //       return newValue
-  //     }
-  //   }
-  // },
   mounted() {
     let typeTurn = this.$store.getters.getterTurnType
     let accessTurn = this.$store.getters.getterTurnAccess
     console.log(typeTurn)
     console.log(accessTurn)
-    this.$store.dispatch('loadListTurn',{token: this.$store.getters.getterToken, type: 'edu', access: 'memberIn'})
+    this.$store.dispatch(
+      'loadListTurn',
+      {
+        token: this.$store.getters.getterToken,
+        type: 'edu',
+        access: 'memberIn'}
+    )
   },
-  // update() {
-  //   let typeTurn = this.$store.getters.getterTurnType
-  //   let accessTurn = this.$store.getters.getterTurnAccess
-  //   this.$store.dispatch('loadListTurn',{id: this.$store.getters.getterUserId, type: typeTurn, access: accessTurn})
-  // }
 }
 </script>
