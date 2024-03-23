@@ -88,7 +88,6 @@ export default {
       }
       if(validProps && accessValid && validTypes){
         this.visitable = false
-        this.$store.dispatch("setNullTurnToCreateAction")
         this.$store.dispatch("createTurn", {turn: turn, token: this.$store.getters.getterToken})
       } else {
 

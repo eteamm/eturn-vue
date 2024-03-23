@@ -346,7 +346,7 @@ const store = createStore({
       })
     },
     checkRootUser({commit}, {token, turn}){
-      axios.get("/member?turnId="+turn, {
+      axios.get("/turn/member?turnId="+turn, {
         headers:{
           'Authorization': `${token}`
         }
@@ -428,6 +428,7 @@ const store = createStore({
         }
         ).then(result=>{
         router.push('/turn/'+result.data)
+        commit("setNullTurnToCreate")
       }).catch(error=>{
         console.log(error)
       })
@@ -601,9 +602,6 @@ const store = createStore({
         t = "allowedCourses"
       }
       commit("deleteElementTurnCreate", {name: t, value: data})
-    },
-    setNullTurnToCreateAction({commit}) {
-      commit("setNullTurnToCreate")
     }
   }
 })
