@@ -2,40 +2,15 @@
   <div>
     <Header title-name="Участники" title-description="изменение прав" />
 
-    <div class="sameBlocks"><img src="../../src/assets/img/show.svg" alt="show">
-      <MemberListBlock header="Администраторы" type="admins"/>
+    <MemberListBlock header="Администраторы" type="0"/>
 
-    </div>
+    <MemberListBlock header="Участники" type="1"/>
 
-    <div class="sameBlocks"><img src="../../src/assets/img/show.svg" alt="show">
-      <MemberListBlock header="Участники" type="members"/>
-    </div>
-
-    <div class="sameBlocks"><img src="../../src/assets/img/show.svg" alt="show">
-      <MemberListBlock header="Заблокированные" type="blocked"/>
-    </div>
-
+    <MemberListBlock header="Заблокированные" type="2"/>
   </div>
 
 </template>
 <script>
-
-
-// TODO 1 Сделать компонент с блоком участников MemberListBlock
-
-// props: заголовок, тип
-// Весь компонент оборачиваем в div
-// Заголовок добавляем h3
-// Добавляем список из компонента 2
-
-
-
-// TODO 2 Создаем компонент для одного участника MemberListElement
-
-// props: имя и тип (который был до этого)
-// оборачиваем в div
-// делаем текст для имени <p>
-// делаем div для трех точек
 
 import Header from "@/components/header.vue";
 import QInfo from "@/components/createPage/CreateInfo.vue";
