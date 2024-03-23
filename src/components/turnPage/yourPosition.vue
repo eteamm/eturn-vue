@@ -19,7 +19,7 @@
         <button v-bind:class="{BtnYourTurnGoOut: getCurrentPosition.start, BtnYourTurnGoIn: !getCurrentPosition.start}" v-on:click="changePositionStatus" class="BtnYourTurnGoIn">{{btn}}</button>
       </div>
     </div>
-    <div style="color: red"> {{time}} </div>
+    <div class="timer" v-show="visitable">Войдите, иначе ваша позиция пропадёт через {{timeMinutes}}:{{timeSeconds}} </div>
   </div>
 </template>
 
@@ -30,7 +30,11 @@ export default {
   name: 'YourPosition',
   data() {
     return {
-      time: 10
+      timeMinutes: 0,
+      timeSeconds: 0,
+      timeLeft: 0,
+      timer: null,
+      visitable: false
     }
   },
   components: {
@@ -49,20 +53,53 @@ export default {
   },
   methods: {
     changePositionStatus() {
+      this.visitable = false;
+      this.stopTimer()
       this.$store.dispatch("changePositionStatus", {token: this.$store.getters.getterToken, posId: this.$store.getters.getCurrentPosition.id, status: this.$store.getters.getCurrentPosition.start, turnId: this.$store.getters.getterTurnId})
     },
     deleteCurrentPosition(){
       this.$store.dispatch("deletePosition", {token: this.$store.getters.getterToken, id: this.$store.getters.getCurrentPosition.id, turnId: this.$store.getters.getterTurnId})
     },
+    startTimer() {
+      this.timer = setInterval(() => {
+        this.timeLeft--
+        this.timeMinutes = Math.floor( this.timeLeft / 60)
+        this.timeSeconds = this.timeLeft - this.timeMinutes * 60
+        if(this.timeSeconds < 10) {
+          this.timeSeconds = '0' + this.timeSeconds
+        }
+      },1000)
+    },
+    stopTimer() {
+      clearTimeout(this.timer)
+    }
+  },
+  watch: {
+    timeLeft(time) {
+      if (time === 0) {
+        this.stopTimer()
+      }
+    }
   },
   mounted() {
     let now = new Date();
-    // let h = this.$store.getters.getCurrentPosition.dateStart
-    let h = "2024-03-23T14:32:02.250+00:00"
-    let h1 = Date.parse(h)
-    let posDate = new Date(h1)
-    //this.$store.getters.getCurrentPosition.dateStart
-    this.time = now.getMinutes() - posDate.getMinutes()
+    if (this.$store.getters.getCurrentPosition.dateStart !== null) {
+      this.visitable = true
+
+      // let h = this.$store.getters.getCurrentPosition.dateStart
+      let timeTxt = "2024-03-23T15:41:02.250+00:00"
+      let timeMs = Date.parse(timeTxt)
+      let posDate = new Date(timeMs)
+      let timeLeft = 120 - (now.getSeconds() - posDate.getSeconds())
+      //this.$store.getters.getCurrentPosition.dateStart
+      this.timeMinutes = Math.floor(timeLeft / 60)
+      this.timeSeconds = timeLeft - this.timeMinutes * 60
+      if (this.timeSeconds < 10) {
+        this.timeSeconds = '0' + this.timeSeconds
+      }
+      this.timeLeft = timeLeft
+      this.startTimer()
+    }
   }
 }
 </script>
