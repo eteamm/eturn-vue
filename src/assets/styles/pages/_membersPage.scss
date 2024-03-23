@@ -2,10 +2,11 @@
   color: $text-second-color;
   font-size: $large-text;
   text-align: center;
-  padding-top:-100px;
+  padding-top:-10px;
 }
 
 .sameBlocks {
+  position: relative;
   width: 100%;
   border: 0px solid;
   background-color: $block-color;
@@ -16,15 +17,57 @@
   padding: 15px 25px;
 }
 
-.sameBlocks img {
-  padding-left:590px;
+.showing {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+
+.searching {
+  position: absolute;
+  top: 20px;
+  left: 0px;
+}
+
+.currentMember {
+  position:relative;
+  padding: 15px;
 }
 
 .textName {
   text-align: left;
-  font-size: $small-text;
+  font-size: $middle-text;
   margin: 0;
   color: $text-second-color;
 }
 
+.dots {
+  height: 30px;
+  border: none;
+  background: none;
+}
 
+/* Контейнер <div> - необходим для размещения выпадающего содержимого */
+.dropdown {
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  display: inline-block;
+}
+
+/* Выпадающее содержимое (скрыто по умолчанию) */
+.dropdown-content {
+  position: absolute;
+  background-color: $background-color;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Ссылки внутри выпадающего списка */
+.dropdown-content a {
+  color: $text-second-color;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}

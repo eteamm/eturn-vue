@@ -46,7 +46,9 @@ const store = createStore({
       users: [],
       positionsCurrentTurn: [],
       currentPosition: null,
-      currentMember:null
+      currentMember:null,
+      memberBlockShow: [false, false, false],
+      memberList: []
     }
   },
   mutations: {
@@ -158,6 +160,15 @@ const store = createStore({
       state.turnToCreate.allowedDepartments = [];
       state.turnToCreate.allowedFaculties = [];
       state.turnToCreate.allowedGroups = [];
+    },
+    setMemberBlockShow(state, param) {
+      state.memberBlockShow[0] = false;
+      state.memberBlockShow[1] = false;
+      state.memberBlockShow[2] = false;
+      state.memberBlockShow[param] = true;
+    },
+    setMemberList(state, list) {
+      state.memberList = list;
     }
   },
   getters: {
@@ -267,6 +278,12 @@ const store = createStore({
           }
         }
       }
+    },
+    getterMemberBlockShow: (state)=>(param)=> {
+      return state.memberBlockShow[param]
+    },
+    getterMemberList: (state) => {
+      return state.memberList;
     }
   },
   actions: {
@@ -610,6 +627,20 @@ const store = createStore({
         t = "allowedCourses"
       }
       commit("deleteElementTurnCreate", {name: t, value: data})
+    },
+    changeMemberShow({commit}, {param}) {
+      commit("setMemberBlockShow", param)
+    },
+    loadMemberList({commit}, {token, type, turnId}) {
+      axios.get('/turn/members?type='+type+'&turnId='+turnId,{
+        headers: {
+          'Authorization': `${token}`
+        }
+      }).then(result=>{
+        commit("setMemberList", result.data)
+      }).catch(error=>{
+        console.log(error)
+      })
     },
     changePositionStatus({commit}, {token, posId, status, turnId}) {
       console.log(status)
