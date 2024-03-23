@@ -70,6 +70,9 @@ const store = createStore({
     setCurrentPosition(state, position){
       state.currentPosition = position;
     },
+    setCurrentPositionStatus(state, status) {
+      state.currentPosition.start = status;
+    },
     setTurnType(state, info){
       state.typeTurn = info.type;
       state.listTurn = null;
@@ -402,6 +405,11 @@ const store = createStore({
       }).then(result => {
         commit('SAVE_USERS', result.data);
       }).catch(error => {
+        commit("DELETE_TOKEN")
+        commit("setTurnAccess", "memberIn");
+        document.cookie = "auth=;" +
+          ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
+        router.push('/').then(r=>console.log('Logout was successful'))
         throw new Error(`API ${error}`);
       })
     },
@@ -602,6 +610,40 @@ const store = createStore({
         t = "allowedCourses"
       }
       commit("deleteElementTurnCreate", {name: t, value: data})
+    },
+    changePositionStatus({commit}, {token, posId, status, turnId}) {
+      console.log(status)
+      if (status === false) {
+        axios.put('/position?id=' + posId, null,{
+          headers: {
+            'Authorization': `${token}`
+          }
+        }).then(result => {
+          commit("setCurrentPositionStatus", true)
+        }).catch(error => {
+          console.log(error)
+        })
+      } else {
+        axios.put('/position?id=' + posId, null,{
+          headers: {
+            'Authorization': `${token}`
+          }
+        }).then(result => {
+          commit("setCurrentPosition", null)
+          commit("deletePosition", posId)
+          axios.get("/position/first?turnId="+turnId, {
+            headers:{
+              'Authorization': `${token}`
+            }
+          }).then(result => {
+            commit("setCurrentPosition", result.data)
+          }).catch(error => {
+            console.log(error)
+          })
+        }).catch(error => {
+          console.log(error)
+        })
+      }
     }
   }
 })
