@@ -1,8 +1,8 @@
 <template>
   <div class="sameBlocks" >
-    <img class="showing"  src="../../../src/assets/img/show.svg" alt="show" v-on:click="changeShow()">
+    <img class="showing" v-bind:class="{showAnim: getterMemberBlockShow(this.type)}"  src="../../../src/assets/img/strel.svg" alt="show" v-on:click="changeShow()">
     <img class="searching" src="../../../src/assets/img/search.svg" alt="search">
-    <h3 class="mainHeader"><b>{{ header }}</b></h3>
+    <h3 class="mainHeader">{{ header }}</h3>
     <div class="member" v-show="getterMemberBlockShow(this.type)">
       <MemberListElement v-for="mem in getterMemberList" :member=mem type="members"/>
     </div>
@@ -15,6 +15,8 @@
 
 import MemberListElement from "@/components/membersPage/memberListElement.vue";
 import {mapGetters} from "vuex";
+import {useRoute} from "vue-router/dist/vue-router";
+
 export default {
   name: 'MemberListBlock',
   props: ['header', 'type'],
@@ -23,6 +25,14 @@ export default {
   },
   computed:{
     ...mapGetters(['getterMemberBlockShow', 'getterMemberList'])
+  },
+  created() {
+    this.$store.dispatch("checkToken")
+    const route = useRoute()
+    this.id = route.params.id
+  },
+  data(){
+    return {id:0};
   },
   methods:{
     changeShow(){
@@ -34,9 +44,10 @@ export default {
         {
           token: this.$store.getters.getterToken,
           type: t,
-          turnId: this.$store.getters.getterTurnId
+          turnId: this.id,
+          param: this.type
         })
-      this.$store.dispatch('changeMemberShow',{param: this.type})
+      // this.$store.dispatch('changeMemberShow',{param: this.type})
     }
   }
 }

@@ -17,7 +17,6 @@ import QInfo from "@/components/createPage/CreateInfo.vue";
 import MemberListBlock from "@/components/membersPage/memberListBlock.vue";
 import MemberListElement from "@/components/membersPage/memberListElement.vue";
 import AddGroup from "@/components/createPage/CreateGroup.vue";
-import ToolBar from "@/components/membersPage/toolBar.vue";
 export default {
   name: 'Members',
   components: {
@@ -25,8 +24,7 @@ export default {
     QInfo,
     Header,
     MemberListBlock,
-    MemberListElement,
-    ToolBar
+    MemberListElement
   },
   beforeCreate() {
     this.$store.dispatch("checkToken")

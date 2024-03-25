@@ -78,20 +78,41 @@ export default {
     timeLeft(time) {
       if (time === 0) {
         this.stopTimer()
+        this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: this.$store.getters.getterTurnId})
+        this.$store.dispatch("loadFirstPosition", {token: this.$store.getters.getterToken, turn: this.$store.getters.getterTurnId})
       }
+    },
+    getCurrentPosition(newVal, oldVal){
+      let now = new Date();
+      if (!newVal.start){
+        if (newVal.dateStart !== null) {
+          this.visitable = true
+          let timeTxt = newVal.dateStart
+          // let timeTxt = "2024-03-23T15:41:02.250+00:00"
+          let timeMs = Date.parse(timeTxt)
+          let posDate = new Date(timeMs)
+          let timeLeft = 120 - (now.getSeconds() - posDate.getSeconds())
+          this.timeMinutes = Math.floor(timeLeft / 60)
+          this.timeSeconds = timeLeft - this.timeMinutes * 60
+          if (this.timeSeconds < 10) {
+            this.timeSeconds = '0' + this.timeSeconds
+          }
+          this.timeLeft = timeLeft
+          this.startTimer()
+        }
+      }
+
     }
   },
   mounted() {
     let now = new Date();
     if (this.$store.getters.getCurrentPosition.dateStart !== null) {
       this.visitable = true
-
-      // let h = this.$store.getters.getCurrentPosition.dateStart
-      let timeTxt = "2024-03-23T15:41:02.250+00:00"
+      let timeTxt = this.$store.getters.getCurrentPosition.dateStart
+      // let timeTxt = "2024-03-23T15:41:02.250+00:00"
       let timeMs = Date.parse(timeTxt)
       let posDate = new Date(timeMs)
       let timeLeft = 120 - (now.getSeconds() - posDate.getSeconds())
-      //this.$store.getters.getCurrentPosition.dateStart
       this.timeMinutes = Math.floor(timeLeft / 60)
       this.timeSeconds = timeLeft - this.timeMinutes * 60
       if (this.timeSeconds < 10) {

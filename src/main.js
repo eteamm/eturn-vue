@@ -162,10 +162,11 @@ const store = createStore({
       state.turnToCreate.allowedGroups = [];
     },
     setMemberBlockShow(state, param) {
+      let currentParam = state.memberBlockShow[param];
       state.memberBlockShow[0] = false;
       state.memberBlockShow[1] = false;
       state.memberBlockShow[2] = false;
-      state.memberBlockShow[param] = true;
+      state.memberBlockShow[param] = !currentParam;
     },
     setMemberList(state, list) {
       state.memberList = list;
@@ -631,12 +632,13 @@ const store = createStore({
     changeMemberShow({commit}, {param}) {
       commit("setMemberBlockShow", param)
     },
-    loadMemberList({commit}, {token, type, turnId}) {
+    loadMemberList({commit}, {token, type, turnId, param}) {
       axios.get('/turn/members?type='+type+'&turnId='+turnId,{
         headers: {
           'Authorization': `${token}`
         }
       }).then(result=>{
+        commit("setMemberBlockShow", param)
         commit("setMemberList", result.data)
       }).catch(error=>{
         console.log(error)

@@ -6,15 +6,17 @@
         <p class="PositionBlockGroup" v-if="position.group!==null">{{position.group}}</p>
 
     </div>
-    <div v-if="getCurrentMember.idUser===position.userId || this.$store.getters.getterRoleUser === 'MODERATOR'" v-on:click="deleteCurrentPosition(position.id)" class="deletePosition">
-      <img src="../../assets/img/cross.svg"  alt="delete">
-    </div>
+      <div v-if="this.$store.getters.getCurrentMember.userId===position.userId || this.$store.getters.getterRoleUser === 'MODERATOR'" v-on:click="deleteCurrentPosition(position.id)" class="deletePosition">
+        <img src="../../assets/img/cross.svg"  alt="delete">
+      </div>
+
   </div>
 </template>
 
 <script>
 
 import {mapGetters} from "vuex";
+import {useRoute} from "vue-router/dist/vue-router";
 
 export default {
   name: 'TurnPosition',
@@ -26,6 +28,12 @@ export default {
         return {}
       }
     }
+  },
+  created() {
+    const route = useRoute()
+    const turnId = route.params.id
+    this.id = turnId
+    this.$store.dispatch("checkRootUser", {token: this.$store.getters.getterToken, turn: turnId})
   },
   computed:{
     ...mapGetters(['getterUserId', 'getCurrentMember', 'getterTurnId'])

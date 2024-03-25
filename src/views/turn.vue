@@ -57,15 +57,17 @@ export default {
   beforeCreate() {
     this.$store.dispatch("checkToken")
   },
-  mounted() {
+  created() {
     const route = useRoute()
     const turnId = route.params.id
     this.id = turnId
-    this.$store.dispatch("setTurnIdValue", {turnId: turnId})
-    this.$store.dispatch("loadCurrentTurn",{id: turnId, token: this.$store.getters.getterToken})
     this.$store.dispatch("checkRootUser", {token: this.$store.getters.getterToken, turn: turnId})
-    this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: turnId})
-    this.$store.dispatch("loadFirstPosition", {token: this.$store.getters.getterToken, turn: turnId})
+  },
+  mounted() {
+    this.$store.dispatch("setTurnIdValue", {turnId: this.id})
+    this.$store.dispatch("loadCurrentTurn",{id: this.id, token: this.$store.getters.getterToken})
+    this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: this.id})
+    this.$store.dispatch("loadFirstPosition", {token: this.$store.getters.getterToken, turn: this.id})
 
   },
   props: ['id', 'type'],
@@ -75,7 +77,7 @@ export default {
       this.$store.dispatch("createPosition", {token: this.$store.getters.getterToken, turn: this.id})
     },
     goToMemberPage(){
-      router.push("/members")
+      router.push("/members/"+this.id)
     }
   }
 }

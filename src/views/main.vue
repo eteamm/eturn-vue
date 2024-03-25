@@ -29,6 +29,7 @@ import BlockOnMainPage from "@/components/mainPage/turnListElement.vue";
 import TurnList from "@/components/mainPage/turnList";
 import TypeTurnFilterBtn from "@/components/mainPage/typeTurnFilterBtn.vue";
 import {mapGetters, mapState} from "vuex";
+import {useRoute} from "vue-router/dist/vue-router";
 export default {
   name: 'firstPage',
   components: {
@@ -44,9 +45,6 @@ export default {
     logout(){
       this.$store.dispatch("logout")
     }
-  },
-  beforeCreate() {
-    this.$store.dispatch("checkToken")
   },
   computed: {
     ...mapState(['listTurn']),
