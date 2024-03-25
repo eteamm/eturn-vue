@@ -26,15 +26,28 @@
   cursor: pointer;
 }
 
+.arrowBackBtn {
+  position: absolute;
+  top: 30px;
+  right: 15px;
+  cursor: pointer;
+}
 @media screen and (orientation: landscape) {
   .etuIdInformation{
     right: $proportion;
   }
 }
 
+.arrowBackBtn{
+  right: $proportion;
+}
 
 .etuIdInformation img{
   height: 30px;
+}
+
+.arrowBackBtn img{
+  height: 50px;
 }
 
 .additionalInformation{
