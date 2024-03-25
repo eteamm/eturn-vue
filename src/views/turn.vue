@@ -2,8 +2,9 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-12 col-lg-12">
-        <div>
           <Header title-name="Очередь" title-description="основная информация" />
+        <div class="arrowBackBtn" v-on:click="goToMainPage">
+          <img src="../assets/img/arrowBack.svg"  alt="exit">
         </div>
         <div>
           <TurnInfo/>
@@ -76,6 +77,9 @@ export default {
     },
     goToMemberPage(){
       router.push("/members")
+    },
+    goToMainPage() {
+      router.push("/")
     }
   }
 }
