@@ -12,7 +12,7 @@
           </div>
         </div>
         <div v-on:click="deleteCurrentPosition">
-          <img src="../../assets/img/cross.svg" style="width:20px"  alt="delete">
+          <img class="deletePosition" src="../../assets/img/cross.svg" style="width:20px"  alt="delete">
         </div>
       </div>
       <div v-if="getCurrentPosition.difference===0">

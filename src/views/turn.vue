@@ -78,11 +78,10 @@ export default {
       this.$store.dispatch("createPosition", {token: this.$store.getters.getterToken, turn: this.id})
     },
     goToMemberPage(){
-      router.push("/members")
+      router.push("/members/"+this.id)
     },
     goToMainPage() {
       router.push("/")
-      router.push("/members/"+this.id)
     }
   }
 }

@@ -29,17 +29,13 @@
 .arrowBackBtn {
   position: absolute;
   top: 30px;
-  right: 15px;
+  right: $proportion;
   cursor: pointer;
 }
 @media screen and (orientation: landscape) {
   .etuIdInformation{
     right: $proportion;
   }
-}
-
-.arrowBackBtn{
-  right: $proportion;
 }
 
 .etuIdInformation img{
