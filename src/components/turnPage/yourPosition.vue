@@ -19,7 +19,7 @@
         <button v-bind:class="{BtnYourTurnGoOut: getCurrentPosition.start, BtnYourTurnGoIn: !getCurrentPosition.start}" v-on:click="changePositionStatus" class="BtnYourTurnGoIn">{{btn}}</button>
       </div>
     </div>
-    <div class="timer" v-show="visitable">Войдите, иначе ваша позиция пропадёт через {{timeMinutes}}:{{timeSeconds}} </div>
+    <div class="timer" v-show="visitable && !getCurrentPosition.start">Войдите, иначе ваша позиция пропадёт через {{timeMinutes}}:{{timeSeconds}} </div>
   </div>
 </template>
 
