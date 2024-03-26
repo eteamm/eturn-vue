@@ -409,8 +409,8 @@ const store = createStore({
         }
       }).then(result=>{
         console.log(result.data);
-        commit("setCurrentPosition", result.data)
         commit("setCurrentPosition", null)
+        commit("setCurrentPosition", result.data)
       }).catch(error=>{
         console.log(error);
         commit("setCurrentPosition", null)
