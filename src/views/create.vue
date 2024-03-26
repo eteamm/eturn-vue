@@ -3,6 +3,9 @@
     <div class="row justify-content-center">
       <div class="col-md-12 col-lg-12">
         <Header title-name="Создать" title-description="новая очередь" />
+        <div class="arrowBackBtn" v-on:click="goToMainPage">
+          <img src="../assets/img/arrowBack.svg"  alt="exit">
+        </div>
         <div class="SubHeader"><img src="../assets/img/pencil_create2.svg" alt="pencil">Основная информация</div>
         <QInfo header = "название очереди" type="name"/>
         <QInfo header = "описание" type="description"/>
@@ -93,6 +96,9 @@ export default {
 
         this.visitable = true
       }
+    },
+    goToMainPage() {
+      router.push("/")
     }
   }
 }

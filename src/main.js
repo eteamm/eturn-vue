@@ -170,7 +170,8 @@ const store = createStore({
     },
     setMemberList(state, list) {
       state.memberList = list;
-    }
+    },
+
   },
   getters: {
     getterUserId: (state) => {
@@ -677,6 +678,9 @@ const store = createStore({
           console.log(error)
         })
       }
+    },
+    cleanData({commit}, type) {
+      commit("")
     }
   }
 })
