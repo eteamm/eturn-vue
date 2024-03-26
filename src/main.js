@@ -343,6 +343,7 @@ const store = createStore({
             'Authorization': `${token}`
           }
         }).then(result=>{
+          commit("setPositionsList", null);
           commit("setPositionsList", result.data);
         }).catch(error=>{
           console.log(error);
@@ -393,6 +394,7 @@ const store = createStore({
           'Authorization': `${token}`
         }
       }).then(result=>{
+        commit("setPositionsList", null);
         commit("setPositionsList", result.data);
       }).catch(error=>{
         console.log(error);
@@ -407,6 +409,7 @@ const store = createStore({
       }).then(result=>{
         console.log(result.data);
         commit("setCurrentPosition", result.data)
+        commit("setCurrentPosition", null)
       }).catch(error=>{
         console.log(error);
         commit("setCurrentPosition", null)
