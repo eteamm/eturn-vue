@@ -81,6 +81,7 @@ export default {
       router.push("/members/"+this.id)
     },
     goToMainPage() {
+
       router.push("/")
     }
   }
