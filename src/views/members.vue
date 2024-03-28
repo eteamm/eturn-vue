@@ -4,6 +4,18 @@
     <div class="arrowBackBtn" v-on:click="goToMainPage">
       <img src="../assets/img/arrowBack.svg"  alt="exit">
     </div>
+
+    <div class="containerQuantity">
+      <div id="quantityAdmins">{{getCurrentTurn!=null ? getCurrentTurn.countUsers : null}} администраторов</div>
+      <div id="quantityMembers">{{getCurrentMembers!=null ? getCurrentMembers : null}} участников</div>
+    </div>
+
+    <div class="container">
+      <div id="con1"></div>
+      <div id="con2"></div>
+      <div id="con3"></div>
+    </div>
+
     <MemberListBlock header="Администраторы" type="0"/>
 
     <MemberListBlock header="Участники" type="1"/>
@@ -21,6 +33,7 @@ import MemberListElement from "@/components/membersPage/memberListElement.vue";
 import AddGroup from "@/components/createPage/CreateGroup.vue";
 import router from "@/router";
 import {useRoute} from "vue-router";
+import {mapGetters} from "vuex";
 export default {
   name: 'Members',
   components: {
@@ -49,7 +62,8 @@ export default {
       const route = useRoute()
       router.push("/turn/"+this.id)
     }
-  }
+  },
+  computed: mapGetters(['getCurrentMembers', 'getCurrentAdmins'])
 }
 </script>
 
