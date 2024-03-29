@@ -16,6 +16,7 @@ const store = createStore({
       listTurn: [],
       turnId: 0,
       currentTurn: null,
+      currentMembers: null,
       userId: 1,
       faculties: [],
       courses: [],
@@ -67,7 +68,10 @@ const store = createStore({
       state.currentMember = member;
     },
     setCurrentTurn(state, turn){
-      state.currentTurn = turn
+      state.currentTurn = turn;
+    },
+    setCurrentMembers(state, member){
+      state.currentMembers = member;
     },
     setCurrentPosition(state, position){
       state.currentPosition = position;
@@ -191,6 +195,9 @@ const store = createStore({
     // },
     getCurrentTurn: (state)=>{
       return state.currentTurn
+    },
+    getCurrentMembers: (state)=>{
+      return state.currentMembers
     },
     getCurrentError:(state)=>(type) => {
       return state.errors[type];
