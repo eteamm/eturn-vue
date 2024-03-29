@@ -59,12 +59,13 @@ export default {
     },
     deleteCurrentPosition(){
       this.$store.dispatch("deletePosition", {token: this.$store.getters.getterToken, id: this.$store.getters.getCurrentPosition.id, turnId: this.$store.getters.getterTurnId})
+      this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: this.$store.getters.getterTurnId})
     },
     startTimer() {
       this.timer = setInterval(() => {
         this.timeLeft--
         this.timeMinutes = Math.floor( this.timeLeft / 60)
-        this.timeSeconds = this.timeLeft - this.timeMinutes * 60
+        this.timeSeconds = this.timeLeft  - this.timeMinutes * 60
         if(this.timeSeconds < 10) {
           this.timeSeconds = '0' + this.timeSeconds
         }
@@ -85,19 +86,19 @@ export default {
     getCurrentPosition(newVal, oldVal){
       let now = new Date();
       if (!newVal.start){
-        if (newVal.dateStart !== null) {
+        if (newVal.dateEnd !== null) {
           this.visitable = true
-          let timeTxt = newVal.dateStart
+          let timeTxt = newVal.dateEnd
           // let timeTxt = "2024-03-23T15:41:02.250+00:00"
           let timeMs = Date.parse(timeTxt)
           let posDate = new Date(timeMs)
-          let timeLeft = 120 - (now.getSeconds() - posDate.getSeconds())
-          this.timeMinutes = Math.floor(timeLeft / 60)
-          this.timeSeconds = timeLeft - this.timeMinutes * 60
+          let timeLeft = posDate.getTime() - now.getTime()
+          this.timeMinutes = Math.floor(timeLeft / 60000)
+          this.timeSeconds = Math.floor(timeLeft / 1000) - this.timeMinutes * 60
           if (this.timeSeconds < 10) {
             this.timeSeconds = '0' + this.timeSeconds
           }
-          this.timeLeft = timeLeft
+          this.timeLeft = Math.floor(timeLeft / 1000)
           this.startTimer()
         }
       }
@@ -106,19 +107,20 @@ export default {
   },
   mounted() {
     let now = new Date();
-    if (this.$store.getters.getCurrentPosition.dateStart !== null) {
+    if (this.$store.getters.getCurrentPosition.dateEnd !== null) {
       this.visitable = true
-      let timeTxt = this.$store.getters.getCurrentPosition.dateStart
+      let timeTxt = this.$store.getters.getCurrentPosition.dateEnd
       // let timeTxt = "2024-03-23T15:41:02.250+00:00"
       let timeMs = Date.parse(timeTxt)
       let posDate = new Date(timeMs)
-      let timeLeft = 120 - (now.getSeconds() - posDate.getSeconds())
-      this.timeMinutes = Math.floor(timeLeft / 60)
-      this.timeSeconds = timeLeft - this.timeMinutes * 60
+      console.log("date", posDate);
+      let timeLeft = posDate.getTime() - now.getTime()
+      this.timeMinutes = Math.floor(timeLeft / 60000)
+      this.timeSeconds = Math.floor(timeLeft / 1000) - this.timeMinutes * 60
       if (this.timeSeconds < 10) {
         this.timeSeconds = '0' + this.timeSeconds
       }
-      this.timeLeft = timeLeft
+      this.timeLeft = Math.floor(timeLeft / 1000)
       this.startTimer()
     }
   }

@@ -337,14 +337,14 @@ const store = createStore({
         },
       }).then(result=>{
         console.log("result", result);
-
+        commit("setPositionsList", null);
+        commit("setCurrentPosition", null);
         // loadPositionList
         axios.get('/position/all/'+turn, {
           headers:{
             'Authorization': `${token}`
           }
         }).then(result=>{
-          commit("setPositionsList", null);
           commit("setPositionsList", result.data);
         }).catch(error=>{
           console.log(error);
@@ -369,6 +369,7 @@ const store = createStore({
       })
     },
     checkRootUser({commit}, {token, turn}){
+      // commit("setCurrentMember", null);
       axios.get("/turn/member?turnId="+turn, {
         headers:{
           'Authorization': `${token}`
@@ -390,12 +391,12 @@ const store = createStore({
       })
     },
     loadPositionList({commit}, {token, turn}){
+      // commit("setPositionsList", null);
       axios.get('/position/all/'+turn, {
         headers:{
           'Authorization': `${token}`
         }
       }).then(result=>{
-        commit("setPositionsList", null);
         commit("setPositionsList", result.data);
       }).catch(error=>{
         console.log(error);
@@ -403,13 +404,13 @@ const store = createStore({
       })
     },
     loadFirstPosition({commit}, {token, turn}){
+      // commit("setCurrentPosition", null)
       axios.get("/position/first?turnId="+turn, {
         headers:{
           'Authorization': `${token}`
         }
       }).then(result=>{
         console.log(result.data);
-        commit("setCurrentPosition", null)
         commit("setCurrentPosition", result.data)
       }).catch(error=>{
         console.log(error);
@@ -472,7 +473,7 @@ const store = createStore({
           "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
         ));
         let token = matches ? decodeURIComponent(matches[1]) : undefined;
-        if (token !== undefined) {
+        if (token !== undefined && token !=="") {
           commit('SAVE_TOKEN', token)
           router.push('/main').then(r => console.log('Authorization was successful'))
         }
@@ -481,8 +482,7 @@ const store = createStore({
     logout({commit}){
       commit("DELETE_TOKEN")
       commit("setTurnAccess", "memberIn");
-      document.cookie = "auth=;" +
-        ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
+      document.cookie = "auth=;" + "expires=Thu, 01 Jan 1970 00:00:01 GMT";
       router.push('/').then(r=>console.log('Logout was successful'))
     },
     checkToken({commit}){

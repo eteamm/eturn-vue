@@ -50,10 +50,10 @@ export default {
     PositionsList
   },
   data () {
-    return {id: 0}
+    return {id: 0, timer: null}
   },
   computed:{
-    ...mapGetters(['getterToken', 'getCurrentPosition'])
+    ...mapGetters(['getterToken', 'getCurrentPosition', 'getCurrentMember'])
   },
   beforeCreate() {
     this.$store.dispatch("checkToken")
@@ -65,11 +65,17 @@ export default {
     this.$store.dispatch("checkRootUser", {token: this.$store.getters.getterToken, turn: turnId})
   },
   mounted() {
+    if (this.$store.getters.getCurrentMember===null){
+      this.$store.dispatch("checkRootUser", {token: this.$store.getters.getterToken, turn: this.id})
+    }
     this.$store.dispatch("setTurnIdValue", {turnId: this.id})
     this.$store.dispatch("loadCurrentTurn",{id: this.id, token: this.$store.getters.getterToken})
     this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: this.id})
     this.$store.dispatch("loadFirstPosition", {token: this.$store.getters.getterToken, turn: this.id})
-
+    this.updatePage()
+  },
+  beforeUnmount() {
+    clearTimeout(this.timer)
   },
   props: ['id', 'type'],
   methods:{
@@ -77,11 +83,23 @@ export default {
       console.log(this.$store.getters.getterToken);
       this.$store.dispatch("createPosition", {token: this.$store.getters.getterToken, turn: this.id})
     },
+    updatePage(){
+      this.timer = setInterval(()=>{
+        this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: this.id})
+        if(this.$store.getters.getCurrentPosition!==null){
+          if (this.$store.getters.getCurrentPosition.difference!==0){
+            this.$store.dispatch("loadFirstPosition", {token: this.$store.getters.getterToken, turn: this.id})
+          }
+        }
+        else{
+          this.$store.dispatch("loadFirstPosition", {token: this.$store.getters.getterToken, turn: this.id})
+        }
+      },10000)
+    },
     goToMemberPage(){
       router.push("/members/"+this.id)
     },
     goToMainPage() {
-
       router.push("/")
     }
   }

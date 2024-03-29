@@ -43,6 +43,7 @@ export default {
   },
   methods:{
     logout(){
+      // alert("out")
       this.$store.dispatch("logout")
     }
   },
