@@ -58,6 +58,7 @@ export default {
   },
   methods: {
     goToMainPage() {
+      this.$store.dispatch("cleanTurnAndPosition")
       this.$store.dispatch("checkToken")
       const route = useRoute()
       router.push("/turn/"+this.id)
