@@ -98,6 +98,7 @@ export default {
       }
     },
     goToMainPage() {
+      this.$store.dispatch("cleanTurnAndPosition")
       router.push("/")
     }
   }

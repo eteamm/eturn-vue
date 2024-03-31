@@ -17,6 +17,7 @@ export default {
   },
   methods: {
     goToMemberPage() {
+      this.$store.dispatch("cleanTurnAndPosition")
       router.push("/members/"+this.$store.getters.getterTurnId)
     }
   }

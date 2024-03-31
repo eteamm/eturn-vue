@@ -12,9 +12,7 @@
         <type-turn-filter-btn />
         <access-filter-btn />
         <turn-list />
-        <router-link to="/type">
-          <main-button button-text="создать очередь" />
-        </router-link>
+        <main-button button-text="создать очередь" v-on:click="cleanTurnList"/>
       </div>
     </div>
   </div>
@@ -30,6 +28,7 @@ import TurnList from "@/components/mainPage/turnList";
 import TypeTurnFilterBtn from "@/components/mainPage/typeTurnFilterBtn.vue";
 import {mapGetters, mapState} from "vuex";
 import {useRoute} from "vue-router/dist/vue-router";
+import router from "@/router";
 export default {
   name: 'firstPage',
   components: {
@@ -45,6 +44,10 @@ export default {
     logout(){
       // alert("out")
       this.$store.dispatch("logout")
+    },
+    cleanTurnList() {
+      this.$store.dispatch("cleanListTurn")
+      router.push('/type')
     }
   },
   computed: {

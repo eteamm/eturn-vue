@@ -175,7 +175,10 @@ const store = createStore({
     setMemberList(state, list) {
       state.memberList = list;
     },
-
+    setNullPosition(state) {
+      state.currentPosition = null;
+      state.positionsCurrentTurn = null;
+    }
   },
   getters: {
     getterUserId: (state) => {
@@ -467,6 +470,7 @@ const store = createStore({
         ).then(result=>{
         router.push('/turn/'+result.data)
         commit("setNullTurnToCreate")
+        commit("setNullPosition")
       }).catch(error=>{
         console.log(error)
       })
@@ -691,6 +695,13 @@ const store = createStore({
     },
     cleanData({commit}, type) {
       commit("")
+    },
+    cleanListTurn({commit}) {
+      commit("SAVE_TURN", null)
+    },
+    cleanTurnAndPosition({commit}) {
+      commit("setNullPosition");
+      commit("setNullTurnToCreate");
     }
   }
 })
