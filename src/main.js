@@ -410,10 +410,11 @@ const store = createStore({
         }
       }).then(result=>{
         commit("setPositionsList", result.data);
-        commit('SET_LOADING',{name:"tposition_loading",value: false});
+        commit('SET_LOADING',{name:"allposition_loading",value: false});
       }).catch(error=>{
         console.log(error);
         commit("setPositionsList", null);
+        commit('SET_LOADING',{name:"allposition_loading",value: false});
       })
     },
     loadFirstPosition({commit}, {token, turn}){
@@ -429,6 +430,7 @@ const store = createStore({
       }).catch(error=>{
         console.log(error);
         commit("setCurrentPosition", null)
+        commit('SET_LOADING',{name:"position_loading",value: false});
       })
     },
     changeError({commit}, error){

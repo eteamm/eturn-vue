@@ -2,13 +2,13 @@
 <div class="wholeTurn">
   <span class="yourTurnTitle">ВСЯ ОЧЕРЕДЬ</span>
 </div>
-  <div style="position: relative;" v-show="this.$store.getters.getLoading('allposition_loading')">
-    <loader />
-  </div>
   <TurnPosition
     v-for="pos in getterPositionsList"
     :position=pos
   />
+  <div style="position: relative;" v-show="this.$store.getters.getLoading('allposition_loading')">
+    <loader />
+  </div>
 </template>
 
 <script>
