@@ -39,7 +39,8 @@ const store = createStore({
       },
       loadings:{
         'auth_loading': false,
-        'turn_loading': true
+        'turn_loading': true,
+        'position_loading': true
       },
       authToken: null,
       typeTurn: "edu",
@@ -418,7 +419,8 @@ const store = createStore({
         }
       }).then(result=>{
         console.log(result.data);
-        commit("setCurrentPosition", result.data)
+        commit("setCurrentPosition", result.data);
+        commit('SET_LOADING',{name:"position_loading",value: false});
       }).catch(error=>{
         console.log(error);
         commit("setCurrentPosition", null)

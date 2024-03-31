@@ -26,6 +26,7 @@
 <script>
 import TurnPosition from "@/components/turnPage/turnPosition.vue";
 import {mapGetters} from "vuex";
+import Loader from "@/components/loader.vue";
 export default {
   name: 'YourPosition',
   data() {
@@ -38,6 +39,7 @@ export default {
     }
   },
   components: {
+    Loader,
     TurnPosition
   },
   computed:{

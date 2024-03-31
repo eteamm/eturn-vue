@@ -14,6 +14,10 @@
         </div>
         <div>
           <YourPosition v-if="getCurrentPosition!==null"/>
+
+          <div v-show="this.$store.getters.getLoading('position_loading')">
+            <loader />
+          </div>
         </div>
         <div>
           <positions-list/>
@@ -38,9 +42,11 @@ import YourPosition from "@/components/turnPage/yourPosition.vue";
 import router from "@/router";
 import {mapGetters, mapState} from "vuex";
 import { useRoute } from 'vue-router'
+import Loader from "@/components/loader.vue";
 export default {
   name: 'Turn',
   components: {
+    Loader,
     YourPosition,
     MainButton,
     TurnPosition,
@@ -53,7 +59,7 @@ export default {
     return {id: 0, timer: null}
   },
   computed:{
-    ...mapGetters(['getterToken', 'getCurrentPosition', 'getCurrentMember'])
+    ...mapGetters(['getterToken', 'getCurrentPosition', 'getCurrentMember','getLoading'])
   },
   beforeCreate() {
     this.$store.dispatch("checkToken")
@@ -102,6 +108,7 @@ export default {
     goToMainPage() {
       router.push("/")
     }
+
   }
 }
 </script>
