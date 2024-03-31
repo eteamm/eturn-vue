@@ -41,7 +41,7 @@ const store = createStore({
         'auth_loading': false,
         'turn_loading': true,
         'position_loading': true,
-        'tposition_loading': true
+        'allposition_loading': true
       },
       authToken: null,
       typeTurn: "edu",
