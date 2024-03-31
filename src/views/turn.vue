@@ -19,6 +19,9 @@
           <YourPosition v-if="getCurrentPosition!==null"/>
         </div>
         <div>
+          <div style="position: relative;" v-show="this.$store.getters.getLoading('tposition_loading')">
+            <loader />
+          </div>
           <positions-list/>
         </div>
         <div>
