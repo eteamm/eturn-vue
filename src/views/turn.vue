@@ -13,11 +13,10 @@
           <TurnBtns/>
         </div>
         <div>
-          <YourPosition v-if="getCurrentPosition!==null"/>
-
-          <div v-show="this.$store.getters.getLoading('position_loading')">
+          <div style="position: relative;" v-show="this.$store.getters.getLoading('position_loading')">
             <loader />
           </div>
+          <YourPosition v-if="getCurrentPosition!==null"/>
         </div>
         <div>
           <positions-list/>
