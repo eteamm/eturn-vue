@@ -10,12 +10,6 @@
       <div id="quantityMembers">{{getCurrentMembers!=null ? getCurrentMembers : null}} участников</div>
     </div>
 
-    <div class="container">
-      <div id="con1"></div>
-      <div id="con2"></div>
-      <div id="con3"></div>
-    </div>
-
     <MemberListBlock header="Администраторы" type="0"/>
 
     <MemberListBlock header="Участники" type="1"/>

@@ -66,6 +66,11 @@ const store = createStore({
         return obj.id!==id;
       })
     },
+    deleteMember(state, id){
+      state.positionsCurrentTurn = state.positionsCurrentTurn.filter((obj)=>{
+        return obj.id!==id;
+      })
+    },
     setCurrentMember(state, member){
       state.currentMember = member;
     },
@@ -336,6 +341,15 @@ const store = createStore({
           commit("setCurrentPosition", null)
         })
 
+      })
+    },
+    deleteMember({commit}, {token, id}){
+      axios.delete("/turn/member/"+id, {
+        headers:{
+          'Authorization': `${token}`
+        }
+      }).then(result => {
+        commit("deleteMember", id)
       })
     },
     setTurnIdValue({commit}, {turnId}){

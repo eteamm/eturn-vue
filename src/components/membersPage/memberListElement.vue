@@ -9,7 +9,7 @@
       </button>
       <div class="dropdown-content" v-show="visible">
         <a href="#">Разжаловать</a>
-        <a href="#">Удалить</a>
+        <a v-on:click="deleteSelectedMember" href="#">Удалить</a>
         <a href="#">Заблокировать</a>
       </div>
     </div>
@@ -38,6 +38,11 @@ export default {
   methods: {
     changeVisible() {
       this.visible = this.visible === false;
+    },
+    deleteSelectedMember() {
+      //console.log(this.$store.getters.getCurrentMember.userId)
+      //alert('Кнопка нажата!');
+      this.$store.dispatch("deleteMember", {token: this.$store.getters.getterToken, id: this.$store.getters.getCurrentMember.id})
     }
   }
 }
