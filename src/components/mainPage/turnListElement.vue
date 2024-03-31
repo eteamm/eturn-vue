@@ -13,7 +13,7 @@
         описание: {{Turn_data.description}}
       </div>
       <div class="quantityPeople">
-        {{Turn_data.countUsers}} человек
+        {{Turn_data.countUsers}} {{ people[index] }}
       </div>
     </div>
 </template>
@@ -37,6 +37,12 @@ export default {
       }
     }
   },
+  data() {
+    return {
+      people: ["человек", "человек", "человека", "человека", "человека", "человек", "человек", "человек", "человек", "человек",],
+      index: 0
+    }
+  },
   props: {
     Turn_data: {
       type: Object,
@@ -52,6 +58,12 @@ export default {
     },
     ...mapGetters(["getterTurnAccess", 'getterToken'])
   },
+  mounted() {
+    let i = this.Turn_data.countUsers
+    if (i === 12 || i === 13 || i === 14)
+      this.index = 0
+    this.index = i % 10
+  }
 }
 </script>
 
