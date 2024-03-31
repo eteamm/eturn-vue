@@ -67,7 +67,7 @@ const store = createStore({
       })
     },
     deleteMember(state, id){
-      state.positionsCurrentTurn = state.positionsCurrentTurn.filter((obj)=>{
+      state.memberList = state.memberList.filter((obj)=>{
         return obj.id!==id;
       })
     },

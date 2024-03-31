@@ -19,6 +19,7 @@
 <script>
 
 import ToolBar from "@/components/membersPage/toolBar.vue";
+import {mapGetters} from "vuex";
 export default {
   name: 'MemberListElement',
   data() {
@@ -35,6 +36,9 @@ export default {
     },
     type:0,
   },
+  computed:{
+    ...mapGetters(['getterToken'])
+  },
   methods: {
     changeVisible() {
       this.visible = this.visible === false;
@@ -42,7 +46,7 @@ export default {
     deleteSelectedMember() {
       //console.log(this.$store.getters.getCurrentMember.userId)
       //alert('Кнопка нажата!');
-      this.$store.dispatch("deleteMember", {token: this.$store.getters.getterToken, id: this.$store.getters.getCurrentMember.id})
+      this.$store.dispatch("deleteMember", {token: this.$store.getters.getterToken, id: this.member.id})
     }
   }
 }
