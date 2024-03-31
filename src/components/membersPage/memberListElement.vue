@@ -8,7 +8,7 @@
         <img src="../../../src/assets/img/threeDots.svg" alt="threeDots">
       </button>
       <div class="dropdown-content" v-show="visible">
-        <a href="#">Разжаловать</a>
+        <a href="#">Сделать администратором</a>
         <a v-on:click="deleteSelectedMember" href="#">Удалить</a>
         <a href="#">Заблокировать</a>
       </div>
