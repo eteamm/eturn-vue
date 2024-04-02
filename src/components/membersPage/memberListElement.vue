@@ -8,12 +8,9 @@
         <img src="../../../src/assets/img/threeDots.svg" alt="threeDots">
       </button>
       <div class="dropdown-content" v-show="visible">
-        <a v-on:click="upgradeSelectedMember" href="#">{{t1}}</a>
-        <a v-on:click="deleteSelectedMember" href="#">{{t2}}</a>
-        <a href="#">{{t3}}</a>
-        <a href="#">{{title_menu}}</a>
-        <a v-on:click="deleteSelectedMember" href="#" v-if="!getterMemberBlockShow(2)">Удалить</a>
-        <a href="#" v-if="!getterMemberBlockShow(2)">Заблокировать</a>
+        <a v-on:click="upgradeSelectedMember" href="#">{{title_menu}}</a>
+        <a v-on:click="deleteSelectedMember" v-if="!getterMemberBlockShow(2)" href="#">Удалить</a>
+        <a href="#" v-if="!getterMemberBlockShow(2)" v-on:click="blockMember">Заблокировать</a>
       </div>
     </div>
   </div>
@@ -28,9 +25,6 @@ export default {
   data() {
     return {
       visible: false,
-      t1: "",
-      t2: "",
-      t3: ""
     }
   },
   props: {
@@ -61,14 +55,24 @@ export default {
       this.visible = this.visible === false;
     },
     deleteSelectedMember() {
-      //console.log(this.$store.getters.getCurrentMember.userId)
-      //alert('Кнопка нажата!');
       this.$store.dispatch("deleteMember", {token: this.$store.getters.getterToken, id: this.member.id})
     },
+    blockMember(){
+      if(this.$store.getters.getterMemberBlockShow(0) || this.$store.getters.getterMemberBlockShow(1)){
+        this.$store.dispatch("updateMember", {token: this.$store.getters.getterToken, id: this.member.id, type: "BLOCKED"})
+      }
+    },
     upgradeSelectedMember() {
-      //alert('Кнопка нажата!');
       console.log(this.member.access)
-      this.$store.dispatch("updateMember", {token: this.$store.getters.getterToken, id: this.member.id, type: "MODERATOR"})
+      if (this.$store.getters.getterMemberBlockShow(0)){
+        this.$store.dispatch("updateMember", {token: this.$store.getters.getterToken, id: this.member.id, type: "MEMBER"})
+      }
+      else if (this.$store.getters.getterMemberBlockShow(1)){
+        this.$store.dispatch("updateMember", {token: this.$store.getters.getterToken, id: this.member.id, type: "MODERATOR"})
+      }
+      else{
+        this.$store.dispatch("updateMember", {token: this.$store.getters.getterToken, id: this.member.id, type: "MEMBER"})
+      }
     }
   }
 

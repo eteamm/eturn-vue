@@ -84,7 +84,7 @@ export default {
         this.$store.dispatch("loadFirstTurnPosition", {token: this.$store.getters.getterToken, turn: this.id})
       }
     },
-    getCurrentPosition(newVal, oldVal){
+    getFirstPosition(newVal, oldVal){
       let now = new Date();
       if (!newVal.start){
         if (newVal.dateEnd !== null) {
