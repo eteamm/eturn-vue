@@ -19,7 +19,7 @@
         </div>
         <div class="mainButton">
           <router-link to="/">
-            <main-button button-text="вперёд" />
+            <main-button button-text="вперёд" turn="false" />
           </router-link>
         </div>
       </div>

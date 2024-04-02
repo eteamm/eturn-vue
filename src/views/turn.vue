@@ -24,17 +24,24 @@
           </div>
           <YourPosition v-if="getCurrentPosition!==null"/>
         </div>
-        <div>
-          <positions-list/>
-        </div>
-        <div>
-          <main-button v-on:click="createPosition" button-text="встать в очередь" />
+        <div v-bind:class="{visibleOpacity: showOpacity}">
+          <div>
+            <positions-list/>
+          </div>
+          <div>
+            <main-button turn="true" v-on:click="createPosition" button-text="встать в очередь" />
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
+<style>
+.visibleOpacity {
+  opacity: 0.3;
+}
+</style>
 
 <script>
 import Header from "@/components/header.vue";
@@ -66,6 +73,13 @@ export default {
     return {id: 0, timer: null}
   },
   computed:{
+    showOpacity() {
+      if (this.$store.getters.getCurrentPosition !== null) {
+        return this.$store.getters.getCurrentPosition.difference === 0;
+      } else {
+        return false;
+      }
+    },
     ...mapGetters(['getterToken', 'getCurrentPosition', 'getFirstPosition', 'getCurrentMember','getLoading', 'getFirstPosition']),
     showFirst(){
       if (this.$store.getters.getCurrentPosition!==null && this.$store.getters.getFirstPosition!==null){
@@ -124,7 +138,6 @@ export default {
     goToMainPage() {
       router.push("/")
     }
-
   }
 }
 </script>

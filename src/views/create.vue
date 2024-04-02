@@ -16,7 +16,7 @@
         <div v-if="visitable === true">
           <window-create-error @visitable="visitable = false" />
         </div>
-        <main-button v-on:click="getTurn()" button-text="создать" id="endPage" />
+        <main-button turn="false" v-on:click="getTurn()" button-text="создать" id="endPage" />
       </div>
     </div>
   </div>

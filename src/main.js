@@ -37,6 +37,7 @@ const store = createStore({
         'auth_error': false,
         'turn_error': false,
         'member_error':false,
+        'position_error': false
       },
       loadings:{
         'auth_loading': false,
@@ -438,6 +439,7 @@ const store = createStore({
         })
 
       }).catch(error=>{
+        commit("SET_ERROR", {name: 'position_error', value: true})
         console.log('error', error)
       })
     },
