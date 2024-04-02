@@ -6,7 +6,7 @@
   width: 100%;
   border: 0px solid;
   background-color: $main-color;
-  color: $white;
+  color: $text-second-color;
   border-radius: $radius;
   box-shadow: 5px 5px 10px -10px black;
   color: $text-color;
@@ -16,7 +16,7 @@
 .sectionNameUser {
   font-size: $small-text;
   margin: 0px 0px;
-  color: $block-color;
+  color: $text-color;
 }
 
 .etuIdInformation{
@@ -61,7 +61,7 @@
   text-align: left;
   border: 0px solid;
   background-color: $block-color;
-  color: $white;
+  color: $text-second-color;
   border-radius: $radius;
   box-shadow: 5px 5px 10px -10px black;
   margin: 0px 0px 0px 0px;
@@ -73,7 +73,7 @@
   text-align: left;
   border: 0px solid;
   background-color: $block-color;
-  color: $white;
+  color: $text-second-color;
   border-radius: $radius;
   box-shadow: 5px 5px 10px -10px black;
   margin: 0px 0px 0px 0px;
@@ -88,5 +88,5 @@
 .statusAndGroup {
   font-size: $middle-text;
   margin:0;
-  color: $white;
+  color: $text-second-color;
 }

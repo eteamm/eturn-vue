@@ -28,12 +28,14 @@ export default {
   methods: {
     goToTurnPage(){
       if (this.$store.getters.getterTurnAccess !== 'memberOut') {
+        this.$store.dispatch("checkRootUser", {token: this.$store.getters.getterToken, turn: this.Turn_data.id})
         this.$router.push('/turn/'+ this.Turn_data.id);
       }
     },
     goToTurnPageBtn() {
       if (this.$store.getters.getterTurnAccess !== 'memberIn') {
         this.$store.dispatch("addNewMember", {token: this.$store.getters.getterToken, turn: this.Turn_data.id})
+        this.$store.dispatch("checkRootUser", {token: this.$store.getters.getterToken, turn: this.Turn_data.id})
       }
     }
   },

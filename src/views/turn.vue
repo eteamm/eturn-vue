@@ -13,6 +13,12 @@
           <TurnBtns/>
         </div>
         <div>
+          <!--          <div style="position: relative;" v-show="this.$store.getters.getLoading('position_loading')">-->
+          <!--            <loader />-->
+          <!--          </div>-->
+          <FirstPosition v-if="showFirst"/>
+        </div>
+        <div>
           <div style="position: relative;" v-show="this.$store.getters.getLoading('position_loading')">
             <loader />
           </div>
@@ -38,6 +44,7 @@ import TurnPosition from "@/components/turnPage/turnPosition.vue";
 import MainButton from "@/components/mainButton.vue";
 import PositionsList from "@/components/turnPage/positionsList.vue";
 import YourPosition from "@/components/turnPage/yourPosition.vue";
+import FirstPosition from "@/components/turnPage/firstPosition";
 import router from "@/router";
 import {mapGetters, mapState} from "vuex";
 import { useRoute } from 'vue-router'
@@ -52,13 +59,22 @@ export default {
     TurnBtns,
     Header,
     TurnInfo,
-    PositionsList
+    PositionsList,
+    FirstPosition
   },
   data () {
     return {id: 0, timer: null}
   },
   computed:{
-    ...mapGetters(['getterToken', 'getCurrentPosition', 'getCurrentMember','getLoading'])
+    ...mapGetters(['getterToken', 'getCurrentPosition', 'getFirstPosition', 'getCurrentMember','getLoading', 'getFirstPosition']),
+    showFirst(){
+      if (this.$store.getters.getCurrentPosition!==null && this.$store.getters.getFirstPosition!==null){
+        return (this.$store.getters.getCurrentMember.access==='MODERATOR' || this.$store.getters.getCurrentMember.access==='CREATOR') && this.$store.getters.getCurrentPosition.id!==this.$store.getters.getFirstPosition.id
+      }
+      else if (this.$store.getters.getFirstPosition!==null){
+        return (this.$store.getters.getCurrentMember.access==='MODERATOR' || this.$store.getters.getCurrentMember.access==='CREATOR')
+      }
+    }
   },
   beforeCreate() {
     this.$store.dispatch("checkToken")
@@ -77,6 +93,7 @@ export default {
     this.$store.dispatch("loadCurrentTurn",{id: this.id, token: this.$store.getters.getterToken})
     this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: this.id})
     this.$store.dispatch("loadFirstPosition", {token: this.$store.getters.getterToken, turn: this.id})
+    this.$store.dispatch("loadFirstTurnPosition", {token: this.$store.getters.getterToken, turn: this.id})
     this.updatePage()
   },
   beforeUnmount() {

@@ -1,11 +1,12 @@
 <template>
   <div class="sameBlocks" >
     <img class="showing" v-bind:class="{showAnim: getterMemberBlockShow(this.type)}"  src="../../../src/assets/img/strel.svg" alt="show" v-on:click="changeShow()">
-    <img class="searching" src="../../../src/assets/img/search.svg" alt="search">
+<!--    <img class="searching" src="../../../src/assets/img/search.svg" alt="search">-->
     <h3 class="mainHeader">{{ header }}</h3>
     <div class="member" v-show="getterMemberBlockShow(this.type)">
       <MemberListElement v-for="mem in getterMemberList" :member=mem type="members"/>
     </div>
+    <p class="noMemberFound" v-if="(getterMemberBlockShow(this.type) && getCurrentError('member_error'))">В этом списке еще никого нет.</p>
   </div>
 
 
@@ -24,7 +25,7 @@ export default {
     MemberListElement
   },
   computed:{
-    ...mapGetters(['getterMemberBlockShow', 'getterMemberList'])
+    ...mapGetters(['getterMemberBlockShow', 'getterMemberList', 'getCurrentError'])
   },
   created() {
     this.$store.dispatch("checkToken")

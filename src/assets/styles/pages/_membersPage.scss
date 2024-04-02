@@ -1,8 +1,14 @@
 .mainHeader {
   color: $text-second-color;
-  font-size: $large-text;
+  font-size: $middle-text;
   text-align: center;
-  padding-top:-10px;
+  padding-top:10px;
+}
+
+.noMemberFound{
+  color: $main-color;
+  text-align: center;
+  font-size: $small-text;
 }
 
 .sameBlocks {
@@ -38,12 +44,12 @@
 
 .currentMember {
   position:relative;
-  padding: 15px;
+  padding: 20px;
 }
 
 .textName {
   text-align: left;
-  font-size: $middle-text;
+  font-size: $small-text;
   margin: 0;
   color: $text-second-color;
 }
@@ -57,8 +63,8 @@
 /* Контейнер <div> - необходим для размещения выпадающего содержимого */
 .dropdown {
   position: absolute;
-  top: 20px;
-  right: 0px;
+  top: 25px;
+  right: 10px;
   display: inline-block;
 }
 

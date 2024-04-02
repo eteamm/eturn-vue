@@ -6,7 +6,7 @@
         <p class="PositionBlockGroup" v-if="position.group!==null">{{position.group}}</p>
 
     </div>
-      <div v-if="this.$store.getters.getCurrentMember.userId===position.userId || this.$store.getters.getterRoleUser === 'MODERATOR'" v-on:click="deleteCurrentPosition(position.id)" class="deletePosition">
+      <div v-if="this.$store.getters.getCurrentMember.userId===position.userId || (getCurrentMember.access==='MODERATOR' || getCurrentMember.access==='CREATOR')" v-on:click="deleteCurrentPosition(position.id)" class="deletePosition">
         <img src="../../assets/img/cross.svg"  alt="delete">
       </div>
 

@@ -1,25 +1,22 @@
 <template>
   <div class="yourTurn">
-    <span class="yourTurnTitle">ТВОЙ ЧЕРЁД</span>
+    <span class="yourTurnTitle">ТЕКУЩАЯ ПОЗИЦИЯ</span>
     <div class="yourTurnBlock">
       <div class="yourTurnBlockIn">
-        <div>#{{getCurrentPosition.number}}</div>
+        <div>#{{getFirstPosition.number}}</div>
         <div class="mainElementTurn">
-          <p>{{getCurrentPosition.name}}</p>
-          <p>{{getCurrentPosition.group}}</p>
-          <div>
-            <p v-if="getCurrentPosition.difference>0" class="countNeedWait">Перед тобой {{getCurrentPosition.difference}} человек</p>
-          </div>
+          <p>{{getFirstPosition.name}}</p>
+          <p>{{getFirstPosition.group}}</p>
         </div>
         <div v-on:click="deleteCurrentPosition">
           <img class="deletePosition" src="../../assets/img/cross.svg" style="width:20px"  alt="delete">
         </div>
       </div>
-      <div v-if="getCurrentPosition.difference===0">
-        <button v-bind:class="{BtnYourTurnGoOut: getCurrentPosition.start, BtnYourTurnGoIn: !getCurrentPosition.start}" v-on:click="changePositionStatus" class="BtnYourTurnGoIn">{{btn}}</button>
+      <div v-if="getFirstPosition.difference===0">
+        <button v-bind:class="{BtnYourTurnGoOut: getFirstPosition.start, BtnYourTurnGoIn: !getFirstPosition.start}" v-on:click="changePositionStatus" class="BtnYourTurnGoIn">{{btn}}</button>
       </div>
     </div>
-    <div class="timer" v-show="visitable && !getCurrentPosition.start">Войдите, иначе ваша позиция пропадёт через {{timeMinutes}}:{{timeSeconds}} </div>
+    <div class="timer" v-show="visitable && !getFirstPosition.start">Позиция студента пропадет через {{timeMinutes}}:{{timeSeconds}} </div>
   </div>
 </template>
 
@@ -28,7 +25,7 @@ import TurnPosition from "@/components/turnPage/turnPosition.vue";
 import {mapGetters} from "vuex";
 import Loader from "@/components/loader.vue";
 export default {
-  name: 'YourPosition',
+  name: 'firstPosition',
   data() {
     return {
       timeMinutes: 0,
@@ -43,9 +40,9 @@ export default {
     TurnPosition
   },
   computed:{
-    ...mapGetters(['getCurrentPosition']),
+    ...mapGetters(['getFirstPosition', 'getCurrentPosition']),
     btn(){
-      if (this.$store.getters.getCurrentPosition.start){
+      if (this.$store.getters.getFirstPosition.start){
         return "выйти";
       }
       else{
@@ -57,10 +54,11 @@ export default {
     changePositionStatus() {
       this.visitable = false;
       this.stopTimer()
-      this.$store.dispatch("changePositionStatus", {token: this.$store.getters.getterToken, posId: this.$store.getters.getCurrentPosition.id, status: this.$store.getters.getCurrentPosition.start, turnId: this.$store.getters.getterTurnId})
+      this.$store.dispatch("changeFirstPositionStatus", {token: this.$store.getters.getterToken, posId: this.$store.getters.getFirstPosition.id, status: this.$store.getters.getFirstPosition.start, turnId: this.$store.getters.getterTurnId})
     },
     deleteCurrentPosition(){
-      this.$store.dispatch("deletePosition", {token: this.$store.getters.getterToken, id: this.$store.getters.getCurrentPosition.id, turnId: this.$store.getters.getterTurnId})
+      this.$store.dispatch("deletePosition", {token: this.$store.getters.getterToken, id: this.$store.getters.getFirstPosition.id, turnId: this.$store.getters.getterTurnId})
+      this.$store.dispatch("loadFirstTurnPosition", {token: this.$store.getters.getterToken, turn: this.id})
       this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: this.$store.getters.getterTurnId})
     },
     startTimer() {
@@ -83,6 +81,7 @@ export default {
         this.stopTimer()
         this.$store.dispatch("loadPositionList", {token: this.$store.getters.getterToken, turn: this.$store.getters.getterTurnId})
         this.$store.dispatch("loadFirstPosition", {token: this.$store.getters.getterToken, turn: this.$store.getters.getterTurnId})
+        this.$store.dispatch("loadFirstTurnPosition", {token: this.$store.getters.getterToken, turn: this.id})
       }
     },
     getCurrentPosition(newVal, oldVal){
@@ -109,9 +108,9 @@ export default {
   },
   mounted() {
     let now = new Date();
-    if (this.$store.getters.getCurrentPosition.dateEnd !== null) {
+    if (this.$store.getters.getFirstPosition.dateEnd !== null) {
       this.visitable = true
-      let timeTxt = this.$store.getters.getCurrentPosition.dateEnd
+      let timeTxt = this.$store.getters.getFirstPosition.dateEnd
       // let timeTxt = "2024-03-23T15:41:02.250+00:00"
       let timeMs = Date.parse(timeTxt)
       let posDate = new Date(timeMs)

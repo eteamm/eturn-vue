@@ -10,11 +10,11 @@
       <div id="quantityMembers">{{getCurrentMembers!=null ? getCurrentMembers : null}} участников</div>
     </div>
 
-    <MemberListBlock header="Администраторы" type="0"/>
+    <MemberListBlock header="администраторы" type="0"/>
 
-    <MemberListBlock header="Участники" type="1"/>
+    <MemberListBlock header="участники" type="1"/>
 
-    <MemberListBlock header="Заблокированные" type="2"/>
+    <MemberListBlock header="заблокированные" type="2"/>
   </div>
 
 </template>
@@ -44,6 +44,7 @@ export default {
     this.$store.dispatch("checkToken")
     const route = useRoute()
     this.id=route.params.id
+    this.$store.dispatch("checkRootUser", {token: this.$store.getters.getterToken, turn: this.id})
   },
   data(){
     return{

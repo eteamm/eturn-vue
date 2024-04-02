@@ -35,7 +35,8 @@ const store = createStore({
       },
       errors: {
         'auth_error': false,
-        'turn_error': false
+        'turn_error': false,
+        'member_error':false,
       },
       loadings:{
         'auth_loading': false,
@@ -49,6 +50,7 @@ const store = createStore({
       users: [],
       positionsCurrentTurn: [],
       currentPosition: null,
+      firstPosition:null,
       currentMember:null,
       memberBlockShow: [false, false, false],
       memberList: []
@@ -83,8 +85,14 @@ const store = createStore({
     setCurrentPosition(state, position){
       state.currentPosition = position;
     },
+    setFirstPosition(state, position){
+      state.firstPosition = position;
+    },
     setCurrentPositionStatus(state, status) {
       state.currentPosition.start = status;
+    },
+    setFirstPositionStatus(state, status) {
+      state.firstPosition.start = status;
     },
     setTurnType(state, info){
       state.typeTurn = info.type;
@@ -107,6 +115,8 @@ const store = createStore({
     },
     DELETE_TOKEN(state){
       state.authToken = null;
+      document.cookie = "auth=; path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT";
+      router.push('/').then(r=>console.log('Logout was successful'))
     },
     SET_ERROR(state, error){
       state.errors[error.name] = error.value;
@@ -173,6 +183,7 @@ const store = createStore({
       state.turnToCreate.allowedGroups = [];
     },
     setMemberBlockShow(state, param) {
+      state.errors["member_error"]=false;
       let currentParam = state.memberBlockShow[param];
       state.memberBlockShow[0] = false;
       state.memberBlockShow[1] = false;
@@ -303,6 +314,9 @@ const store = createStore({
     },
     getterMemberList: (state) => {
       return state.memberList;
+    },
+    getFirstPosition:(state)=>{
+      return state.firstPosition;
     }
   },
   actions: {
@@ -343,7 +357,31 @@ const store = createStore({
 
       })
     },
+    deleteFirstPosition({commit}, {token, id, turnId}){
+      axios.delete("/position/"+id, {
+        headers: {
+          'Authorization': `${token}`
+        }
+      }).then(result=>{
+        commit("deletePosition", id);
+
+        // getFirstPosition
+        axios.get("/position/first/in?turnId="+turnId, {
+          headers:{
+            'Authorization': `${token}`
+          }
+        }).then(result=>{
+          console.log(result.data);
+          commit("setFirstPosition", result.data)
+        }).catch(error=>{
+          console.log(error);
+          commit("setFirstPosition", null)
+        })
+
+      })
+    },
     deleteMember({commit}, {token, id}){
+      alert(id)
       axios.delete("/turn/member/"+id, {
         headers:{
           'Authorization': `${token}`
@@ -447,6 +485,20 @@ const store = createStore({
         commit('SET_LOADING',{name:"position_loading",value: false});
       })
     },
+    loadFirstTurnPosition({commit}, {token, turn}){
+      // commit("setCurrentPosition", null)
+      axios.get("/position/first/in?turnId="+turn, {
+        headers:{
+          'Authorization': `${token}`
+        }
+      }).then(result=>{
+        console.log(result.data);
+        commit("setFirstPosition", result.data);
+      }).catch(error=>{
+        console.log(error);
+        commit("setFirstPosition", null)
+      })
+    },
     changeError({commit}, error){
       commit("SET_ERROR", error);
     },
@@ -471,6 +523,7 @@ const store = createStore({
       commit('SET_LOADING', {name:'auth_loading', value: true});
       axios.post('/auth/sign-in?login='+login+"&password="+password).then(result=>{
         commit('SAVE_TOKEN', result.data.token);
+        commit('SET_LOADING', {name:"auth_loading", value: false});
         router.push('/main').then(r => console.log("yes!"));
         let date = new Date();
         date.setTime(date.getTime() + (60*60*24 * 60 * 60));
@@ -512,9 +565,8 @@ const store = createStore({
     },
     logout({commit}){
       commit("DELETE_TOKEN")
+      document.cookie = "auth=; path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT";
       commit("setTurnAccess", "memberIn");
-      document.cookie = "auth=;" + "expires=Thu, 01 Jan 1970 00:00:01 GMT";
-      router.push('/').then(r=>console.log('Logout was successful'))
     },
     checkToken({commit}){
       if (document.cookie.indexOf("auth") >= 0) {
@@ -542,6 +594,7 @@ const store = createStore({
         }
       }).then(result => {
         commit('SAVE_TURN', result.data);
+        commit('SET_ERROR', {name:'turn_error', value: false})
         commit('SET_LOADING', {name:"turn_loading", value: false});
       }).catch(error => {
         commit('SET_ERROR', {name:'turn_error', value: true})
@@ -668,12 +721,16 @@ const store = createStore({
       commit("setMemberBlockShow", param)
     },
     loadMemberList({commit}, {token, type, turnId, param}) {
+      // commit('SET_ERROR', {name:'member_error', value: false});
       axios.get('/turn/members?type='+type+'&turnId='+turnId,{
         headers: {
           'Authorization': `${token}`
         }
       }).then(result=>{
         commit("setMemberBlockShow", param)
+        if (result.data.length===0){
+          commit('SET_ERROR', {name:'member_error', value: true});
+        }
         commit("setMemberList", result.data)
       }).catch(error=>{
         console.log(error)
@@ -705,6 +762,40 @@ const store = createStore({
             }
           }).then(result => {
             commit("setCurrentPosition", result.data)
+          }).catch(error => {
+            console.log(error)
+          })
+        }).catch(error => {
+          console.log(error)
+        })
+      }
+    },
+    changeFirstPositionStatus({commit}, {token, posId, status, turnId}) {
+      console.log(status)
+      if (status === false) {
+        axios.put('/position?id=' + posId, null,{
+          headers: {
+            'Authorization': `${token}`
+          }
+        }).then(result => {
+          commit("setFirstPositionStatus", true)
+        }).catch(error => {
+          console.log(error)
+        })
+      } else {
+        axios.put('/position?id=' + posId, null,{
+          headers: {
+            'Authorization': `${token}`
+          }
+        }).then(result => {
+          commit("setFirstPosition", null)
+          commit("deletePosition", posId)
+          axios.get("/position/first/in?turnId="+turnId, {
+            headers:{
+              'Authorization': `${token}`
+            }
+          }).then(result => {
+            commit("setFirstPosition", result.data)
           }).catch(error => {
             console.log(error)
           })

@@ -3,14 +3,14 @@
     <div>
       <p class="textName">{{ member.userName }}</p>
     </div>
-    <div class="dropdown">
+    <div class="dropdown" v-if="getCurrentMember.access==='MODERATOR' || getCurrentMember.access==='CREATOR'">
       <button class="dots" v-on:click="changeVisible">
         <img src="../../../src/assets/img/threeDots.svg" alt="threeDots">
       </button>
       <div class="dropdown-content" v-show="visible">
-        <a href="#">Сделать администратором</a>
-        <a v-on:click="deleteSelectedMember" href="#">Удалить</a>
-        <a href="#">Заблокировать</a>
+        <a href="#">{{title_menu}}</a>
+        <a v-on:click="deleteSelectedMember" href="#" v-if="!getterMemberBlockShow(2)">Удалить</a>
+        <a href="#" v-if="!getterMemberBlockShow(2)">Заблокировать</a>
       </div>
     </div>
   </div>
@@ -37,7 +37,18 @@ export default {
     type:0,
   },
   computed:{
-    ...mapGetters(['getterToken'])
+    ...mapGetters(['getterToken', 'getterMemberBlockShow', 'getCurrentMember']),
+    title_menu(){
+      if (this.$store.getters.getterMemberBlockShow(0)){
+        return "Разжаловать"
+      }
+      else if (this.$store.getters.getterMemberBlockShow(1)){
+        return "Сделать администратором"
+      }
+      else {
+        return "Разблокировать"
+      }
+    }
   },
   methods: {
     changeVisible() {
@@ -46,6 +57,7 @@ export default {
     deleteSelectedMember() {
       //console.log(this.$store.getters.getCurrentMember.userId)
       //alert('Кнопка нажата!');
+      alert(this.member.id);
       this.$store.dispatch("deleteMember", {token: this.$store.getters.getterToken, id: this.member.id})
     }
   }
