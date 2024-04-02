@@ -9,7 +9,7 @@
           <p>{{getFirstPosition.group}}</p>
         </div>
         <div v-on:click="deleteCurrentPosition">
-          <img class="deletePosition" src="../../assets/img/cross.svg" style="width:20px"  alt="delete">
+          <img class="deletePosition" src="../../assets/img/cross.svg" style="width:20px; padding-top: 10px"  alt="delete">
         </div>
       </div>
       <div v-if="getFirstPosition.difference===0">
