@@ -8,6 +8,9 @@
         <img src="../../../src/assets/img/threeDots.svg" alt="threeDots">
       </button>
       <div class="dropdown-content" v-show="visible">
+        <a v-on:click="upgradeSelectedMember" href="#">{{t1}}</a>
+        <a v-on:click="deleteSelectedMember" href="#">{{t2}}</a>
+        <a href="#">{{t3}}</a>
         <a href="#">{{title_menu}}</a>
         <a v-on:click="deleteSelectedMember" href="#" v-if="!getterMemberBlockShow(2)">Удалить</a>
         <a href="#" v-if="!getterMemberBlockShow(2)">Заблокировать</a>
@@ -24,7 +27,10 @@ export default {
   name: 'MemberListElement',
   data() {
     return {
-      visible: false
+      visible: false,
+      t1: "",
+      t2: "",
+      t3: ""
     }
   },
   props: {
@@ -57,10 +63,15 @@ export default {
     deleteSelectedMember() {
       //console.log(this.$store.getters.getCurrentMember.userId)
       //alert('Кнопка нажата!');
-      alert(this.member.id);
       this.$store.dispatch("deleteMember", {token: this.$store.getters.getterToken, id: this.member.id})
+    },
+    upgradeSelectedMember() {
+      //alert('Кнопка нажата!');
+      console.log(this.member.access)
+      this.$store.dispatch("updateMember", {token: this.$store.getters.getterToken, id: this.member.id, type: "MODERATOR"})
     }
   }
+
 }
 </script>
 

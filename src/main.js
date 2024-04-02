@@ -390,6 +390,15 @@ const store = createStore({
         commit("deleteMember", id)
       })
     },
+    updateMember({commit}, {token, id, type}){
+      axios.put("/turn/member/access?id="+id+"&type="+type, null,  {
+        headers:{
+          'Authorization': `${token}`
+        }
+      }).then(result => {
+        commit("setMemberBlockShow", type)
+      })
+    },
     setTurnIdValue({commit}, {turnId}){
       commit("setTurnId", turnId)
     },
