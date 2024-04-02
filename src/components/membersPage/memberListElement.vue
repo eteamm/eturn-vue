@@ -8,9 +8,9 @@
         <img src="../../../src/assets/img/threeDots.svg" alt="threeDots">
       </button>
       <div class="dropdown-content" v-show="visible">
-        <a href="#">Сделать администратором</a>
-        <a v-on:click="deleteSelectedMember" href="#">Удалить</a>
-        <a href="#">Заблокировать</a>
+        <a v-on:click="upgradeSelectedMember" href="#">{{t1}}</a>
+        <a v-on:click="deleteSelectedMember" href="#">{{t2}}</a>
+        <a href="#">{{t3}}</a>
       </div>
     </div>
   </div>
@@ -24,7 +24,10 @@ export default {
   name: 'MemberListElement',
   data() {
     return {
-      visible: false
+      visible: false,
+      t1: "",
+      t2: "",
+      t3: ""
     }
   },
   props: {
@@ -40,15 +43,37 @@ export default {
     ...mapGetters(['getterToken'])
   },
   methods: {
+
     changeVisible() {
+      if (this.member.access === "MODERATOR") {
+        this.t1 = "Разжаловать"
+        this.t2 = "Удалить"
+        this.t3 = "Заблокировать"
+      }
+      if (this.member.access === "MEMBER") {
+        this.t1 = "Сделать администратором"
+        this.t2 = "Удалить"
+        this.t3 = "Заблокировать"
+      }
+      if (this.member.access === "BLOCKED") {
+        this.t1 = "Разблокировать"
+        this.t2 = ""
+        this.t3 = ""
+      }
       this.visible = this.visible === false;
     },
     deleteSelectedMember() {
       //console.log(this.$store.getters.getCurrentMember.userId)
       //alert('Кнопка нажата!');
       this.$store.dispatch("deleteMember", {token: this.$store.getters.getterToken, id: this.member.id})
+    },
+    upgradeSelectedMember() {
+      //alert('Кнопка нажата!');
+      console.log(this.member.access)
+      this.$store.dispatch("updateMember", {token: this.$store.getters.getterToken, id: this.member.id, type: "MODERATOR"})
     }
   }
+
 }
 </script>
 
