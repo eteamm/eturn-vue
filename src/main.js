@@ -396,7 +396,7 @@ const store = createStore({
           'Authorization': `${token}`
         }
       }).then(result => {
-        commit("setMemberBlockShow", type)
+        commit("deleteMember", id)
       })
     },
     setTurnIdValue({commit}, {turnId}){
