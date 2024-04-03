@@ -1,0 +1,10 @@
+.positionError {
+  color: $text-btn-out;
+  font-size: $small-text;
+  padding: 10px 15px 10px 25px;
+  background-color: $block-color;
+  width: 100%;
+  border-style: none;
+  border-radius: $radius;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.5);
+}
