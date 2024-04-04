@@ -15,6 +15,7 @@ const store = createStore({
     return {
       listTurn: [],
       turnId: 0,
+      countPositionError: 0,
       currentTurn: null,
       currentMembers: null,
       userId: 1,
@@ -37,6 +38,7 @@ const store = createStore({
         'auth_error': false,
         'turn_error': false,
         'member_error':false,
+        'position_error': false
       },
       loadings:{
         'auth_loading': false,
@@ -196,6 +198,9 @@ const store = createStore({
     setNullPosition(state) {
       state.currentPosition = null;
       state.positionsCurrentTurn = null;
+    },
+    setCountPositionError(state, count) {
+      state.countPositionError = count;
     }
   },
   getters: {
@@ -317,6 +322,9 @@ const store = createStore({
     },
     getFirstPosition:(state)=>{
       return state.firstPosition;
+    },
+    getCountPositionError(state) {
+      return state.countPositionError;
     }
   },
   actions: {
@@ -438,7 +446,10 @@ const store = createStore({
         })
 
       }).catch(error=>{
-        console.log('error', error)
+        commit("setCountPositionError", error.response.data)
+        console.log('error', error.response.data)
+        commit("SET_ERROR", {name: 'position_error', value: true})
+        setTimeout(() => { commit("SET_ERROR", {name: 'position_error', value: false}) }, 8000);
       })
     },
     checkRootUser({commit}, {token, turn}){

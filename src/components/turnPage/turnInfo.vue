@@ -5,8 +5,8 @@
       <span class="TurnTitle">{{getCurrentTurn!=null ? getCurrentTurn.name : "..."}}</span>
     </div>
     <div class="Quantity">
-      <span class="memebersQuantity">{{getCurrentTurn!=null ? getCurrentTurn.countUsers : "..."}}</span>
-      <p class="qpeople">{{ people[index] }}</p>
+      <span class="memebersQuantity">{{getCurrentTurn!=null ? getCurrentTurn.countUsers : null}}</span>
+      <p class="qpeople">{{ people[getIndex] }}</p>
     </div>
   </div>
   <div class="ExtraInfo">
@@ -21,18 +21,20 @@ import {id} from "postcss-selector-parser";
 
 export default {
   name: 'TurnInfo',
-  computed: mapGetters(['getCurrentTurn', 'getterToken', 'getCurrentTurnId']),
+  computed: {
+    ...mapGetters(['getCurrentTurn', 'getterToken', 'getCurrentTurnId']),
+    getIndex() {
+      let i = this.$store.getters.getCurrentTurn!=null ? this.$store.getters.getCurrentTurn.countUsers : null
+      if (i % 100 === 12 || i % 100 === 13 || i % 100 === 14)
+        return this.index = 0
+      return this.index = i % 10
+    }
+  },
   data() {
     return {
       people: ["человек", "человек", "человека", "человека", "человека", "человек", "человек", "человек", "человек", "человек",],
       index: 0
     }
-  },
-  beforeUpdate() {
-    let i = this.$store.getters.getCurrentTurn!=null ? this.$store.getters.getCurrentTurn.countUsers : null
-    if (i === 12 || i === 13 || i === 14)
-      this.index = 0
-    this.index = i % 10
   }
 }
 </script>

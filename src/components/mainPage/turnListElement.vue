@@ -13,7 +13,7 @@
         описание: {{Turn_data.description}}
       </div>
       <div class="quantityPeople">
-        {{Turn_data.countUsers}} {{ people[index] }}
+        {{Turn_data.countUsers}} {{ people[getIndex] }}
       </div>
     </div>
 </template>
@@ -58,13 +58,13 @@ export default {
     joinBtnVisible: ()=>{
       return this.type !== "memberIn";
     },
-    ...mapGetters(["getterTurnAccess", 'getterToken'])
-  },
-  mounted() {
-    let i = this.Turn_data.countUsers
-    if (i === 12 || i === 13 || i === 14)
-      this.index = 0
-    this.index = i % 10
+    ...mapGetters(["getterTurnAccess", 'getterToken']),
+    getIndex() {
+      let i = this.Turn_data.countUsers
+      if (i % 100 === 12 || i % 100 === 13 || i % 100 === 14)
+        return this.index = 0
+      return this.index = i % 10
+    }
   }
 }
 </script>

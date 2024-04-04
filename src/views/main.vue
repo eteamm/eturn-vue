@@ -12,7 +12,7 @@
         <type-turn-filter-btn />
         <access-filter-btn />
         <turn-list />
-        <main-button button-text="создать очередь" v-on:click="cleanTurnList"/>
+        <main-button button-text="создать очередь" turn="false" v-on:click="cleanTurnList"/>
       </div>
     </div>
   </div>
