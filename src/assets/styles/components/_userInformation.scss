@@ -5,18 +5,17 @@
   text-align: left;
   width: 100%;
   border: 0px solid;
-  background-color: $main-color;
+  background-color: $block-color;
   color: $text-second-color;
   border-radius: $radius;
-  box-shadow: 5px 5px 10px -10px black;
-  color: $text-color;
+  //box-shadow: 5px 5px 10px -10px black;
   padding: 10px 20px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 .sectionNameUser {
   font-size: $small-text;
-  margin: 0px 0px;
-  color: $text-color;
+  margin: 0;
+  //color: $text-color;
 }
 
 .etuIdInformation{
@@ -47,10 +46,10 @@
 }
 
 .additionalInformation{
-  padding: 10px 0px 10px 0px;
+  padding: 13px 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
+  grid-gap: 13px;
 }
 .nameTitle {
   font-size: $middle-text;
@@ -59,12 +58,12 @@
 .status {
   width: 100%;
   text-align: left;
-  border: 0px solid;
+  border: 0 solid;
   background-color: $block-color;
   color: $text-second-color;
   border-radius: $radius;
-  box-shadow: 5px 5px 10px -10px black;
-  margin: 0px 0px 0px 0px;
+  //box-shadow: 5px 5px 10px -10px black;
+  margin: 0;
   display: inline-block;
   padding: 10px 20px;
 }
@@ -82,11 +81,12 @@
 }
 .sectionName {
   font-size: $small-text;
-  margin: 0px 0px;
+  margin: 0;
   color: $text-second-color;
 }
 .statusAndGroup {
   font-size: $middle-text;
   margin:0;
+  font-weight: bold;
   color: $text-second-color;
 }

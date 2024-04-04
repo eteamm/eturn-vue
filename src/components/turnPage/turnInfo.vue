@@ -1,16 +1,17 @@
 <template>
   <div class="TurnInfo">
     <div class="Title">
-    <span class="TurnTitle">{{getCurrentTurn!=null ? getCurrentTurn.name : null}}</span>
-    <p class="TurnCreator">{{getCurrentTurn!=null ? getCurrentTurn.creator : null}}</p>
+      <p class="TurnCreator">название очереди</p>
+      <span class="TurnTitle">{{getCurrentTurn!=null ? getCurrentTurn.name : "..."}}</span>
     </div>
     <div class="Quantity">
-      <span class="memebersQuantity">{{getCurrentTurn!=null ? getCurrentTurn.countUsers : null}}</span>
+      <span class="memebersQuantity">{{getCurrentTurn!=null ? getCurrentTurn.countUsers : "..."}}</span>
       <p class="qpeople">{{ people[index] }}</p>
     </div>
   </div>
   <div class="ExtraInfo">
-    <span>Подробнее: {{getCurrentTurn!=null ? getCurrentTurn.description : null}}</span>
+    <p><span>Описание:</span> {{getCurrentTurn!=null ? getCurrentTurn.description : "..."}}</p>
+    <p><span>Автор:</span> {{getCurrentTurn!=null ? getCurrentTurn.creator : "..."}}</p>
   </div>
 </template>
 

@@ -2,18 +2,18 @@
   display: flex;
   //justify-content: space-around;
   width:100%;
-  margin-bottom:15px;
+  margin:15px 0;
 
 }
 .upperBtns button{
   width: 100%;
   font-size: $small-text;
-  font-weight: 700;
+  //font-weight: 700;
   background-color: $main-color;
   color: $text-color;
   border-style: none;
   border-radius: $radius;
-  padding: 8px 10px;
+  padding: 12px 10px;
 }
 
 .btnLeftAction{
@@ -21,6 +21,8 @@
 }
 .btnRightAction{
   margin-left:10px;
+  background-color: $block-color !important;
+  color: $main-color !important;
 }
 .memberBtn button{
   background:#9ADBFF;

@@ -381,7 +381,7 @@ const store = createStore({
       })
     },
     deleteMember({commit}, {token, id}){
-      alert(id)
+      // alert(id)
       axios.delete("/turn/member/"+id, {
         headers:{
           'Authorization': `${token}`
