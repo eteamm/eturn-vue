@@ -1,6 +1,7 @@
 <template>
 <div class="wholeTurn">
   <span class="yourTurnTitle">ВСЯ ОЧЕРЕДЬ</span>
+  <h3 class="noPositionFound" v-show="noFound">Самое время встать в очередь...</h3>
 </div>
   <TurnPosition
     v-for="pos in getterPositionsList"
@@ -22,7 +23,10 @@ export default{
     TurnPosition
   },
   computed:{
-    ...mapGetters(['getterPositionsList','getLoading'])
+    ...mapGetters(['getterPositionsList','getLoading']),
+    noFound(){
+      return this.$store.getters.getterPositionsList===null;
+    }
   },
   mounted(){
     console.log('turn',this.turn);

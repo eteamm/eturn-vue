@@ -19,9 +19,9 @@
           <FirstPosition v-if="showFirst"/>
         </div>
         <div>
-          <div style="position: relative;" v-show="this.$store.getters.getLoading('position_loading')">
-            <loader />
-          </div>
+<!--          <div style="position: relative;" v-show="this.$store.getters.getLoading('position_loading')">-->
+<!--            <loader />-->
+<!--          </div>-->
           <YourPosition v-if="getCurrentPosition!==null"/>
         </div>
         <div v-bind:class="{visibleOpacity: showOpacity}">
@@ -87,6 +87,9 @@ export default {
       }
       else if (this.$store.getters.getFirstPosition!==null){
         return (this.$store.getters.getCurrentMember.access==='MODERATOR' || this.$store.getters.getCurrentMember.access==='CREATOR')
+      }
+      else{
+        return false;
       }
     }
   },

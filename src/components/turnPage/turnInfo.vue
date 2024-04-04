@@ -1,8 +1,8 @@
 <template>
   <div class="TurnInfo">
     <div class="Title">
-      <p class="TurnCreator">название очереди</p>
       <span class="TurnTitle">{{getCurrentTurn!=null ? getCurrentTurn.name : "..."}}</span>
+      <p class="TurnCreator">название очереди</p>
     </div>
     <div class="Quantity">
       <span class="memebersQuantity">{{getCurrentTurn!=null ? getCurrentTurn.countUsers : null}}</span>

@@ -33,7 +33,7 @@
       <div class="background_modal" v-bind:class="{openModal: this.openModal, add_z_index: this.addZ}"></div>
       <div class="modal_eturn"  v-bind:class="{openModal: this.openModal, add_z_index: this.addZ}">
         <div class="inModal">
-          <h1>Настройка параметров доступа</h1>
+          <h1>Параметры доступа</h1>
           <h2>{{this.titleModal}}</h2>
           <div class="selectF" v-if="this.typeParam===0">
             <select v-model="selected" class="form-select">

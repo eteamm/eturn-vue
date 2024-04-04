@@ -1,7 +1,12 @@
 <template>
   <div class="yourTurn">
-    <span class="yourTurnTitle">ТЕКУЩАЯ ПОЗИЦИЯ</span>
     <div class="yourTurnBlock">
+      <div class="yourTurnBlockIn">
+        <div class="invisible_number">#{{getFirstPosition.number}}</div>
+        <div>
+          <p class="yourTurnTitle">Текущая позиция</p>
+        </div>
+      </div>
       <div class="yourTurnBlockIn">
         <div>#{{getFirstPosition.number}}</div>
         <div class="mainElementTurn">

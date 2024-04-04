@@ -8,9 +8,14 @@
 }
 .yourTurnTitle{
   color:$main-color;
-  font-weight: 600;
-  text-align: center;
-  padding:15px;
+  font-weight: bold;
+  text-align: left;
+  font-size: $small-text;
+  padding: 8px 0 15px 20px;
+  margin: 0;
+}
+.invisible_number{
+  opacity: 0;
 }
 
 .yourTurnBlock{
@@ -31,6 +36,7 @@
 .yourTurnBlockIn .mainElementTurn{
   width: 100%;
   padding-left:20px;
+  padding-bottom: 7px;
 }
 .countNeedWait{
   color: $main-color;

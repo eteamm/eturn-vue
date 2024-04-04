@@ -1,18 +1,23 @@
 <template>
   <div class="yourTurn">
-    <span class="yourTurnTitle">ТВОЙ ЧЕРЁД</span>
     <div class="yourTurnBlock">
+      <div class="yourTurnBlockIn">
+        <div class="invisible_number">#{{getCurrentPosition.number}}</div>
+        <div>
+          <p class="yourTurnTitle">Твоя позиция</p>
+        </div>
+      </div>
       <div class="yourTurnBlockIn">
         <div>#{{getCurrentPosition.number}}</div>
         <div class="mainElementTurn">
           <p>{{getCurrentPosition.name}}</p>
           <p>{{getCurrentPosition.group}}</p>
           <div>
-            <p v-if="getCurrentPosition.difference>0" class="countNeedWait">Перед тобой {{getCurrentPosition.difference}} человек</p>
+            <p v-if="getCurrentPosition.difference>0" class="countNeedWait">Перед тобой {{getCurrentPosition.difference}} {{people[getIndex]}}</p>
           </div>
         </div>
         <div v-on:click="deleteCurrentPosition">
-          <img class="deletePosition" src="../../assets/img/cross.svg" style="width:20px;padding-top: 10px"  alt="delete">
+          <img class="deletePosition" src="../../assets/img/cross.svg" style="width:25px;padding-top: 10px"  alt="delete">
         </div>
       </div>
       <div v-if="getCurrentPosition.difference===0">
@@ -35,7 +40,9 @@ export default {
       timeSeconds: 0,
       timeLeft: 0,
       timer: null,
-      visitable: false
+      visitable: false,
+      people: ["человек", "человек", "человека", "человека", "человека", "человек", "человек", "человек", "человек", "человек",],
+      index: 0
     }
   },
   components: {
@@ -44,6 +51,15 @@ export default {
   },
   computed:{
     ...mapGetters(['getCurrentPosition']),
+    getIndex() {
+      let i = this.$store.getters.getCurrentPosition!=null ? this.$store.getters.getCurrentPosition.difference : null
+      if (i > 0 && i!=null){
+        if (i % 100 === 12 || i % 100 === 13 || i % 100 === 14)
+          return this.index = 0
+        return this.index = i % 10
+      }
+
+    },
     btn(){
       if (this.$store.getters.getCurrentPosition.start){
         return "выйти";
